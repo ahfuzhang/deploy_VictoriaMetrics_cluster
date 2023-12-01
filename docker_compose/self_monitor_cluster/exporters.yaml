@@ -1,0 +1,8 @@
+#
+- targets: ["http://host.docker.internal:33000/metrics"]
+  labels:
+    "from": "vm-agent"
+    "region": "HK"
+    "env": "formal"
+    "cluster": "self-monitor-cluster"
+    "role": "grafana"

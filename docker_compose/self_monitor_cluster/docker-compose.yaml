@@ -1,0 +1,246 @@
+version: '3'
+services:
+  vm-storage-self-monitor-0:
+    container_name: "vm-storage-self-monitor-0"
+    image: "victoriametrics/vmstorage:v1.95.1-cluster"
+    pull_policy: if_not_present
+    command:
+      - "-blockcache.missesBeforeCaching=2"
+      - "-cacheExpireDuration=30m"
+      - "-dedup.minScrapeInterval=15s"
+      - "-denyQueriesOutsideRetention"
+      - "-finalMergeDelay=0s"
+      - "-httpListenAddr=:38482"
+      - "-insert.maxQueueDuration=1m"
+      - "-loggerDisableTimestamps"
+      - "-loggerFormat=json"
+      - "-loggerLevel=INFO"
+      - "-loggerOutput=stdout"
+      - "-maxConcurrentInserts=16"
+      - "-memory.allowedPercent=80"
+      - "-retentionPeriod=2d"
+      - "-search.maxConcurrentRequests=32"
+      - "-search.maxUniqueTimeseries=1000000"
+      - "-snapshotsMaxAge=1d"
+      - "-storage.cacheSizeIndexDBDataBlocks=0"
+      - "-storage.cacheSizeIndexDBIndexBlocks=0"
+      - "-storage.cacheSizeIndexDBTagFilters=0"
+      - "-storage.cacheSizeStorageTSID=0"
+      - "-storage.maxDailySeries=100000000"
+      - "-storage.maxHourlySeries=50000000"
+      - "-storage.minFreeDiskSpaceBytes=1GB"
+      - "-storageDataPath=/data/vm-storage-self-monitor-0/"
+      - "-vminsertAddr=:38400"
+      - "-vmselectAddr=:38401"
+      - -pushmetrics.extraLabel='region="HK",env="formal",cluster="self-monitor-cluster",role="vm-storage"'
+      - -pushmetrics.interval=15s
+      - -pushmetrics.url=http://host.docker.internal:38480/insert/0/prometheus/api/v1/import/prometheus
+    environment:
+      GOMAXPROCS: 1
+    ports:
+      - "38482:38482"
+      - "38400:38400"
+      - "38401:38401"
+    volumes:
+      - type: bind
+        source: ./data/
+        target: /data/
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: 1024M # 1 core => 8GB
+
+  vm-storage-self-monitor-1:
+    container_name: "vm-storage-self-monitor-1"
+    image: "victoriametrics/vmstorage:v1.95.1-cluster"
+    pull_policy: if_not_present
+    command:
+      - "-blockcache.missesBeforeCaching=2"
+      - "-cacheExpireDuration=30m"
+      - "-dedup.minScrapeInterval=15s"
+      - "-denyQueriesOutsideRetention"
+      - "-finalMergeDelay=0s"
+      - "-httpListenAddr=:38492"
+      - "-insert.maxQueueDuration=1m"
+      - "-loggerDisableTimestamps"
+      - "-loggerFormat=json"
+      - "-loggerLevel=INFO"
+      - "-loggerOutput=stdout"
+      - "-maxConcurrentInserts=16"
+      - "-memory.allowedPercent=80"
+      - "-retentionPeriod=2d"
+      - "-search.maxConcurrentRequests=32"
+      - "-search.maxUniqueTimeseries=1000000"
+      - "-snapshotsMaxAge=1d"
+      - "-storage.cacheSizeIndexDBDataBlocks=0"
+      - "-storage.cacheSizeIndexDBIndexBlocks=0"
+      - "-storage.cacheSizeIndexDBTagFilters=0"
+      - "-storage.cacheSizeStorageTSID=0"
+      - "-storage.maxDailySeries=100000000"
+      - "-storage.maxHourlySeries=50000000"
+      - "-storage.minFreeDiskSpaceBytes=1GB"
+      - "-storageDataPath=/data/vm-storage-self-monitor-1/"
+      - "-vminsertAddr=:38490"
+      - "-vmselectAddr=:38491"
+      - -pushmetrics.extraLabel='region="HK",env="formal",cluster="self-monitor-cluster",role="vm-storage"'
+      - -pushmetrics.interval=15s
+      - -pushmetrics.url=http://host.docker.internal:38480/insert/0/prometheus/api/v1/import/prometheus
+    environment:
+      GOMAXPROCS: 1
+    ports:
+      - "38492:38492"
+      - "38490:38490"
+      - "38491:38491"
+    volumes:
+      - type: bind
+        source: ./data/
+        target: /data/
+    deploy:
+      resources:
+        limits:
+          cpus: "0.10"
+          memory: 1024M # 1 core => 8GB
+
+  vm-insert-self-monitor-0:
+    container_name: "vm-insert-self-monitor-0"
+    image: "victoriametrics/vminsert:v1.95.1-cluster"
+    pull_policy: if_not_present
+    command:
+      - "-clusternativeListenAddr=:37400"
+      - "-dropSamplesOnOverload"
+      - "-httpListenAddr=:38480"
+      - "-insert.maxQueueDuration=1m"
+      - "-loggerDisableTimestamps"
+      - "-loggerFormat=json"
+      - "-loggerLevel=INFO"
+      - "-loggerOutput=stdout"
+      - "-maxConcurrentInserts=8"
+      - "-maxInsertRequestSize=32MB"
+      - "-maxLabelValueLen=1024"
+      - "-maxLabelsPerTimeseries=30"
+      - "-memory.allowedPercent=80"
+      - "-replicationFactor=1"
+      - "-storageNode=host.docker.internal:38400,host.docker.internal:38490"
+      - -pushmetrics.extraLabel='region="HK",env="formal",cluster="self-monitor-cluster",role="vm-insert"'
+      - -pushmetrics.interval=15s
+      - -pushmetrics.url=http://host.docker.internal:38480/insert/0/prometheus/api/v1/import/prometheus
+    environment:
+      GOMAXPROCS: 1
+    ports:
+      - "38480:38480"
+      - "37400:37400"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 128M # 1 core => 1GB
+
+  vm-select-self-monitor-0:
+    container_name: "vm-select-self-monitor-0"
+    image: "victoriametrics/vmselect:v1.95.1-cluster"
+    pull_policy: if_not_present
+    command:
+      #- "-cacheDataPath=''"
+      - "-clusternative.maxConcurrentRequests=16"
+      - "-clusternativeListenAddr=:37401"
+      - "-dedup.minScrapeInterval=15s"
+      - "-httpListenAddr=:38481"
+      - "-loggerDisableTimestamps"
+      - "-loggerFormat=json"
+      - "-loggerLevel=INFO"
+      - "-loggerOutput=stdout"
+      - "-memory.allowedPercent=80"
+      - -pushmetrics.extraLabel='region="HK",env="formal",cluster="self-monitor-cluster",role="vm-select"'
+      - -pushmetrics.interval=15s
+      - -pushmetrics.url=http://host.docker.internal:38480/insert/0/prometheus/api/v1/import/prometheus
+      - "-replicationFactor=2"
+      - "-search.denyPartialResponse"
+      - "-search.logQueryMemoryUsage=0"
+      - "-search.logSlowQueryDuration=5s"
+      - "-search.maxConcurrentRequests=16"
+      - "-search.maxMemoryPerQuery=0"
+      - "-search.maxPointsPerTimeseries=86400"
+      - "-search.maxQueryDuration=60s"
+      - "-search.maxSeries=1000000"
+      - "-search.maxUniqueTimeseries=1000000"
+      #- "-selectNode="
+      - "-storageNode=host.docker.internal:38401,host.docker.internal:38491"
+    environment:
+      GOMAXPROCS: 1
+    ports:
+      - "38481:38481"
+      - "37401:37401"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 512M # 1 core => 4GB
+
+  grafana-self-monitor-0:
+    container_name: "grafana-self-monitor-0"
+    image: "grafana/grafana:latest"
+    pull_policy: if_not_present
+    command:
+    environment:
+      GOMAXPROCS: 1
+    ports:
+      - "33000:3000"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 256M
+    volumes:
+      - type: bind
+        source: ./data/grafana/
+        target: /var/lib/grafana/
+
+  vm-agent-self-monitor-0:
+    container_name: "vm-agent-self-monitor-0"
+    image: "victoriametrics/vmagent:v1.95.1"
+    pull_policy: if_not_present
+    command:
+      #- "-graphiteListenAddr=''"
+      - "-httpListenAddr=:38429"
+      #- "-influxListenAddr=''"
+      - "-loggerDisableTimestamps"
+      - "-loggerFormat=json"
+      - "-loggerLevel=INFO"
+      - "-loggerOutput=stdout"
+      - "-maxConcurrentInserts=8"
+      - "-maxInsertRequestSize=32MB"
+      - "-memory.allowedPercent=80"
+      - "-promscrape.cluster.memberLabel=''"
+      - -pushmetrics.extraLabel='region="HK",env="formal",cluster="self-monitor-cluster",role="vm-agent"'
+      - -pushmetrics.interval=15s
+      - -pushmetrics.url=http://host.docker.internal:38480/insert/0/prometheus/api/v1/import/prometheus
+      - "-promscrape.cluster.memberNum=0"
+      - "-promscrape.cluster.membersCount=1"
+      - "-promscrape.cluster.name=vm-agent-self-monitor-0"
+      - "-promscrape.cluster.replicationFactor=1"
+      - "-promscrape.config.strictParse"
+      - "-promscrape.configCheckInterval=1m"
+      - "-promscrape.fileSDCheckInterval=1m"
+      - "-promscrape.httpSDCheckInterval=1m"
+      - "-promscrape.maxScrapeSize=16MB"
+      - "-promscrape.seriesLimitPerTarget=50000"
+      #- "-remoteWrite.disableOnDiskQueue"
+      #- "-remoteWrite.dropSamplesOnOverload=1"
+      - "-remoteWrite.flushInterval=15s"
+      - "-remoteWrite.label=''"
+      - "-remoteWrite.url=http://host.docker.internal:38480/insert/0/prometheus/api/v1/write"
+      - "-promscrape.config=/configs/file_sd_configs.yaml"
+    environment:
+      GOMAXPROCS: 1
+    ports:
+      - "38429:38429"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 128M
+    volumes:
+      - type: bind
+        source: ./
+        target: /configs/
