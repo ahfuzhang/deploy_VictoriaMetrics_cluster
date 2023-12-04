@@ -35,7 +35,7 @@ make deploy  # deploy self-monitor, realtime, alert
 # export AWS_REGION=xxx
 # export AWS_BUCKET=xxx
 # or write a .env file at backup/restore dir
-make backup   # backto s3
+make backup   # backup to s3
 make restore  # restore from s3
 make historical-cluster  # start historical cluster
 ```
