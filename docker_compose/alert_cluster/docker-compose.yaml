@@ -1,0 +1,285 @@
+version: '3'
+services:
+
+  webhook-dingtalk-alert-cluster-0:
+    container_name: "webhook-dingtalk-alert-cluster-0"
+    image: "ahfuzhang/dingtalk-webhook:v2.1.1"
+    pull_policy: if_not_present
+    configs:
+      - source: webhook-dingtalk.yaml
+        target: /webhook-dingtalk.yaml
+    command:
+      - "--web.listen-address=:8060"
+      - "--web.enable-ui"
+      - "--config.file=/webhook-dingtalk.yaml"
+      - "--log.level=info"
+      - "--log.format=json"
+      - --pushmetrics.extraLabel='region="HK",env="formal",cluster="realtime-cluster",role="dingtalk-webhook"'
+      - --pushmetrics.interval=15s
+      - --pushmetrics.url=http://host.docker.internal:38480/insert/0/prometheus/api/v1/import/prometheus
+      - --maxalertcount=30
+    environment:
+      GOMAXPROCS: 1
+    ports:
+      - "8060:8060"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 256M
+
+  webhook-dingtalk-alert-cluster-1:
+    container_name: "webhook-dingtalk-alert-cluster-1"
+    image: "ahfuzhang/dingtalk-webhook:v2.1.1"
+    pull_policy: if_not_present
+    configs:
+      - source: webhook-dingtalk.yaml
+        target: /webhook-dingtalk.yaml
+    command:
+      - "--web.listen-address=:8061"
+      - "--web.enable-ui"
+      - "--config.file=/webhook-dingtalk.yaml"
+      - "--log.level=info"
+      - "--log.format=json"
+      - --pushmetrics.extraLabel='region="HK",env="formal",cluster="realtime-cluster",role="dingtalk-webhook"'
+      - --pushmetrics.interval=15s
+      - --pushmetrics.url=http://host.docker.internal:38480/insert/0/prometheus/api/v1/import/prometheus
+      - --maxalertcount=30
+    environment:
+      GOMAXPROCS: 1
+    ports:
+      - "8061:8061"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 256M
+
+  alert-manager-alert-cluster-0:
+    container_name: "alert-manager-alert-cluster-0"
+    image: "prom/alertmanager:v0.26.0"
+    pull_policy: if_not_present
+    configs:
+      - source: alertmanager.yaml
+        target: /alertmanager.yaml
+    command:
+      - "--config.file=/alertmanager.yaml"
+      - "--alerts.gc-interval=30m"
+      - "--no-web.systemd-socket"
+      - "--web.listen-address=:9093"
+      - --cluster.listen-address=:9094
+      - "--cluster.advertise-address=:9094"
+      #- "--cluster.peer="  # 第一个节点填空
+      - "--cluster.gossip-interval=200ms"
+      - "--cluster.pushpull-interval=1m0s"
+      - "--cluster.tcp-timeout=10s"
+      #- "--cluster.label='alert-manager-0'"
+      - "--log.level=info"
+      - "--log.format=json"
+    environment:
+      GOMAXPROCS: 1
+    ports:
+      - "9093:9093"
+      - "9094:9094"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 256M
+
+  alert-manager-alert-cluster-1:
+    container_name: "alert-manager-alert-cluster-1"
+    image: "prom/alertmanager:v0.26.0"
+    pull_policy: if_not_present
+    configs:
+      - source: alertmanager.yaml
+        target: /alertmanager.yaml
+    command:
+      - "--config.file=/alertmanager.yaml"
+      - "--alerts.gc-interval=30m"
+      - "--no-web.systemd-socket"
+      - "--web.listen-address=:9193"
+      - --cluster.listen-address=:9194
+      - "--cluster.advertise-address=:9194"
+      - "--cluster.peer=host.docker.internal:9094" # 指向第一个节点
+      - "--cluster.gossip-interval=200ms"
+      - "--cluster.pushpull-interval=1m0s"
+      - "--cluster.tcp-timeout=10s"
+      #- "--cluster.label='alert-manager-1'"
+      - "--log.level=info"
+      - "--log.format=json"
+    environment:
+      GOMAXPROCS: 1
+    ports:
+      - "9193:9193"
+      - "9194:9194"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 256M
+  alert-manager-2:
+    container_name: "alert-manager-alert-cluster-2"
+    image: "prom/alertmanager:v0.26.0"
+    pull_policy: if_not_present
+    configs:
+      - source: alertmanager.yaml
+        target: /alertmanager.yaml
+    command:
+      - "--config.file=/alertmanager.yaml"
+      - "--alerts.gc-interval=30m"
+      - "--no-web.systemd-socket"
+      - "--web.listen-address=:9293"
+      - --cluster.listen-address=:9294
+      - "--cluster.advertise-address=:9294"
+      - "--cluster.peer=host.docker.internal:9094" # 指向第一个节点
+      - "--cluster.gossip-interval=200ms"
+      - "--cluster.pushpull-interval=1m0s"
+      - "--cluster.tcp-timeout=10s"
+      #- "--cluster.label='alert-manager-2'"
+      - "--log.level=info"
+      - "--log.format=json"
+    environment:
+      GOMAXPROCS: 1
+    ports:
+      - "9293:9293"
+      - "9294:9294"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 256M
+
+  vm-alert-alert-cluster-0:
+    container_name: "vm-alert-alert-cluster-0"
+    image: "victoriametrics/vmalert:v1.95.1"
+    pull_policy: if_not_present
+    configs:
+      - source: rules_0.yaml
+        target: /rules_0.yaml
+    command:
+      - "-configCheckInterval=1m"
+      - "-datasource.queryStep=1m"
+      - "-datasource.queryTimeAlignment"
+      - "-datasource.roundDigits=2"
+      - -datasource.showURL # 便于排查问题
+      - "-datasource.url=http://host.docker.internal:8481/select/0/prometheus/"
+      - "-datasource.url=http://host.docker.internal:8491/select/0/prometheus/"
+      - "-evaluationInterval=1m"
+      - -external.label='from="vm-alert",container_name="vm-alert-alert-cluster-0"'
+      #- -external.url=
+      - "-httpListenAddr=:8880"
+      - "-loggerDisableTimestamps"
+      - "-loggerFormat=json"
+      - "-loggerLevel=INFO"
+      - "-loggerOutput=stdout"
+      - "-memory.allowedPercent=80"
+      - -notifier.showURL
+      - "-notifier.url=http://host.docker.internal:9093" # alert manager, 可以配置多次
+      - "-notifier.url=http://host.docker.internal:9193"
+      - "-notifier.url=http://host.docker.internal:9293"
+      - -pushmetrics.extraLabel='region="HK",env="formal",cluster="alert-cluster",role="vm-alert"'
+      - -pushmetrics.interval=15s
+      - -pushmetrics.url=http://host.docker.internal:38480/insert/0/prometheus/api/v1/import/prometheus
+      # remote read 用于读告警的状态
+      - -remoteRead.lookback=1h
+      - -remoteRead.showURL
+      - -remoteRead.url=http://host.docker.internal:8481/select/0/prometheus/
+      - -remoteRead.url=http://host.docker.internal:8491/select/0/prometheus/
+      # remote write  用于保存 recording rules 的结果
+      - -remoteWrite.concurrency=2
+      - -remoteWrite.flushInterval=15s
+      - -remoteWrite.maxBatchSize=1000
+      - -remoteWrite.maxQueueSize=10000
+      - -remoteWrite.retryMaxTime=30s
+      - -remoteWrite.retryMinInterval=1s
+      - -remoteWrite.sendTimeout=30s
+      - -remoteWrite.showURL
+      - -remoteWrite.url=http://host.docker.internal:8480/insert/0/prometheus/ # vm-insert
+      - -remoteWrite.url=http://host.docker.internal:8490/insert/0/prometheus/ # vm-insert
+      # 规则文件
+      - "-rule=/rules_0.yaml"
+    environment:
+      GOMAXPROCS: 1
+    ports:
+      - "8880:8880"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 512M
+
+  vm-alert-alert-cluster-1:
+    container_name: "vm-alert-alert-cluster-1"
+    image: "victoriametrics/vmalert:v1.95.1"
+    pull_policy: if_not_present
+    configs:
+      - source: rules_1.yaml # 采用分片模式，每个节点的配置文件不同
+        target: /rules_1.yaml
+    command:
+      - "-configCheckInterval=1m"
+      - "-datasource.queryStep=1m"
+      - "-datasource.queryTimeAlignment"
+      - "-datasource.roundDigits=2"
+      - -datasource.showURL # 便于排查问题
+      - "-datasource.url=http://host.docker.internal:8481/select/0/prometheus/"
+      - "-datasource.url=http://host.docker.internal:8491/select/0/prometheus/"
+      - "-evaluationInterval=1m"
+      - -external.label='from="vm-alert",container_name="vm-alert-alert-cluster-1"'
+      #- -external.url=
+      - "-httpListenAddr=:8881"
+      - "-loggerDisableTimestamps"
+      - "-loggerFormat=json"
+      - "-loggerLevel=INFO"
+      - "-loggerOutput=stdout"
+      - "-memory.allowedPercent=80"
+      - -notifier.showURL
+      - "-notifier.url=http://host.docker.internal:9093" # alert manager, 可以配置多次
+      - "-notifier.url=http://host.docker.internal:9193"
+      - "-notifier.url=http://host.docker.internal:9293"
+      - -pushmetrics.extraLabel='region="HK",env="formal",cluster="alert-cluster",role="vm-alert"'
+      - -pushmetrics.interval=15s
+      - -pushmetrics.url=http://host.docker.internal:38480/insert/0/prometheus/api/v1/import/prometheus
+      # remote read 用于读告警的状态
+      - -remoteRead.lookback=1h
+      - -remoteRead.showURL
+      - -remoteRead.url=http://host.docker.internal:8481/select/0/prometheus/
+      - -remoteRead.url=http://host.docker.internal:8491/select/0/prometheus/
+      # remote write  用于保存 recording rules 的结果
+      - -remoteWrite.concurrency=2
+      - -remoteWrite.flushInterval=15s
+      - -remoteWrite.maxBatchSize=1000
+      - -remoteWrite.maxQueueSize=10000
+      - -remoteWrite.retryMaxTime=30s
+      - -remoteWrite.retryMinInterval=1s
+      - -remoteWrite.sendTimeout=30s
+      - -remoteWrite.showURL
+      - -remoteWrite.url=http://host.docker.internal:8480/insert/0/prometheus/ # vm-insert
+      - -remoteWrite.url=http://host.docker.internal:8490/insert/0/prometheus/ # vm-insert
+      # 规则文件
+      - "-rule=/rules_1.yaml"
+    environment:
+      GOMAXPROCS: 1
+    ports:
+      - "8881:8881"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 512M
+
+configs:
+  webhook-dingtalk.yaml:
+    file: ./webhook-dingtalk.yaml
+  alertmanager.yaml:
+    file: ./alertmanager.yaml
+  rules_0.yaml:
+    file: ./rules_0.yaml
+  rules_1.yaml:
+    file: ./rules_1.yaml
+
+# config format
+#targets:
+#  webhook1:
+#    url: https://oapi.dingtalk.com/robot/send?access_token=
+#    secret:

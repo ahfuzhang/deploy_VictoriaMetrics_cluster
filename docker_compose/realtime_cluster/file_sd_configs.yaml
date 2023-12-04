@@ -1,0 +1,11 @@
+#file_sd_configs
+scrape_configs:
+- job_name: file
+  file_sd_configs:
+    # files must contain a list of file patterns for files with scrape targets.
+    # The last path segment can contain `*`, which matches any number of chars in file name.
+  - files:
+    #- "my/path/*.yaml"
+    #- "another/path.json"
+    - "./exporters.yaml"
+    

@@ -1,0 +1,95 @@
+version: '3'
+services:
+
+  # 启动历史节点
+  vm-storage-historical-0:
+    container_name: "vm-storage-historical-0"
+    image: "victoriametrics/vmstorage:v1.95.1-cluster"
+    pull_policy: if_not_present
+    command:
+      - "-blockcache.missesBeforeCaching=2"
+      - "-cacheExpireDuration=30m"
+      - "-dedup.minScrapeInterval=15s"
+      #- "-denyQueriesOutsideRetention"
+      - "-finalMergeDelay=60s" # 启动 60s 后开始 final merge
+      - "-httpListenAddr=:28482"
+      - "-insert.maxQueueDuration=1m"
+      - "-loggerDisableTimestamps"
+      - "-loggerFormat=json"
+      - "-loggerLevel=INFO"
+      - "-loggerOutput=stdout"
+      - "-maxConcurrentInserts=1"
+      - "-memory.allowedPercent=80"
+      - "-retentionPeriod=1y"
+      - "-search.maxConcurrentRequests=32"
+      - "-search.maxUniqueTimeseries=1000000"
+      - "-snapshotsMaxAge=1d"
+      - "-storage.cacheSizeIndexDBDataBlocks=0"
+      - "-storage.cacheSizeIndexDBIndexBlocks=0"
+      - "-storage.cacheSizeIndexDBTagFilters=0"
+      - "-storage.cacheSizeStorageTSID=0"
+      #- "-storage.maxDailySeries=100000000"
+      #- "-storage.maxHourlySeries=50000000"
+      - "-storage.minFreeDiskSpaceBytes=1GB"
+      - -storageDataPath=/data/sharding-00-restore/
+      - "-vminsertAddr=:28400"
+      - "-vmselectAddr=:28401"
+      - -pushmetrics.extraLabel='region="HK",env="formal",cluster="historical-cluster",role="vm-storage-historical"'
+      - -pushmetrics.interval=15s
+      - -pushmetrics.url=http://host.docker.internal:38480/insert/0/prometheus/api/v1/import/prometheus
+    environment:
+      GOMAXPROCS: 1
+    ports:
+      - "28482:28482"
+      - "28400:28400"
+      - "28401:28401"
+    volumes:
+      - type: bind
+        source: ./data/
+        target: /data/
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 1024M
+
+  vm-select-historical-0:
+    container_name: "vm-select-historical-0"
+    image: "victoriametrics/vmselect:v1.95.1-cluster"
+    pull_policy: if_not_present
+    command:
+      - "-cacheDataPath=''" # 历史节点，这里最好 cache
+      - "-clusternative.maxConcurrentRequests=16"
+      - "-clusternativeListenAddr=:27401"
+      - "-dedup.minScrapeInterval=15s"
+      - "-httpListenAddr=:28481"
+      - "-loggerDisableTimestamps"
+      - "-loggerFormat=json"
+      - "-loggerLevel=INFO"
+      - "-loggerOutput=stdout"
+      - "-memory.allowedPercent=80"
+      - -pushmetrics.extraLabel='region="HK",env="formal",cluster="historical-cluster",role="vm-select-historical"'
+      - -pushmetrics.interval=15s
+      - -pushmetrics.url=http://host.docker.internal:38480/insert/0/prometheus/api/v1/import/prometheus
+      - "-replicationFactor=2"
+      - "-search.denyPartialResponse"
+      - "-search.logQueryMemoryUsage=0"
+      - "-search.logSlowQueryDuration=5s"
+      - "-search.maxConcurrentRequests=16"
+      - "-search.maxMemoryPerQuery=0"
+      - "-search.maxPointsPerTimeseries=86400"
+      - "-search.maxQueryDuration=60s"
+      - "-search.maxSeries=1000000"
+      - "-search.maxUniqueTimeseries=1000000"
+      - "-selectNode="
+      - "-storageNode=host.docker.internal:28401"
+    environment:
+      GOMAXPROCS: 1
+    ports:
+      - "28481:28481"
+      - "27401:27401"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 512M

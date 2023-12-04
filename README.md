@@ -21,3 +21,26 @@ A complete metrics system consists of four sub-clusters. They are:
 ![](docs/vm-cluster-details.drawio.png)
 
 ([drawio link](https://drive.google.com/file/d/1vK99nejzfi8NWoQhE1n9ysWdw4-NQju9/view?usp=sharing))
+
+## How to use
+```shell
+git clone https://github.com/ahfuzhang/deploy_VictoriaMetrics_cluster.git
+cd deploy_VictoriaMetrics_cluster/docker_compose
+make deploy  # deploy self-monitor, realtime, alert
+
+# wait a moment to generate data
+# set aws s3 env
+# export AWS_ACCESS_KEY_ID=xxx
+# export AWS_SECRET_ACCESS_KEY=xxx
+# export AWS_REGION=xxx
+# export AWS_BUCKET=xxx
+# or write a .env file at backup/restore dir
+make backup   # backto s3
+make restore  # restore from s3
+make historical-cluster  # start historical cluster
+```
+You will see those items on docker-desktop:
+![](docs/docker-desktop-self-monitor-cluster.png)
+![](docs/docker-desktop-realtime-cluster.png)
+![](docs/docker-desktop-alert-cluster.png)
+![](docs/docker-desktop-historical-cluster.png)

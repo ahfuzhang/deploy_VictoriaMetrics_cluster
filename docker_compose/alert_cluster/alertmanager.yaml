@@ -1,0 +1,13 @@
+global:
+  resolve_timeout: 10m
+receivers:
+- name: 'webhook1'
+  webhook_configs:
+  - url: 'http://host.docker.internal:8060/dingtalk/webhook1/send'
+  - url: 'http://host.docker.internal:8061/dingtalk/webhook1/send'
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 1m
+  repeat_interval: 1m
+  receiver: 'webhook1'

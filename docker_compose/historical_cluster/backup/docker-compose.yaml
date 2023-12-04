@@ -1,0 +1,37 @@
+version: '3'
+services:
+  vm-backup-historical-cluster-0:
+    container_name: "vm-backup-historical-cluster-0"
+    image: "victoriametrics/vmbackup:v1.95.1"
+    pull_policy: if_not_present
+    command:
+      - "-concurrency=1"
+      - "-dst=s3://${AWS_BUCKET}/metrics/vmstorage/backup/2023-12-05/sharding-00/"
+      - "-memory.allowedPercent=80"
+      #- "-origin=s3://${AWS_BUCKET}/metrics/vmstorage/backup/2023-12-04/sharding-00/"
+      - -pushmetrics.extraLabel='region="HK",env="formal",cluster="historical-cluster",role="vm-backup"'
+      - -pushmetrics.interval=5s
+      - -pushmetrics.url=http://host.docker.internal:38480/insert/0/prometheus/api/v1/import/prometheus
+      - "-snapshot.createURL=http://host.docker.internal:8482/snapshot/create"
+      - "-storageDataPath=/data/realtime_cluster/data/vm-storage-realtime-0/"
+      - "-httpListenAddr=:18420"
+      - "-loggerDisableTimestamps"
+      - "-loggerFormat=json"
+      - "-loggerLevel=INFO"
+      - "-loggerOutput=stdout"
+    environment:
+      GOMAXPROCS: 1
+      # must set .env file first
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_REGION: ${AWS_REGION}
+      AWS_BUCKET: ${AWS_BUCKET}
+    volumes:
+      - type: bind
+        source: ../../
+        target: /data/
+    deploy:
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 256M

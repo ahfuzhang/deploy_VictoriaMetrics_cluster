@@ -6,3 +6,17 @@
     "env": "formal"
     "cluster": "self-monitor-cluster"
     "role": "grafana"
+- targets: ["http://host.docker.internal:3000/metrics"]
+  labels:
+    "from": "vm-agent"
+    "region": "HK"
+    "env": "formal"
+    "cluster": "realtime-cluster"
+    "role": "grafana"
+- targets: ["http://host.docker.internal:9093/metrics","http://host.docker.internal:9193/metrics","http://host.docker.internal:9293/metrics"]
+  labels:
+    "from": "vm-agent"
+    "region": "HK"
+    "env": "formal"
+    "cluster": "alert-cluster"
+    "role": "alertmanager"
