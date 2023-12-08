@@ -2,7 +2,7 @@
 .PHONY: deploy self-monitor-cluster realtime-cluster alert-cluster
 
 
-deploy: self-monitor-cluster realtime-cluster historical-cluster
+deploy: self-monitor-cluster realtime-cluster alert-cluster historical-cluster
 	@echo "deploy"
 
 self-monitor-cluster:

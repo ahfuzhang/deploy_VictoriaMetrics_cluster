@@ -23,7 +23,7 @@ services:
       - "-retentionPeriod=1y"
       - "-search.maxConcurrentRequests=32"
       - "-search.maxUniqueTimeseries=1000000"
-      - "-snapshotsMaxAge=1d"
+      - "-snapshotsMaxAge=1y"
       - "-storage.cacheSizeIndexDBDataBlocks=0"
       - "-storage.cacheSizeIndexDBIndexBlocks=0"
       - "-storage.cacheSizeIndexDBTagFilters=0"
