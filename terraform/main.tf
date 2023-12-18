@@ -7,35 +7,20 @@ module "self-monitor-cluster" {
   configs = var.configs
 }
 
+locals {
+  push_metrics = {
+    interval = "15s"
+    addr     = "http://${module.self-monitor-cluster.self-monitor-cluster-vm-insert-services-addr}/insert/0/prometheus/api/v1/import/prometheus"
+  }
+}
+
 module "realtime-cluster" {
-  source  = "./realtime_cluster/"
-  configs = var.configs
-  push_metrics = {
-    interval = "15s"
-    addr     = "http://${module.self-monitor-cluster.self-monitor-cluster-vm-insert-services-addr}/insert/0/prometheus/api/v1/import/prometheus"
-  }
+  source       = "./realtime_cluster/"
+  configs      = var.configs
+  push_metrics = local.push_metrics
 }
 
-module "alert-cluster" {
-  source  = "./alert_cluster/"
-  configs = var.configs
-  push_metrics = {
-    interval = "15s"
-    addr     = "http://${module.self-monitor-cluster.self-monitor-cluster-vm-insert-services-addr}/insert/0/prometheus/api/v1/import/prometheus"
-  }
-  realtime_cluster_info = {
-    select_addr = "http://${module.realtime-cluster.realtime-cluster-vm-select-services-addr}/select/0/prometheus/"
-    insert_addr = "http://${module.realtime-cluster.realtime-cluster-vm-insert-services-addr}/insert/0/prometheus/"
-  }
-}
-
-module "metrics-data-source-cluster" {
-  source  = "./metrics_data_source_cluster/"
-  configs = var.configs
-  push_metrics = {
-    interval = "15s"
-    addr     = "http://${module.self-monitor-cluster.self-monitor-cluster-vm-insert-services-addr}/insert/0/prometheus/api/v1/import/prometheus"
-  }
+locals {
   realtime_cluster_info = {
     select_addr     = "http://${module.realtime-cluster.realtime-cluster-vm-select-services-addr}/select/0/prometheus/"
     insert_addr     = module.realtime-cluster.realtime-cluster-vm-insert-services-addr
@@ -44,6 +29,20 @@ module "metrics-data-source-cluster" {
     vm_insert_list  = module.realtime-cluster.realtime-cluster-vm-insert-containers
     grafana_list    = module.realtime-cluster.realtime-cluster-grafana-containers
   }
+}
+
+module "alert-cluster" {
+  source                = "./alert_cluster/"
+  configs               = var.configs
+  push_metrics          = local.push_metrics
+  realtime_cluster_info = local.realtime_cluster_info
+}
+
+module "metrics-data-source-cluster" {
+  source                = "./metrics_data_source_cluster/"
+  configs               = var.configs
+  push_metrics          = local.push_metrics
+  realtime_cluster_info = local.realtime_cluster_info
   self_monitor_cluster_info = {
     vm_storage_list = module.self-monitor-cluster.self-monitor-cluster-vm-storage-containers
     vm_select_list  = module.self-monitor-cluster.self-monitor-cluster-vm-select-containers
