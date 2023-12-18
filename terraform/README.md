@@ -2,6 +2,14 @@
 
 ## Prepare
 
+0. Edit main.tf, ready `k8s.yaml` config file:
+
+```
+provider "kubernetes" {
+  config_path = "./test/k8s.yaml"  # set right k8s config file
+}
+```
+
 1. write a file `terraform.tfvars`
 
 ```
