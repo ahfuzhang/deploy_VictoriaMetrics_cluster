@@ -1,6 +1,6 @@
 # How to use
 
-## Prapare
+## Prepare
 
 1. write a file `terraform.tfvars`
 
@@ -43,8 +43,10 @@ make apply
 
 Copy `realtime-cluster-ingress-ip` and `self-monitor-cluster-ingress-ip` from terraform outputs.
 
-sudo vi /etc/hosts
+`sudo vi /etc/hosts`
+
 Add:
+
 ```
 self-monitor-cluster.my-own-test.com 10.151.0.70 # change the ip to ingress ip
 realtime-cluster.my-own-test.com 10.151.0.71

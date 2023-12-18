@@ -23,6 +23,13 @@ A complete metrics system consists of four sub-clusters. They are:
 ([drawio link](https://drive.google.com/file/d/1vK99nejzfi8NWoQhE1n9ysWdw4-NQju9/view?usp=sharing))
 
 ## How to use
+
+### Terraform
+
+see: [terraform/README.md](terraform/README.md)
+
+### Docker Compose
+
 ```shell
 git clone https://github.com/ahfuzhang/deploy_VictoriaMetrics_cluster.git
 cd deploy_VictoriaMetrics_cluster/docker_compose
