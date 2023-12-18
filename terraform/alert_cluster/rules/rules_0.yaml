@@ -1,0 +1,18 @@
+# vm-alert 的规则文件
+
+groups:
+  - name: "rule 1"
+    interval: 1m
+    concurrency: 1
+    type: "prometheus"
+    eval_alignment: true
+    rules:
+      - alert: "check flag"
+        expr: "flag > 0"
+        for: 1m
+        labels:
+          a: 1
+          b: xxx
+        annotations:
+          summary: High request latency
+          description: ""

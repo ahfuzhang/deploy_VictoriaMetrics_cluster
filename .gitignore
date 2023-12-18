@@ -1,2 +1,5 @@
 docker_compose/test/
-terraform/
+terraform/test/
+terraform/terraform.tfvars
+terraform/.terraform
+terraform/terraform.tfstate*
