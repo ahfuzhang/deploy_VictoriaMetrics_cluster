@@ -2,11 +2,13 @@
 
 locals {
   vm-storage-name = "realtime-cluster-vm-storage"
+  #vm-storage-basepath = "/vm-data/"
+  #storage_data_path   = "${local.vm-storage-basepath}realtime-cluster/sharding-"
 }
 
 resource "kubernetes_stateful_set" "realtime-cluster-vm-storage" {
   depends_on = [kubernetes_persistent_volume_claim.realtime-cluster-pvc]
-  count      = 2  #todo
+  count      = var.configs.realtime_cluster.storage_node_count
   metadata {
     namespace = var.configs.namespace
 
@@ -61,7 +63,7 @@ resource "kubernetes_stateful_set" "realtime-cluster-vm-storage" {
             "-loggerOutput=${var.configs.log.output}",
             "-maxConcurrentInserts=16",
             "-memory.allowedPercent=80",
-            "-retentionPeriod=15d",  #todo
+            "-retentionPeriod=15d", #todo
             "-search.maxConcurrentRequests=32",
             "-search.maxUniqueTimeseries=1000000",
             "-snapshotsMaxAge=1d",
@@ -72,7 +74,7 @@ resource "kubernetes_stateful_set" "realtime-cluster-vm-storage" {
             "-storage.maxDailySeries=100000000",
             "-storage.maxHourlySeries=50000000",
             "-storage.minFreeDiskSpaceBytes=5GB",
-            "-storageDataPath=/vm-data/realtime-cluster/sharding-${count.index}/",
+            "-storageDataPath=${var.configs.realtime_cluster.storage_path}${count.index}/",
             "-vminsertAddr=:8400",
             "-vmselectAddr=:8401",
             "-pushmetrics.extraLabel=region=\"${var.configs.region}\"",
@@ -86,7 +88,7 @@ resource "kubernetes_stateful_set" "realtime-cluster-vm-storage" {
           ]
           resources {
             limits = {
-              cpu    = "4"  #todo
+              cpu    = "4" #todo
               memory = "32Gi"
             }
             requests = {
@@ -105,7 +107,7 @@ resource "kubernetes_stateful_set" "realtime-cluster-vm-storage" {
           }
           volume_mount {
             name       = "realtime-cluster-pvc"
-            mount_path = "/vm-data/"
+            mount_path = var.configs.pvc.basepath
           }
 
           env {
@@ -128,7 +130,7 @@ resource "kubernetes_stateful_set" "realtime-cluster-vm-storage" {
 
           env {
             name  = "GOMAXPROCS"
-            value = "4"  #todo
+            value = "4" #todo
           }
         } # end container
 

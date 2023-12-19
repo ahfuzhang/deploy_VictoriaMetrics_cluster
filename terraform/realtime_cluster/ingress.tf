@@ -15,7 +15,7 @@ resource "kubernetes_ingress_v1" "realtime-cluster-ingress" {
 
   spec {
     rule {
-      host = var.configs.realtime_cluster_domain
+      host = var.configs.realtime_cluster.domain
       http {
         path {
           backend {

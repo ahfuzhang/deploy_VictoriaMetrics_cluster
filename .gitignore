@@ -4,3 +4,4 @@ terraform/terraform.tfvars
 terraform/.terraform
 terraform/terraform.tfstate*
 terraform/.terraform.lock.hcl
+terraform/historical_cluster/

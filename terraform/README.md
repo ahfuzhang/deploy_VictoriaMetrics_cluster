@@ -26,11 +26,25 @@ configs = {
     version = "v1.96.0"  # vectoria metrics version
   }
   self_monitor_cluster_domain = "self-monitor-cluster.my-own-test.com"
-  realtime_cluster_domain     = "realtime-cluster.my-own-test.com"
   dingtalk_webhooks = [{
     url    = "https://oapi.dingtalk.com/robot/send?access_token=${ding_talk_token}"
     secret = "${secret}"
   }]
+  pvc = {
+    storage_class_name = ""
+    basepath           = "/vm-data/"
+  }
+  realtime_cluster = {
+    domain             = "realtime-cluster.ahfu.com"
+    storage_node_count = 3 #todo
+    storage_path       = "/vm-data/realtime-cluster/sharding-"
+  }
+  s3 = {
+    AWS_ACCESS_KEY_ID     = ""
+    AWS_SECRET_ACCESS_KEY = ""
+    AWS_REGION            = ""
+    AWS_BUCKET            = ""
+  }
 }
 ```
 
