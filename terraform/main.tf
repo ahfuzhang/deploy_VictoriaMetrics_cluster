@@ -59,6 +59,13 @@ module "metrics-data-source-cluster" {
   }
 }
 
+module "historical-cluster" {
+  source                = "./historical_cluster/"
+  configs               = var.configs
+  push_metrics          = local.push_metrics
+  realtime_cluster_info = local.realtime_cluster_info
+}
+
 //-----------------------------------------------------------------------------
 output "self-monitor-vm-storage" {
   value = module.self-monitor-cluster.self-monitor-cluster-vm-storage-containers
@@ -143,4 +150,8 @@ output "self-monitor-vm-agent" {
 
 output "metrics-data-source-cluster-vm-agent" {
   value = module.metrics-data-source-cluster.metrics-data-source-cluster-vm-agent-containers
+}
+//-----------------------------------------------------------------------------
+output "historical-cluster-vm-select-services" {
+  value = module.historical-cluster.historical-cluster-vm-select-services-addr
 }

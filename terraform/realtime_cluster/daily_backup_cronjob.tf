@@ -1,27 +1,27 @@
-# use vmbackup to backup vm-storage data ervery hour
+# use vmbackup to backup vm-storage data ervery day
 
 locals {
-  vm-backup-name             = "realtime-cluster-vm-backup-hourly"
-  vm_storage_list_for_backup = { for item in jsondecode(data.external.realtime-cluster-vm-storage-status.result.r).items : "${item.metadata.labels.node_index}" => "${item.status.podIP}:8482" }
-  s3_path                    = "s3://${var.configs.s3.AWS_BUCKET}/metrics/vmstorage-backup/realtime-cluster/hourly/sharding-"
-  instance_count = (length(var.configs.s3.AWS_ACCESS_KEY_ID) > 0 &&
+  daily-vm-backup-name = "realtime-cluster-vm-backup-daily"
+  yesterday     = formatdate("YYYY-MM-DD", timeadd(timestamp(), "-24h"))
+  daily_s3_path = "s3://${var.configs.s3.AWS_BUCKET}/metrics/vmstorage-backup/realtime-cluster/daily/${local.yesterday}/sharding-"
+  daily_instance_count = (length(var.configs.s3.AWS_ACCESS_KEY_ID) > 0 &&
     length(var.configs.s3.AWS_SECRET_ACCESS_KEY) > 0 &&
     length(var.configs.s3.AWS_REGION) > 0 &&
   length(var.configs.s3.AWS_BUCKET) > 0) ? var.configs.realtime_cluster.storage_node_count : 0
-  time_array = [for i in range(local.instance_count) : (i * 5) % 60]
+  daily_time_array = [for i in range(local.instance_count) : (i * 11 + 4) % 60]
 }
 
-resource "kubernetes_cron_job_v1" "realtime-cluster-vm-backup-hourly" {
+resource "kubernetes_cron_job_v1" "realtime-cluster-vm-backup-daily" {
   depends_on = [
     kubernetes_stateful_set.realtime-cluster-vm-storage,
     data.external.realtime-cluster-vm-storage-status
   ]
-  count = local.instance_count
+  count = local.daily_instance_count
   metadata {
-    name      = "${local.vm-backup-name}-${count.index}"
+    name      = "${local.daily-vm-backup-name}-${count.index}"
     namespace = var.configs.namespace
     labels = {
-      k8s-app    = local.vm-backup-name
+      k8s-app    = local.daily-vm-backup-name
       node_index = count.index
     }
   }
@@ -29,7 +29,7 @@ resource "kubernetes_cron_job_v1" "realtime-cluster-vm-backup-hourly" {
     concurrency_policy        = "Replace"
     failed_jobs_history_limit = 5
     # not at same time
-    schedule                      = "${local.time_array[count.index]} * * * *" # every hour
+    schedule                      = "${local.daily_time_array[count.index]} 0 * * *" # every day
     timezone                      = "Etc/UTC"
     starting_deadline_seconds     = 100
     successful_jobs_history_limit = 100
@@ -42,14 +42,13 @@ resource "kubernetes_cron_job_v1" "realtime-cluster-vm-backup-hourly" {
           metadata {}
           spec {
             container {
-              name              = "${local.vm-backup-name}-${count.index}"
+              name              = "${local.daily-vm-backup-name}-${count.index}"
               image             = "victoriametrics/vmbackup:${var.configs.vm.version}"
               image_pull_policy = "IfNotPresent"
               args = [
                 "-concurrency=1",
-                "-dst=${local.s3_path}${count.index}/",
+                "-dst=${local.daily_s3_path}${count.index}/",
                 "-memory.allowedPercent=80",
-                "-origin=${local.s3_path}${count.index}/",
                 "-snapshot.createURL=http://${local.vm_storage_list_for_backup[tostring(count.index)]}/snapshot/create",
                 "-storageDataPath=${var.configs.realtime_cluster.storage_path}${count.index}/",
                 "-httpListenAddr=:8420",
@@ -60,7 +59,7 @@ resource "kubernetes_cron_job_v1" "realtime-cluster-vm-backup-hourly" {
                 "-pushmetrics.extraLabel=region=\"${var.configs.region}\"",
                 "-pushmetrics.extraLabel=env=\"${var.configs.env}\"",
                 "-pushmetrics.extraLabel=cluster=\"realtime-cluster\"",
-                "-pushmetrics.extraLabel=role=\"vm-backup-hourly\"",
+                "-pushmetrics.extraLabel=role=\"vm-backup-daily\"",
                 "-pushmetrics.extraLabel=container_ip=\"$(CONTAINER_IP)\"",
                 "-pushmetrics.extraLabel=container_name=\"$(CONTAINER_NAME)\"",
                 "-pushmetrics.interval=2s", # must very quick

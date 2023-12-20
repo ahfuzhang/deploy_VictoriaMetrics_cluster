@@ -1,13 +1,20 @@
 
 
 locals {
-  vm-select-name          = "realtime-cluster-vm-select"
-  storage_list_for_select = join(",", [for item in jsondecode(data.external.realtime-cluster-vm-storage-status.result.r).items : "${item.status.podIP}:8401"])
+  vm-select-name          = "historical-cluster-vm-select"
+  port1                   = [for item in jsondecode(data.external.historical-cluster-vm-storage-status.result.r).items : "${item.status.podIP}:8401"]
+  port2                   = [for item in jsondecode(data.external.historical-cluster-vm-storage-status.result.r).items : "${item.status.podIP}:18401"]
+  storage_list_for_select = join(",", concat(local.port1, local.port2))
+
+  daily_vmselect_count = (length(var.configs.s3.AWS_ACCESS_KEY_ID) > 0 &&
+    length(var.configs.s3.AWS_SECRET_ACCESS_KEY) > 0 &&
+    length(var.configs.s3.AWS_REGION) > 0 &&
+  length(var.configs.s3.AWS_BUCKET) > 0) ? 2 : 0 #todo
 }
 
-resource "kubernetes_deployment" "realtime-cluster-vm-select" {
+resource "kubernetes_deployment" "historical-cluster-vm-select" {
   depends_on = [
-    data.external.realtime-cluster-vm-storage-status
+    data.external.historical-cluster-vm-storage-status
   ]
 
   metadata {
@@ -16,7 +23,7 @@ resource "kubernetes_deployment" "realtime-cluster-vm-select" {
   }
 
   spec {
-    replicas = 2 #todo
+    replicas = local.daily_vmselect_count
 
     selector {
       match_labels = {
@@ -48,7 +55,7 @@ resource "kubernetes_deployment" "realtime-cluster-vm-select" {
             "-memory.allowedPercent=80",
             "-pushmetrics.extraLabel=region=\"${var.configs.region}\"",
             "-pushmetrics.extraLabel=env=\"${var.configs.env}\"",
-            "-pushmetrics.extraLabel=cluster=\"realtime-cluster\"",
+            "-pushmetrics.extraLabel=cluster=\"historical-cluster\"",
             "-pushmetrics.extraLabel=role=\"vm-select\"",
             "-pushmetrics.extraLabel=container_ip=\"$(CONTAINER_IP)\"",
             "-pushmetrics.extraLabel=container_name=\"$(CONTAINER_NAME)\"",
@@ -74,8 +81,8 @@ resource "kubernetes_deployment" "realtime-cluster-vm-select" {
               memory = "4Gi"
             }
             requests = {
-              cpu    = "2"
-              memory = "4Gi"
+              cpu    = "0.5"
+              memory = "512Mi"
             }
           }
 
@@ -116,17 +123,17 @@ resource "kubernetes_deployment" "realtime-cluster-vm-select" {
   }
 }
 
-data "external" "realtime-cluster-vm-select-status" {
-  depends_on = [kubernetes_deployment.realtime-cluster-vm-select]
+data "external" "historical-cluster-vm-select-status" {
+  depends_on = [kubernetes_deployment.historical-cluster-vm-select]
   program    = ["bash", "-c", "kubectl get pods -l kubernetes_deployment_name=${local.vm-select-name} -n ${var.configs.namespace} -o json | jq -c '{\"r\": .|tojson }'"]
 }
 
-output "realtime-cluster-vm-select-containers" {
-  value = [for item in jsondecode(data.external.realtime-cluster-vm-select-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
+output "historical-cluster-vm-select-containers" {
+  value = [for item in jsondecode(data.external.historical-cluster-vm-select-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
 }
 
-resource "kubernetes_service" "realtime-cluster-vm-select-services" {
-  depends_on = [data.external.realtime-cluster-vm-select-status]
+resource "kubernetes_service" "historical-cluster-vm-select-services" {
+  depends_on = [data.external.historical-cluster-vm-select-status]
   metadata {
     namespace = var.configs.namespace
     name      = "${local.vm-select-name}-services"
@@ -147,6 +154,6 @@ resource "kubernetes_service" "realtime-cluster-vm-select-services" {
   }
 }
 
-output "realtime-cluster-vm-select-services-addr" {
-  value = "${kubernetes_service.realtime-cluster-vm-select-services.spec.0.cluster_ip}:${kubernetes_service.realtime-cluster-vm-select-services.spec.0.port.0.target_port}"
+output "historical-cluster-vm-select-services-addr" {
+  value = "${kubernetes_service.historical-cluster-vm-select-services.spec.0.cluster_ip}:${kubernetes_service.historical-cluster-vm-select-services.spec.0.port.0.target_port}"
 }

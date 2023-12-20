@@ -1,0 +1,225 @@
+
+
+locals {
+  vm-storage-name = "historical-cluster-vm-storage"
+  #vm-storage-basepath = "/vm-data/"
+  #storage_data_path   = "${local.vm-storage-basepath}historical-cluster/sharding-"
+  daily_vmstorage_count = (length(var.configs.s3.AWS_ACCESS_KEY_ID) > 0 &&
+    length(var.configs.s3.AWS_SECRET_ACCESS_KEY) > 0 &&
+    length(var.configs.s3.AWS_REGION) > 0 &&
+  length(var.configs.s3.AWS_BUCKET) > 0) ? var.configs.realtime_cluster.storage_node_count : 0
+}
+
+resource "kubernetes_stateful_set" "historical-cluster-vm-storage" {
+  #depends_on = [kubernetes_persistent_volume_claim.historical-cluster-pvc]
+  count = local.daily_vmstorage_count
+  metadata {
+    namespace = var.configs.namespace
+
+    labels = {
+      k8s-app    = local.vm-storage-name
+      node_index = count.index
+    }
+
+    name = "${local.vm-storage-name}-${count.index}"
+  }
+
+  spec {
+    pod_management_policy  = "OrderedReady"
+    replicas               = 1
+    revision_history_limit = 5
+
+    selector {
+      match_labels = {
+        k8s-app    = local.vm-storage-name
+        node_index = count.index
+      }
+    }
+
+    service_name = "${local.vm-storage-name}-${count.index}"
+
+    template {
+      metadata {
+        labels = {
+          k8s-app    = local.vm-storage-name
+          node_index = count.index
+        }
+
+        annotations = {}
+      }
+
+      spec {
+        container {
+          name              = "${local.vm-storage-name}-${count.index}"
+          image             = "ahfuzhang/vm-historical:v1.95.1"
+          image_pull_policy = "Always" #"IfNotPresent"
+          command           = ["/bin/sh"]
+          args = [
+            "-x",
+            "/daily.sh",
+          ]
+          resources {
+            limits = {
+              cpu    = "4" #todo
+              memory = "32Gi"
+            }
+            requests = {
+              cpu    = "0.5"
+              memory = "512Mi"
+            }
+          }
+          port {
+            container_port = 8482
+          }
+          port {
+            container_port = 8400
+          }
+          port {
+            container_port = 8401
+          }
+          port {
+            container_port = 18482
+          }
+          port {
+            container_port = 18400
+          }
+          port {
+            container_port = 18401
+          }
+          volume_mount {
+            name       = "realtime-cluster-pvc"
+            mount_path = var.configs.pvc.basepath
+          }
+
+          env {
+            name = "CONTAINER_NAME"
+            value_from {
+              field_ref {
+                field_path = "metadata.name"
+              }
+            }
+          }
+
+          env {
+            name = "CONTAINER_IP"
+            value_from {
+              field_ref {
+                field_path = "status.podIP"
+              }
+            }
+          }
+
+          env {
+            name  = "GOMAXPROCS"
+            value = "4" #todo
+          }
+          #--------------------------------------------------------------------
+          env {
+            name  = "configs_namespace"
+            value = var.configs.namespace
+          }
+          env {
+            name  = "configs_region"
+            value = var.configs.region
+          }
+          env {
+            name  = "configs_env"
+            value = var.configs.env
+          }
+          env {
+            name  = "configs_log_format"
+            value = var.configs.log.format
+          }
+          env {
+            name  = "configs_log_level"
+            value = var.configs.log.level
+          }
+          env {
+            name  = "configs_log_output"
+            value = var.configs.log.output
+          }
+          env {
+            name  = "configs_vm_version"
+            value = var.configs.vm.version
+          }
+          env {
+            name  = "count_index"
+            value = count.index
+          }
+          env {
+            name  = "n_days_before"
+            value = "1"
+            # yesterday = 1
+            # the day before yesterday = 2
+            # 15 before days = 15
+          }
+          env {
+            name  = "storage_base_path"
+            value = "/vm-data/historical-cluster/"
+          }
+          env {
+            name  = "s3_storage_base_path"
+            value = "/metrics/vmstorage-backup/realtime-cluster/daily/"
+          }
+          env {
+            name  = "push_metrics_addr"
+            value = var.push_metrics.addr
+          }
+          env {
+            name  = "AWS_ACCESS_KEY_ID"
+            value = var.configs.s3.AWS_ACCESS_KEY_ID
+          }
+          env {
+            name  = "AWS_SECRET_ACCESS_KEY"
+            value = var.configs.s3.AWS_SECRET_ACCESS_KEY
+          }
+          env {
+            name  = "AWS_REGION"
+            value = var.configs.s3.AWS_REGION
+          }
+          env {
+            name  = "AWS_BUCKET"
+            value = var.configs.s3.AWS_BUCKET
+          }
+        } # end container
+
+        termination_grace_period_seconds = 300
+
+        volume {
+          name = "realtime-cluster-pvc"
+          persistent_volume_claim {
+            claim_name = "realtime-cluster-pvc"
+          }
+        }
+      } #end spec
+
+    }
+
+    update_strategy {
+      type = "RollingUpdate"
+
+      # rolling_update {
+      #   partition = 1
+      # }
+    }
+
+  }
+
+  lifecycle {
+    create_before_destroy = true # 例如，创建新资源之前先销毁旧资源
+    #prevent_destroy = false       # 控制是否防止资源被销毁
+  }
+  timeouts {
+    create = "5m"
+    delete = "30s" # 设置销毁资源的最长等待时间为15分钟
+  }
+}
+
+data "external" "historical-cluster-vm-storage-status" {
+  depends_on = [kubernetes_stateful_set.historical-cluster-vm-storage]
+  program    = ["bash", "-c", "kubectl get pods -l k8s-app=${local.vm-storage-name} -n ${var.configs.namespace} -o json | jq -c '{\"r\": .|tojson }'"]
+}
+
+output "historical-cluster-vm-storage-containers" {
+  value = [for item in jsondecode(data.external.historical-cluster-vm-storage-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
+}
