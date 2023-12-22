@@ -86,7 +86,14 @@ ${local.exporters}  #todo: release version, delete this
     "cluster": "alert-cluster"
     "role": "vm-alert"
 ####################
-
+# for test
+- targets: ["http://10.151.0.71:32102/metrics"]
+  labels:
+    "from": "vm-agent"
+    "region": "${var.configs.region}"
+    "env": "${var.configs.env}"
+    "cluster": "metrics-data-source-cluster"
+    "role": "app"
     EOF
   }
 }
@@ -172,8 +179,8 @@ resource "kubernetes_deployment" "metrics-data-source-cluster-vm-agent" {
               memory = "1Gi"
             }
             requests = {
-              cpu    = "2"
-              memory = "1Gi"
+              cpu    = "0.5"
+              memory = "256Mi"
             }
           }
 
