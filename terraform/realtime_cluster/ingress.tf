@@ -29,6 +29,18 @@ resource "kubernetes_ingress_v1" "realtime-cluster-ingress" {
           path      = "/"
           path_type = "ImplementationSpecific"
         }
+        path {
+          backend {
+            service {
+              name = "realtime-cluster-vm-select-services"
+              port {
+                number = 3000
+              }
+            }
+          }
+          path      = "/select/"
+          path_type = "ImplementationSpecific"
+        }
       }
     }
   }

@@ -51,3 +51,9 @@ You will see those items on docker-desktop:
 ![](docs/docker-desktop-realtime-cluster.png)
 ![](docs/docker-desktop-alert-cluster.png)
 ![](docs/docker-desktop-historical-cluster.png)
+
+## Grafana Dashboard
+see: [grafana_dashboard/](./grafana_dashboard/)
+
+* Golang process info:
+![](docs/grafana_dashboard_golang_process_info.png)

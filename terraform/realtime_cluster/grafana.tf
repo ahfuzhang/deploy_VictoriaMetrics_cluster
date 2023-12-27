@@ -1,11 +1,97 @@
 
 
 locals {
-  grafana-name = "realtime-cluster-grafana"
+  grafana-name   = "realtime-cluster-grafana"
+  vm_select_addr = "${kubernetes_service.realtime-cluster-vm-select-services.spec.0.cluster_ip}:${kubernetes_service.realtime-cluster-vm-select-services.spec.0.port.0.target_port}"
+}
+
+
+resource "kubernetes_config_map" "realtime-cluster-grafana-config" {
+  metadata {
+    name      = "realtime-cluster-grafana-config"
+    namespace = var.configs.namespace
+  }
+
+  data = {
+    "grafana.ini" = <<EOF
+[plugins]
+allow_loading_unsigned_plugins = victoriametrics-datasource
+	EOF
+    "init.sh"     = <<EOF
+if [ ! -d "/vm-data/grafana/plugins/victoriametrics-datasource/" ]; then
+    wget https://github.com/VictoriaMetrics/grafana-datasource/releases/download/v0.5.0/victoriametrics-datasource-v0.5.0.tar.gz
+    mkdir -p /vm-data/grafana/plugins/
+    tar -zxf victoriametrics-datasource-v0.5.0.tar.gz -C /vm-data/grafana/plugins/
+fi
+mkdir -p /vm-data/grafana/provisioning/datasources/
+cp /vm-data/grafana/config/datasource.yaml /vm-data/grafana/provisioning/datasources/
+EOF
+
+    "datasource.yaml" = <<EOF
+apiVersion: 1
+
+# List of data sources to insert/update depending on what's
+# available in the database.
+datasources:
+    - name: Prometheus-realtime-cluster
+      type: prometheus
+      access: direct
+      #orgId: 1
+      url: http://${local.vm_select_addr}/select/0/prometheus/
+      isDefault: false
+      version: 1
+      editable: true
+
+    - name: Prometheus-self-monitor-cluster
+      type: prometheus
+      access: direct
+      #orgId: 1
+      url: http://${var.self_monitor_cluster_info.vm_select_addr}/select/0/prometheus/
+      isDefault: false
+      version: 1
+      editable: true
+
+    # <string, required> Name of the VictoriaMetrics datasource
+    # displayed in Grafana panels and queries.
+    - name: VictoriaMetrics-realtime-cluster
+      # <string, required> Sets the data source type.
+      type: victoriametrics-datasource
+      # <string, required> Sets the access mode, either
+      # proxy or direct (Server or Browser in the UI).
+      # Some data sources are incompatible with any setting
+      # but proxy (Server).
+      access: direct
+      # <string> Sets default URL of the single node version of VictoriaMetrics
+      url: http://${local.vm_select_addr}/select/0/prometheus/
+      # <string> Sets the pre-selected datasource for new panels.
+      # You can set only one default data source per organization.
+      isDefault: false
+      editable: true
+
+    - name: VictoriaMetrics-self-monitor-cluster
+      # <string, required> Sets the data source type.
+      type: victoriametrics-datasource
+      # <string, required> Sets the access mode, either
+      # proxy or direct (Server or Browser in the UI).
+      # Some data sources are incompatible with any setting
+      # but proxy (Server).
+      access: direct
+      # <string> Sets default URL of the single node version of VictoriaMetrics
+      url: http://${var.self_monitor_cluster_info.vm_select_addr}/select/0/prometheus/
+      # <string> Sets the pre-selected datasource for new panels.
+      # You can set only one default data source per organization.
+      isDefault: false
+      editable: true
+
+    EOF
+  }
 }
 
 resource "kubernetes_deployment" "realtime-cluster-grafana" {
-
+  depends_on = [
+    kubernetes_config_map.realtime-cluster-grafana-config,
+    kubernetes_service.realtime-cluster-vm-select-services
+  ]
   metadata {
     namespace = var.configs.namespace
     name      = local.grafana-name
@@ -15,7 +101,7 @@ resource "kubernetes_deployment" "realtime-cluster-grafana" {
   }
 
   spec {
-    replicas = 1  #todo
+    replicas = 1
 
     selector {
       match_labels = {
@@ -31,6 +117,29 @@ resource "kubernetes_deployment" "realtime-cluster-grafana" {
       }
 
       spec {
+        init_container {
+          image             = "alpine:3.18.4"
+          image_pull_policy = "IfNotPresent"
+          name              = "${local.grafana-name}-init"
+          command           = ["/bin/sh"]
+          working_dir       = "/"
+          args = [
+            "-x",
+            "/vm-data/grafana/config/init.sh"
+          ]
+          volume_mount {
+            name       = "realtime-cluster-pvc"
+            mount_path = "/vm-data/grafana/"
+            read_only  = false
+          }
+          volume_mount {
+            name       = "grafana-config-volume"
+            mount_path = "/vm-data/grafana/config/"
+            read_only  = false
+          }
+        }
+
+
         container {
           image             = "grafana/grafana:10.2.2"
           image_pull_policy = "IfNotPresent"
@@ -38,12 +147,12 @@ resource "kubernetes_deployment" "realtime-cluster-grafana" {
 
           resources {
             limits = {
-              cpu    = "1"  #todo
+              cpu    = "1" #todo
               memory = "1Gi"
             }
             requests = {
-              cpu    = "1"
-              memory = "1Gi"
+              cpu    = "0.1"
+              memory = "128Mi"
             }
           }
 
@@ -53,9 +162,12 @@ resource "kubernetes_deployment" "realtime-cluster-grafana" {
 
           volume_mount {
             name       = "realtime-cluster-pvc"
-            mount_path = "/vm-data/realtime-cluster/grafana/"
+            mount_path = "/vm-data/grafana/"
           }
-
+          volume_mount {
+            name       = "grafana-config-volume"
+            mount_path = "/vm-data/grafana/config/"
+          }
           env {
             name = "CONTAINER_NAME"
 
@@ -78,7 +190,7 @@ resource "kubernetes_deployment" "realtime-cluster-grafana" {
 
           env {
             name  = "GOMAXPROCS"
-            value = "1"  #todo
+            value = "1"
           }
 
           # env {
@@ -87,13 +199,32 @@ resource "kubernetes_deployment" "realtime-cluster-grafana" {
           # }
           # env {
           #   name  = "GF_SECURITY_ADMIN_PASSWORD"
-          #   value = "admin"
+          #   value = "admin"  #todo:
           # }
           env {
             name  = "GF_PATHS_DATA"
-            value = "/vm-data/realtime-cluster/grafana/data/"
+            value = "/vm-data/grafana/data/"
           }
-
+          env {
+            name  = "GF_PATHS_PLUGINS"
+            value = "/vm-data/grafana/plugins/"
+          }
+          env {
+            name  = "GF_PATHS_PROVISIONING" # GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+            value = "/vm-data/grafana/provisioning/"
+          }
+          # env {
+          #   name  = "GF_PATHS_HOME"
+          #   value = "/vm-data/grafana/home/"
+          # }
+          # env {
+          #   name  = "GF_SERVER_ROOT_URL"
+          #   value = "http://${var.configs.domain}/realtime-cluster-grafana/"
+          # }
+          env {
+            name  = "GF_PATHS_CONFIG"
+            value = "/vm-data/grafana/config/grafana.ini"
+          }
         } # end container
 
         volume {
@@ -101,6 +232,13 @@ resource "kubernetes_deployment" "realtime-cluster-grafana" {
 
           persistent_volume_claim {
             claim_name = "realtime-cluster-pvc"
+          }
+        }
+        volume {
+          name = "grafana-config-volume"
+
+          config_map {
+            name = "realtime-cluster-grafana-config"
           }
         }
       }

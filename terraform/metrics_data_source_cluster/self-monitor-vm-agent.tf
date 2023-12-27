@@ -7,7 +7,7 @@ locals {
   vm-storage_list_for_metrics = join(",", [for item in var.self_monitor_cluster_info.vm_storage_list : "\"http://${item.container_ip}:8482/metrics\""])
   vm-insert_list_for_metrics  = join(",", [for item in var.self_monitor_cluster_info.vm_insert_list : "\"http://${item.container_ip}:8480/metrics\""])
   vm-select_list_for_metrics  = join(",", [for item in var.self_monitor_cluster_info.vm_select_list : "\"http://${item.container_ip}:8481/metrics\""])
-  grafana_list_for_metrics    = join(",", [for item in var.self_monitor_cluster_info.grafana_list : "\"http://${item.container_ip}:3000/metrics\""])
+  #grafana_list_for_metrics    = join(",", [for item in var.self_monitor_cluster_info.grafana_list : "\"http://${item.container_ip}:3000/metrics\""])
 }
 
 locals {
@@ -81,13 +81,13 @@ resource "kubernetes_config_map" "self-monitor-cluster-vm-agent-exporters" {
     "env": "${var.configs.env}"
     "cluster": "self-monitor-cluster"
     "role": "vm-select"
-- targets: [${local.grafana_list_for_metrics}]
-  labels:
-    "from": "vm-agent"
-    "region": "${var.configs.region}"
-    "env": "${var.configs.env}"
-    "cluster": "self-monitor-cluster"
-    "role": "grafana"
+# - targets: [$${local.grafana_list_for_metrics}]
+#   labels:
+#     "from": "vm-agent"
+#     "region": "${var.configs.region}"
+#     "env": "${var.configs.env}"
+#     "cluster": "self-monitor-cluster"
+#     "role": "grafana"
 ####################
 - targets: [${local.realtime_grafana_list_for_metrics}]
   labels:
@@ -162,7 +162,7 @@ resource "kubernetes_deployment" "self-monitor-cluster-vm-agent" {
             "-maxConcurrentInserts=8",
             "-maxInsertRequestSize=32MB",
             "-memory.allowedPercent=80",
-            "-promscrape.cluster.memberLabel=''",
+            #"-promscrape.cluster.memberLabel=''",
             "-pushmetrics.extraLabel=region=\"${var.configs.region}\"",
             "-pushmetrics.extraLabel=env=\"${var.configs.env}\"",
             "-pushmetrics.extraLabel=cluster=\"self-monitor-cluster\"",
@@ -184,7 +184,7 @@ resource "kubernetes_deployment" "self-monitor-cluster-vm-agent" {
             "-remoteWrite.disableOnDiskQueue",
             "-remoteWrite.dropSamplesOnOverload=1",
             "-remoteWrite.flushInterval=15s",
-            "-remoteWrite.label=''",
+            #"-remoteWrite.label=''",
             "-remoteWrite.url=http://${var.self_monitor_cluster_info.vm_insert_addr}/insert/0/prometheus/api/v1/write",
             "-promscrape.config=/configs/file_sd_configs.yaml",
           ]

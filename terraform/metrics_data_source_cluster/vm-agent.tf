@@ -145,7 +145,7 @@ resource "kubernetes_deployment" "metrics-data-source-cluster-vm-agent" {
             "-maxConcurrentInserts=8",
             "-maxInsertRequestSize=32MB",
             "-memory.allowedPercent=80",
-            "-promscrape.cluster.memberLabel=''",
+            #"-promscrape.cluster.memberLabel=''",
             "-pushmetrics.extraLabel=region=\"${var.configs.region}\"",
             "-pushmetrics.extraLabel=env=\"${var.configs.env}\"",
             "-pushmetrics.extraLabel=cluster=\"metrics-data-source-cluster\"",
@@ -167,7 +167,7 @@ resource "kubernetes_deployment" "metrics-data-source-cluster-vm-agent" {
             "-remoteWrite.disableOnDiskQueue",
             "-remoteWrite.dropSamplesOnOverload=1",
             "-remoteWrite.flushInterval=15s",
-            "-remoteWrite.label=''",
+            #"-remoteWrite.label=''",
             "-remoteWrite.url=http://${var.realtime_cluster_info.insert_addr}/insert/0/prometheus/api/v1/write",
             "-promscrape.config=/configs/file_sd_configs.yaml",
           ]

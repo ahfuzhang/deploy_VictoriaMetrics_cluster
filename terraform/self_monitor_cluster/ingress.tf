@@ -20,9 +20,9 @@ resource "kubernetes_ingress_v1" "self-monitor-cluster-ingress" {
         path {
           backend {
             service {
-              name = "self-monitor-cluster-grafana-services"
+              name = "self-monitor-cluster-vm-select-services"
               port {
-                number = 3000
+                number = 8481
               }
             }
           }

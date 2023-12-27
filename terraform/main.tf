@@ -12,12 +12,20 @@ locals {
     interval = "15s"
     addr     = "http://${module.self-monitor-cluster.self-monitor-cluster-vm-insert-services-addr}/insert/0/prometheus/api/v1/import/prometheus"
   }
+  self_monitor_cluster_info = {
+    vm_storage_list = module.self-monitor-cluster.self-monitor-cluster-vm-storage-containers
+    vm_select_list  = module.self-monitor-cluster.self-monitor-cluster-vm-select-containers
+    vm_insert_list  = module.self-monitor-cluster.self-monitor-cluster-vm-insert-containers
+    vm_select_addr  = module.self-monitor-cluster.self-monitor-cluster-vm-select-services-addr
+    vm_insert_addr  = module.self-monitor-cluster.self-monitor-cluster-vm-insert-services-addr
+  }
 }
 
 module "realtime-cluster" {
-  source       = "./realtime_cluster/"
-  configs      = var.configs
-  push_metrics = local.push_metrics
+  source                    = "./realtime_cluster/"
+  configs                   = var.configs
+  push_metrics              = local.push_metrics
+  self_monitor_cluster_info = local.self_monitor_cluster_info
 }
 
 locals {
@@ -39,19 +47,11 @@ module "alert-cluster" {
 }
 
 module "metrics-data-source-cluster" {
-  source                = "./metrics_data_source_cluster/"
-  configs               = var.configs
-  push_metrics          = local.push_metrics
-  realtime_cluster_info = local.realtime_cluster_info
-  self_monitor_cluster_info = {
-    vm_storage_list = module.self-monitor-cluster.self-monitor-cluster-vm-storage-containers
-    vm_select_list  = module.self-monitor-cluster.self-monitor-cluster-vm-select-containers
-    vm_insert_list  = module.self-monitor-cluster.self-monitor-cluster-vm-insert-containers
-    grafana_list    = module.self-monitor-cluster.self-monitor-cluster-grafana-containers
-    vm_select_addr  = module.self-monitor-cluster.self-monitor-cluster-vm-select-services-addr
-    vm_insert_addr  = module.self-monitor-cluster.self-monitor-cluster-vm-insert-services-addr
-    grafana_addr    = module.self-monitor-cluster.self-monitor-cluster-grafana-services-addr
-  }
+  source                    = "./metrics_data_source_cluster/"
+  configs                   = var.configs
+  push_metrics              = local.push_metrics
+  realtime_cluster_info     = local.realtime_cluster_info
+  self_monitor_cluster_info = local.self_monitor_cluster_info
   alert_cluster_info = {
     dingtalk_webhook_list = module.alert-cluster.alert-cluster-dingtalk-webhook-containers
     alert_manager_list    = module.alert-cluster.alert-cluster-alert-manager-containers
@@ -79,10 +79,6 @@ output "self-monitor-vm-select" {
   value = module.self-monitor-cluster.self-monitor-cluster-vm-select-containers
 }
 
-output "self-monitor-grafana" {
-  value = module.self-monitor-cluster.self-monitor-cluster-grafana-containers
-}
-
 output "self-monitor-vm-insert-services" {
   value = module.self-monitor-cluster.self-monitor-cluster-vm-insert-services-addr
 }
@@ -91,16 +87,12 @@ output "self-monitor-vm-select-services" {
   value = module.self-monitor-cluster.self-monitor-cluster-vm-select-services-addr
 }
 
-output "self-monitor-grafana-services" {
-  value = module.self-monitor-cluster.self-monitor-cluster-grafana-services-addr
-}
-
 output "self-monitor-cluster-ingress-ip" {
   value = module.self-monitor-cluster.self-monitor-cluster-ingress-ip
 }
 
 //-----------------------------------------------------------------------------
-output "real-vm-storage" {
+output "realtime-cluster-vm-storage" {
   value = module.realtime-cluster.realtime-cluster-vm-storage-containers
 }
 
@@ -154,4 +146,8 @@ output "metrics-data-source-cluster-vm-agent" {
 //-----------------------------------------------------------------------------
 output "historical-cluster-vm-select-services" {
   value = module.historical-cluster.historical-cluster-vm-select-services-addr
+}
+
+output "historical-cluster-vm-storage" {
+  value = module.historical-cluster.historical-cluster-vm-storage-containers
 }
