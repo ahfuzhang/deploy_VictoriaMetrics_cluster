@@ -47,6 +47,18 @@ locals {
   exporters = data.kubernetes_config_map.self-monitor-cluster-vm-agent-exporters-data.data["exporters.yaml"] # todo: release version, delete this
 }
 
+locals {
+  realtime_vm_storage_list_for_metrics = join(",", [for item in var.realtime_cluster_info.vm_storage_list : "\"http://${item.container_ip}:8482/metrics\""])
+  realtime_vm_insert_list_for_metrics  = join(",", [for item in var.realtime_cluster_info.vm_insert_list : "\"http://${item.container_ip}:8480/metrics\""])
+  realtime_vm_select_list_for_metrics  = join(",", [for item in var.realtime_cluster_info.vm_select_list : "\"http://${item.container_ip}:8481/metrics\""])
+}
+
+locals {
+  #alert_dingtalk_webhook_list_for_metrics = join(",", [for item in var.alert_cluster_info.dingtalk_webhook_list : "\"http://${item.container_ip}:8060/metrics\""])
+  #alert_alert_manager_list_for_metrics = join(",", [for item in var.alert_cluster_info.alert_manager_list : "\"http://${item.container_ip}:9093/metrics\""])
+  alert_vm_alert_list_for_metrics = join(",", [for item in var.alert_cluster_info.vm_alert_list : "\"http://${item.container_ip}:8880/metrics\""])
+}
+
 resource "kubernetes_config_map" "metrics-data-source-cluster-vm-agent-exporters" {
   metadata {
     name      = "${local.name}-exporters"

@@ -1,0 +1,231 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 12,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "victoriametrics-datasource",
+        "uid": "${ds}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "instance"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "",
+                    "url": "http://realtime-cluster.sige-test.com/d/fb6a6330-1a95-4a17-8886-374edcbf601d/golang-process-info-vm-version?orgId=1&var-ds=${ds}&var-cluster=${__data.fields.cluster}&var-region=${__data.fields.region}&var-env=${__data.fields.env}&var-role=${__data.fields.role}&var-instance=${__data.fields.instance}&var-container_ip=All&var-container_name=All"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "container_ip"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "",
+                    "url": "http://realtime-cluster.sige-test.com/d/fb6a6330-1a95-4a17-8886-374edcbf601d/golang-process-info-vm-version?orgId=1&var-ds=${ds}&var-cluster=${__data.fields.cluster}&var-region=${__data.fields.region}&var-env=${__data.fields.env}&var-role=${__data.fields.role}&var-instance=All&var-container_ip=${__data.fields.container_ip}&var-container_name=All"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "container_name"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "",
+                    "url": "http://realtime-cluster.sige-test.com/d/fb6a6330-1a95-4a17-8886-374edcbf601d/golang-process-info-vm-version?orgId=1&var-ds=${ds}&var-cluster=${__data.fields.cluster}&var-region=${__data.fields.region}&var-env=${__data.fields.env}&var-role=${__data.fields.role}&var-instance=All&var-container_ip=All&var-container_name=${__data.fields.container_name}"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 30,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "interval": "1m",
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "role"
+          }
+        ]
+      },
+      "pluginVersion": "10.2.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "victoriametrics-datasource",
+            "uid": "${ds}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "count by (cluster, region, env, role, instance, container_ip, container_name)(go_info)",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Instance List",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "cluster",
+                "container_ip",
+                "container_name",
+                "env",
+                "instance",
+                "region",
+                "role"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {
+              "cluster": 0,
+              "container_ip": 4,
+              "container_name": 5,
+              "env": 2,
+              "instance": 6,
+              "region": 1,
+              "role": 3
+            },
+            "renameByName": {}
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 38,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": "vm-self-monitor-cluster",
+          "value": "e0141552-5223-4927-8c6f-1dd7ab9d50df"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "data source",
+        "multi": false,
+        "name": "ds",
+        "options": [],
+        "query": "victoriametrics-datasource",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Instance List",
+  "uid": "b59eee18-f6f0-4a6b-ab86-cab1a4c9e1f7",
+  "version": 4,
+  "weekStart": ""
+}
