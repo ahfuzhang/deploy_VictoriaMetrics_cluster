@@ -2,8 +2,8 @@
 
 locals {
   daily-vm-backup-name = "realtime-cluster-vm-backup-daily"
-  yesterday     = formatdate("YYYY-MM-DD", timeadd(timestamp(), "-24h"))
-  daily_s3_path = "s3://${var.configs.s3.AWS_BUCKET}/metrics/vmstorage-backup/realtime-cluster/daily/${local.yesterday}/sharding-"
+  yesterday            = formatdate("YYYY-MM-DD", timeadd(timestamp(), "-24h"))
+  daily_s3_path        = "s3://${var.configs.s3.AWS_BUCKET}/metrics/vmstorage-backup/realtime-cluster/daily/${local.yesterday}/sharding-"
   daily_instance_count = (length(var.configs.s3.AWS_ACCESS_KEY_ID) > 0 &&
     length(var.configs.s3.AWS_SECRET_ACCESS_KEY) > 0 &&
     length(var.configs.s3.AWS_REGION) > 0 &&
@@ -71,8 +71,8 @@ resource "kubernetes_cron_job_v1" "realtime-cluster-vm-backup-daily" {
                   memory = "1Gi"
                 }
                 requests = {
-                  cpu    = "1"
-                  memory = "1Gi"
+                  cpu    = "0.1"
+                  memory = "128Mi"
                 }
               }
 

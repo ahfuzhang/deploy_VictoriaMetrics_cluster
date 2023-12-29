@@ -48,6 +48,7 @@ resource "kubernetes_deployment" "historical-cluster-vm-select" {
             "-clusternativeListenAddr=:7401",
             "-dedup.minScrapeInterval=15s",
             "-httpListenAddr=:8481",
+            "-http.pathPrefix=/historical-cluster-select/",
             "-loggerDisableTimestamps",
             "-loggerFormat=${var.configs.log.format}",
             "-loggerLevel=${var.configs.log.level}",
@@ -132,11 +133,11 @@ output "historical-cluster-vm-select-containers" {
   value = [for item in jsondecode(data.external.historical-cluster-vm-select-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
 }
 
-resource "kubernetes_service" "historical-cluster-vm-select-services" {
+resource "kubernetes_service" "historical-cluster-vm-select-service" {
   depends_on = [data.external.historical-cluster-vm-select-status]
   metadata {
     namespace = var.configs.namespace
-    name      = "${local.vm-select-name}-services"
+    name      = "${local.vm-select-name}-service"
   }
 
   spec {
@@ -154,6 +155,6 @@ resource "kubernetes_service" "historical-cluster-vm-select-services" {
   }
 }
 
-output "historical-cluster-vm-select-services-addr" {
-  value = "${kubernetes_service.historical-cluster-vm-select-services.spec.0.cluster_ip}:${kubernetes_service.historical-cluster-vm-select-services.spec.0.port.0.target_port}"
+output "historical-cluster-vm-select-service-addr" {
+  value = "${kubernetes_service.historical-cluster-vm-select-service.spec.0.cluster_ip}:${kubernetes_service.historical-cluster-vm-select-service.spec.0.port.0.target_port}"
 }

@@ -4,19 +4,19 @@ locals {
 }
 
 resource "kubernetes_config_map" "alert-cluster-vm-alert-configs" {
-  count = 2  #todo
+  count = 2 #todo
   metadata {
     name      = "alert-cluster-vm-alert-configs-${count.index}"
     namespace = var.configs.namespace
   }
 
   data = {
-    "rules.yaml" = file("alert_cluster/rules/rules_${count.index}.yaml")  #todo
+    "rules.yaml" = file("alert_cluster/rules/rules_${count.index}.yaml") #todo
   }
 }
 
 resource "kubernetes_deployment" "alert-cluster-vm-alert" {
-  count = 2  #todo
+  count = 2 #todo
   depends_on = [
     kubernetes_deployment.alert-cluster-dingtalk-webhook,
     kubernetes_deployment.alert-cluster-alert-manager-main,
@@ -58,6 +58,7 @@ resource "kubernetes_deployment" "alert-cluster-vm-alert" {
             "-external.label='from=\"vm-alert\"'",
             "-external.url=",
             "-httpListenAddr=:8880",
+            "-http.pathPrefix=/alert-cluster-vm-alert/",
             "-loggerDisableTimestamps",
             "-loggerFormat=${var.configs.log.format}",
             "-loggerLevel=${var.configs.log.level}",
@@ -94,12 +95,12 @@ resource "kubernetes_deployment" "alert-cluster-vm-alert" {
 
           resources {
             limits = {
-              cpu    = "1"  #todo
+              cpu    = "1" #todo
               memory = "2Gi"
             }
             requests = {
-              cpu    = "1"
-              memory = "2Gi"
+              cpu    = "0.5"
+              memory = "256Mi"
             }
           }
 
@@ -128,7 +129,7 @@ resource "kubernetes_deployment" "alert-cluster-vm-alert" {
 
           env {
             name  = "GOMAXPROCS"
-            value = "1"  #todo
+            value = "1" #todo
           }
 
           volume_mount {
@@ -155,4 +156,30 @@ data "external" "alert-cluster-vm-alert-status" {
 
 output "alert-cluster-vm-alert-containers" {
   value = [for item in jsondecode(data.external.alert-cluster-vm-alert-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
+}
+
+resource "kubernetes_service" "alert-cluster-vm-alert-service" {
+  depends_on = [data.external.alert-cluster-vm-alert-status]
+  metadata {
+    namespace = var.configs.namespace
+    name      = "${local.vm-alert-name}-service"
+  }
+
+  spec {
+    selector = {
+      kubernetes_deployment_name = local.vm-alert-name
+    }
+
+    port {
+      protocol    = "TCP"
+      port        = 8880
+      target_port = 8880
+    }
+
+    type = "ClusterIP"
+  }
+}
+
+output "alert-cluster-vm-alert-service-addr" {
+  value = "${kubernetes_service.alert-cluster-vm-alert-service.spec.0.cluster_ip}:${kubernetes_service.alert-cluster-vm-alert-service.spec.0.port.0.target_port}"
 }

@@ -77,7 +77,7 @@ resource "kubernetes_deployment" "alert-cluster-alert-manager-main" {
 
           resources {
             limits = {
-              cpu    = "1"  #todo
+              cpu    = "1" #todo
               memory = "512Mi"
             }
             requests = {
@@ -115,7 +115,7 @@ resource "kubernetes_deployment" "alert-cluster-alert-manager-main" {
 
           env {
             name  = "GOMAXPROCS"
-            value = "1"  #todo
+            value = "1" #todo
           }
 
           volume_mount {
@@ -191,12 +191,12 @@ resource "kubernetes_deployment" "alert-cluster-alert-manager-secondary" {
 
           resources {
             limits = {
-              cpu    = "1"  #todo
+              cpu    = "1" #todo
               memory = "512Mi"
             }
             requests = {
-              cpu    = "1"
-              memory = "512Mi"
+              cpu    = "0.1"
+              memory = "128Mi"
             }
           }
 
@@ -229,7 +229,7 @@ resource "kubernetes_deployment" "alert-cluster-alert-manager-secondary" {
 
           env {
             name  = "GOMAXPROCS"
-            value = "1"   #todo
+            value = "1" #todo
           }
 
           volume_mount {
@@ -262,7 +262,7 @@ resource "kubernetes_service" "alert-cluster-alert-manager-service" {
   depends_on = [data.external.alert-cluster-alert-manager-status]
   metadata {
     namespace = var.configs.namespace
-    name      = "${local.alert-manager-name}-services"
+    name      = "${local.alert-manager-name}-service"
   }
 
   spec {

@@ -2,7 +2,8 @@
 
 locals {
   vm-insert-name = "self-monitor-cluster-vm-insert"
-  storage_list   = join(",", [for item in jsondecode(data.external.self-monitor-cluster-vm-storage-status.result.r).items : "${item.status.podIP}:8400"])
+  #storage_list_for_insert = join(",", [for item in jsondecode(data.external.self-monitor-cluster-vm-storage-status.result.r).items : "${item.status.podIP}:8400"])
+  storage_list_for_insert = join(",", [for index, item in range(0, local.vm-storage-count) : "self-monitor-cluster-vm-storage-service-for-insert-${index}:8400"])
 }
 
 resource "kubernetes_deployment" "self-monitor-cluster-vm-insert" {
@@ -39,6 +40,7 @@ resource "kubernetes_deployment" "self-monitor-cluster-vm-insert" {
             "-clusternativeListenAddr=:7400",
             "-dropSamplesOnOverload",
             "-httpListenAddr=:8480",
+            "-http.pathPrefix=/self-monitor-cluster-insert/",
             "-insert.maxQueueDuration=1m",
             "-loggerDisableTimestamps",
             "-loggerFormat=${var.configs.log.format}",
@@ -50,7 +52,7 @@ resource "kubernetes_deployment" "self-monitor-cluster-vm-insert" {
             "-maxLabelsPerTimeseries=30",
             "-memory.allowedPercent=80",
             "-replicationFactor=2",
-            "-storageNode=${local.storage_list}",
+            "-storageNode=${local.storage_list_for_insert}",
           ]
           name = local.vm-insert-name
 
@@ -60,8 +62,8 @@ resource "kubernetes_deployment" "self-monitor-cluster-vm-insert" {
               memory = "2Gi"
             }
             requests = {
-              cpu    = "2"
-              memory = "2Gi"
+              cpu    = "0.1"
+              memory = "128Mi"
             }
           }
 
@@ -112,11 +114,11 @@ output "self-monitor-cluster-vm-insert-containers" {
   value = [for item in jsondecode(data.external.self-monitor-cluster-vm-insert-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
 }
 
-resource "kubernetes_service" "self-monitor-cluster-vm-insert-services" {
+resource "kubernetes_service" "self-monitor-cluster-vm-insert-service" {
   depends_on = [data.external.self-monitor-cluster-vm-insert-status]
   metadata {
     namespace = var.configs.namespace
-    name      = "${local.vm-insert-name}-services"
+    name      = "${local.vm-insert-name}-service"
   }
 
   spec {
@@ -134,6 +136,6 @@ resource "kubernetes_service" "self-monitor-cluster-vm-insert-services" {
   }
 }
 
-output "self-monitor-cluster-vm-insert-services-addr" {
-  value = "${kubernetes_service.self-monitor-cluster-vm-insert-services.spec.0.cluster_ip}:${kubernetes_service.self-monitor-cluster-vm-insert-services.spec.0.port.0.target_port}"
+output "self-monitor-cluster-vm-insert-service-addr" {
+  value = "${kubernetes_service.self-monitor-cluster-vm-insert-service.spec.0.cluster_ip}:${kubernetes_service.self-monitor-cluster-vm-insert-service.spec.0.port.0.target_port}"
 }

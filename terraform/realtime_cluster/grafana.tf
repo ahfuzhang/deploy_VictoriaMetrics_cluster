@@ -2,7 +2,7 @@
 
 locals {
   grafana-name   = "realtime-cluster-grafana"
-  vm_select_addr = "${kubernetes_service.realtime-cluster-vm-select-services.spec.0.cluster_ip}:${kubernetes_service.realtime-cluster-vm-select-services.spec.0.port.0.target_port}"
+  vm_select_addr = "${kubernetes_service.realtime-cluster-vm-select-service.spec.0.cluster_ip}:${kubernetes_service.realtime-cluster-vm-select-service.spec.0.port.0.target_port}"
 }
 
 
@@ -23,8 +23,14 @@ if [ ! -d "/vm-data/grafana/plugins/victoriametrics-datasource/" ]; then
     mkdir -p /vm-data/grafana/plugins/
     tar -zxf victoriametrics-datasource-v0.5.0.tar.gz -C /vm-data/grafana/plugins/
 fi
-mkdir -p /vm-data/grafana/provisioning/datasources/
-cp /vm-data/grafana/config/datasource.yaml /vm-data/grafana/provisioning/datasources/
+mkdir -p /vm-data/grafana/provisioning/datasources/ /vm-data/grafana/config/ /vm-data/grafana/data/ /vm-data/grafana/plugins/
+cp /grafana/config/datasource.yaml /vm-data/grafana/provisioning/datasources/
+cp /grafana/config/grafana.ini /vm-data/grafana/config/
+#echo "1" > /vm-data/grafana/data/test.txt
+chmod -R 777 /vm-data/grafana/
+
+#sleep 10
+
 EOF
 
     "datasource.yaml" = <<EOF
@@ -38,6 +44,7 @@ datasources:
       access: direct
       #orgId: 1
       url: http://${local.vm_select_addr}/select/0/prometheus/
+      #url: http://realtime-cluster-vm-select-service:8481/select/0/prometheus/
       isDefault: false
       version: 1
       editable: true
@@ -46,7 +53,8 @@ datasources:
       type: prometheus
       access: direct
       #orgId: 1
-      url: http://${var.self_monitor_cluster_info.vm_select_addr}/select/0/prometheus/
+      url: http://${var.self_monitor_cluster_info.vm_select_addr}/self-monitor-cluster-select/select/0/prometheus/
+      #url: http://self-monitor-cluster-vm-select-service:8481/self-monitor-cluster-select/select/0/prometheus/
       isDefault: false
       version: 1
       editable: true
@@ -62,6 +70,7 @@ datasources:
       # but proxy (Server).
       access: direct
       # <string> Sets default URL of the single node version of VictoriaMetrics
+      #url: http://realtime-cluster-vm-select-service:8481/select/0/prometheus/
       url: http://${local.vm_select_addr}/select/0/prometheus/
       # <string> Sets the pre-selected datasource for new panels.
       # You can set only one default data source per organization.
@@ -77,7 +86,8 @@ datasources:
       # but proxy (Server).
       access: direct
       # <string> Sets default URL of the single node version of VictoriaMetrics
-      url: http://${var.self_monitor_cluster_info.vm_select_addr}/select/0/prometheus/
+      #url: http://self-monitor-cluster-vm-select-service:8481/self-monitor-cluster-select/select/0/prometheus/
+      url: http://${var.self_monitor_cluster_info.vm_select_addr}/self-monitor-cluster-select/select/0/prometheus/
       # <string> Sets the pre-selected datasource for new panels.
       # You can set only one default data source per organization.
       isDefault: false
@@ -90,7 +100,7 @@ datasources:
 resource "kubernetes_deployment" "realtime-cluster-grafana" {
   depends_on = [
     kubernetes_config_map.realtime-cluster-grafana-config,
-    kubernetes_service.realtime-cluster-vm-select-services
+    kubernetes_service.realtime-cluster-vm-select-service
   ]
   metadata {
     namespace = var.configs.namespace
@@ -125,16 +135,16 @@ resource "kubernetes_deployment" "realtime-cluster-grafana" {
           working_dir       = "/"
           args = [
             "-x",
-            "/vm-data/grafana/config/init.sh"
+            "/grafana/config/init.sh"
           ]
           volume_mount {
             name       = "realtime-cluster-pvc"
-            mount_path = "/vm-data/grafana/"
+            mount_path = "/vm-data/"
             read_only  = false
           }
           volume_mount {
             name       = "grafana-config-volume"
-            mount_path = "/vm-data/grafana/config/"
+            mount_path = "/grafana/config/"
             read_only  = false
           }
         }
@@ -144,6 +154,7 @@ resource "kubernetes_deployment" "realtime-cluster-grafana" {
           image             = "grafana/grafana:10.2.2"
           image_pull_policy = "IfNotPresent"
           name              = local.grafana-name
+          #command           = ["/bin/sh", "-c", "echo 123;sleep 20;"]
 
           resources {
             limits = {
@@ -162,12 +173,13 @@ resource "kubernetes_deployment" "realtime-cluster-grafana" {
 
           volume_mount {
             name       = "realtime-cluster-pvc"
-            mount_path = "/vm-data/grafana/"
+            mount_path = "/vm-data/"
+            read_only  = false
           }
-          volume_mount {
-            name       = "grafana-config-volume"
-            mount_path = "/vm-data/grafana/config/"
-          }
+          # volume_mount {
+          #   name       = "grafana-config-volume"
+          #   mount_path = "/vm-data/grafana/config/"
+          # }
           env {
             name = "CONTAINER_NAME"
 
@@ -255,11 +267,11 @@ output "realtime-cluster-grafana-containers" {
   value = [for item in jsondecode(data.external.realtime-cluster-grafana-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
 }
 
-resource "kubernetes_service" "realtime-cluster-grafana-services" {
+resource "kubernetes_service" "realtime-cluster-grafana-service" {
   depends_on = [data.external.realtime-cluster-grafana-status]
   metadata {
     namespace = var.configs.namespace
-    name      = "${local.grafana-name}-services"
+    name      = "${local.grafana-name}-service"
   }
 
   spec {
@@ -277,6 +289,6 @@ resource "kubernetes_service" "realtime-cluster-grafana-services" {
   }
 }
 
-output "realtime-cluster-grafana-services-addr" {
-  value = "${kubernetes_service.realtime-cluster-grafana-services.spec.0.cluster_ip}:${kubernetes_service.realtime-cluster-grafana-services.spec.0.port.0.target_port}"
+output "realtime-cluster-grafana-service-addr" {
+  value = "${kubernetes_service.realtime-cluster-grafana-service.spec.0.cluster_ip}:${kubernetes_service.realtime-cluster-grafana-service.spec.0.port.0.target_port}"
 }

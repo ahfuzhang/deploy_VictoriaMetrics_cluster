@@ -66,7 +66,7 @@ locals {
   yaml_targets_for_self_monitor_vm_insert = join("\n", [
     for item in var.self_monitor_cluster_info.vm_insert_list :
     join("", [
-      "- targets: [\"http://${item.container_ip}:8480/metrics\"]\n",
+      "- targets: [\"http://${item.container_ip}:8480/self-monitor-cluster-insert/metrics\"]\n",
       "  labels:\n",
       "    \"from\": \"vm-agent\"\n",
       "    \"region\": \"${var.configs.region}\"\n",
@@ -80,7 +80,7 @@ locals {
   yaml_targets_for_self_monitor_vm_select = join("\n", [
     for item in var.self_monitor_cluster_info.vm_select_list :
     join("", [
-      "- targets: [\"http://${item.container_ip}:8481/metrics\"]\n",
+      "- targets: [\"http://${item.container_ip}:8481/self-monitor-cluster-select/metrics\"]\n",
       "  labels:\n",
       "    \"from\": \"vm-agent\"\n",
       "    \"region\": \"${var.configs.region}\"\n",
@@ -197,6 +197,7 @@ resource "kubernetes_deployment" "self-monitor-cluster-vm-agent" {
           image_pull_policy = "IfNotPresent"
           args = [
             "-httpListenAddr=:8429",
+            "-http.pathPrefix=/self-monitor-cluster-vm-agent/",
             "-loggerDisableTimestamps",
             "-loggerFormat=${var.configs.log.format}",
             "-loggerLevel=${var.configs.log.level}",
@@ -227,7 +228,8 @@ resource "kubernetes_deployment" "self-monitor-cluster-vm-agent" {
             "-remoteWrite.dropSamplesOnOverload=1",
             "-remoteWrite.flushInterval=15s",
             #"-remoteWrite.label=''",
-            "-remoteWrite.url=http://${var.self_monitor_cluster_info.vm_insert_addr}/insert/0/prometheus/api/v1/write",
+            #"-remoteWrite.url=http://$${var.self_monitor_cluster_info.vm_insert_addr}/self-monitor-cluster-insert/insert/0/prometheus/api/v1/write",
+            "-remoteWrite.url=http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/write",
             "-promscrape.config=/configs/file_sd_configs.yaml",
           ]
           name = "${local.vm-agent-name}-${count.index}"
@@ -310,4 +312,30 @@ data "external" "self-monitor-cluster-vm-agent-status" {
 
 output "self-monitor-cluster-vm-agent-containers" {
   value = [for item in jsondecode(data.external.self-monitor-cluster-vm-agent-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
+}
+
+resource "kubernetes_service" "self-monitor-cluster-vm-agent-service" {
+  depends_on = [data.external.self-monitor-cluster-vm-agent-status]
+  metadata {
+    namespace = var.configs.namespace
+    name      = "${local.vm-agent-name}-service"
+  }
+
+  spec {
+    selector = {
+      kubernetes_deployment_name = local.vm-agent-name
+    }
+
+    port {
+      protocol    = "TCP"
+      port        = 8429
+      target_port = 8429
+    }
+
+    type = "ClusterIP"
+  }
+}
+
+output "self-monitor-cluster-vm-agent-service-addr" {
+  value = "${kubernetes_service.self-monitor-cluster-vm-agent-service.spec.0.cluster_ip}:${kubernetes_service.self-monitor-cluster-vm-agent-service.spec.0.port.0.target_port}"
 }

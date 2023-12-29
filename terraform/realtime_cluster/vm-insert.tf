@@ -2,7 +2,8 @@
 
 locals {
   vm-insert-name = "realtime-cluster-vm-insert"
-  storage_list   = join(",", [for item in jsondecode(data.external.realtime-cluster-vm-storage-status.result.r).items : "${item.status.podIP}:8400"])
+  #storage_list_for_insert   = join(",", [for item in jsondecode(data.external.realtime-cluster-vm-storage-status.result.r).items : "${item.status.podIP}:8400"])
+  storage_list_for_insert = join(",", [for index, item in range(0, var.configs.realtime_cluster.storage_node_count) : "realtime-cluster-vm-storage-service-for-insert-${index}:8400"])
 }
 
 resource "kubernetes_deployment" "realtime-cluster-vm-insert" {
@@ -16,7 +17,7 @@ resource "kubernetes_deployment" "realtime-cluster-vm-insert" {
   }
 
   spec {
-    replicas = 2  #todo
+    replicas = 2 #todo
 
     selector {
       match_labels = {
@@ -49,8 +50,8 @@ resource "kubernetes_deployment" "realtime-cluster-vm-insert" {
             "-maxLabelValueLen=1024",
             "-maxLabelsPerTimeseries=30",
             "-memory.allowedPercent=80",
-            "-replicationFactor=2",  #todo
-            "-storageNode=${local.storage_list}",
+            "-replicationFactor=2", #todo
+            "-storageNode=${local.storage_list_for_insert}",
             "-pushmetrics.extraLabel=region=\"${var.configs.region}\"",
             "-pushmetrics.extraLabel=env=\"${var.configs.env}\"",
             "-pushmetrics.extraLabel=cluster=\"realtime-cluster\"",
@@ -64,12 +65,12 @@ resource "kubernetes_deployment" "realtime-cluster-vm-insert" {
 
           resources {
             limits = {
-              cpu    = "2"  #todo
+              cpu    = "2" #todo
               memory = "2Gi"
             }
             requests = {
-              cpu    = "2"
-              memory = "2Gi"
+              cpu    = "0.1"
+              memory = "128Mi"
             }
           }
 
@@ -102,7 +103,7 @@ resource "kubernetes_deployment" "realtime-cluster-vm-insert" {
 
           env {
             name  = "GOMAXPROCS"
-            value = "2"  #todo
+            value = "2" #todo
           }
         } # end container
 
@@ -120,11 +121,11 @@ output "realtime-cluster-vm-insert-containers" {
   value = [for item in jsondecode(data.external.realtime-cluster-vm-insert-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
 }
 
-resource "kubernetes_service" "realtime-cluster-vm-insert-services" {
+resource "kubernetes_service" "realtime-cluster-vm-insert-service" {
   depends_on = [data.external.realtime-cluster-vm-insert-status]
   metadata {
     namespace = var.configs.namespace
-    name      = "${local.vm-insert-name}-services"
+    name      = "${local.vm-insert-name}-service"
   }
 
   spec {
@@ -142,6 +143,6 @@ resource "kubernetes_service" "realtime-cluster-vm-insert-services" {
   }
 }
 
-output "realtime-cluster-vm-insert-services-addr" {
-  value = "${kubernetes_service.realtime-cluster-vm-insert-services.spec.0.cluster_ip}:${kubernetes_service.realtime-cluster-vm-insert-services.spec.0.port.0.target_port}"
+output "realtime-cluster-vm-insert-service-addr" {
+  value = "${kubernetes_service.realtime-cluster-vm-insert-service.spec.0.cluster_ip}:${kubernetes_service.realtime-cluster-vm-insert-service.spec.0.port.0.target_port}"
 }

@@ -87,7 +87,7 @@ function vmstorage() {
 		"-pushmetrics.extraLabel=region=\"${configs_region}\"" \
 		"-pushmetrics.extraLabel=env=\"${configs_env}\"" \
 		"-pushmetrics.extraLabel=cluster=\"historical-cluster\"" \
-		"-pushmetrics.extraLabel=role=\"vm-restore-daily\"" \
+		"-pushmetrics.extraLabel=role=\"vm-storage\"" \
 		"-pushmetrics.extraLabel=container_ip=\"${CONTAINER_IP}\"" \
 		"-pushmetrics.extraLabel=container_name=\"${CONTAINER_NAME}\"" \
 		"-pushmetrics.interval=2s" \
@@ -95,7 +95,7 @@ function vmstorage() {
 	local v_exit_code=$?
 	echo "vm-storage exit code: ${v_exit_code}"
 	if [ "${v_exit_code}" -ne 0 ]; then
-		sleep 60
+		sleep 60  # when at first time, download again
 		exit -1
 	fi
 }

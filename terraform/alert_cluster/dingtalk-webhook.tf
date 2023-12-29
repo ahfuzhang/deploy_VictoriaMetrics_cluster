@@ -28,7 +28,7 @@ resource "kubernetes_deployment" "alert-cluster-dingtalk-webhook" {
   }
 
   spec {
-    replicas = 2  #todo
+    replicas = 2 #todo
 
     selector {
       match_labels = {
@@ -62,12 +62,12 @@ resource "kubernetes_deployment" "alert-cluster-dingtalk-webhook" {
 
           resources {
             limits = {
-              cpu    = "0.5"  #todo
+              cpu    = "0.5" #todo
               memory = "256Mi"
             }
             requests = {
-              cpu    = "0.5"
-              memory = "256Mi"
+              cpu    = "0.1"
+              memory = "128Mi"
             }
           }
 
@@ -97,7 +97,7 @@ resource "kubernetes_deployment" "alert-cluster-dingtalk-webhook" {
 
           env {
             name  = "GOMAXPROCS"
-            value = "1"  #todo
+            value = "1" #todo
           }
 
           volume_mount {
@@ -130,7 +130,7 @@ resource "kubernetes_service" "alert-cluster-dingtalk-webhook-service" {
   depends_on = [data.external.alert-cluster-dingtalk-webhook-status]
   metadata {
     namespace = var.configs.namespace
-    name      = "${local.dingtalk-webhook-name}-services"
+    name      = "${local.dingtalk-webhook-name}-service"
   }
 
   spec {
@@ -140,8 +140,8 @@ resource "kubernetes_service" "alert-cluster-dingtalk-webhook-service" {
 
     port {
       protocol    = "TCP"
-      port        = 8480
-      target_port = 8480
+      port        = 8060
+      target_port = 8060
     }
 
     type = "ClusterIP"

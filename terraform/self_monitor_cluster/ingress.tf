@@ -4,7 +4,7 @@ locals {
 }
 
 resource "kubernetes_ingress_v1" "self-monitor-cluster-ingress" {
-  depends_on = [kubernetes_service.self-monitor-cluster-vm-select-services]
+  depends_on = [kubernetes_service.self-monitor-cluster-nginx-service]
   metadata {
     name      = local.ingress-name
     namespace = var.configs.namespace
@@ -20,9 +20,9 @@ resource "kubernetes_ingress_v1" "self-monitor-cluster-ingress" {
         path {
           backend {
             service {
-              name = "self-monitor-cluster-vm-select-services"
+              name = "self-monitor-cluster-nginx-service"
               port {
-                number = 8481
+                number = 80
               }
             }
           }
@@ -31,7 +31,6 @@ resource "kubernetes_ingress_v1" "self-monitor-cluster-ingress" {
         }
       }
     }
-
   }
 }
 

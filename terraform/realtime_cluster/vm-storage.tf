@@ -7,8 +7,8 @@ locals {
 }
 
 resource "kubernetes_stateful_set" "realtime-cluster-vm-storage" {
-  depends_on = [kubernetes_persistent_volume_claim.realtime-cluster-pvc]
-  count      = var.configs.realtime_cluster.storage_node_count
+  #depends_on = [kubernetes_persistent_volume_claim.realtime-cluster-pvc]
+  count = var.configs.realtime_cluster.storage_node_count
   metadata {
     namespace = var.configs.namespace
 
@@ -92,8 +92,8 @@ resource "kubernetes_stateful_set" "realtime-cluster-vm-storage" {
               memory = "32Gi"
             }
             requests = {
-              cpu    = "4"
-              memory = "32Gi"
+              cpu    = "1"
+              memory = "4Gi"
             }
           }
           port {
@@ -164,4 +164,80 @@ data "external" "realtime-cluster-vm-storage-status" {
 
 output "realtime-cluster-vm-storage-containers" {
   value = [for item in jsondecode(data.external.realtime-cluster-vm-storage-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
+}
+
+//-----------------------------------------------------------------------------
+resource "kubernetes_service" "realtime-cluster-vm-storage-service-for-insert" {
+  depends_on = [kubernetes_stateful_set.realtime-cluster-vm-storage]
+  count      = var.configs.realtime_cluster.storage_node_count
+  metadata {
+    namespace = var.configs.namespace
+    name      = "${local.vm-storage-name}-service-for-insert-${count.index}"
+    labels = {
+      k8s-app    = "${local.vm-storage-name}-service-for-insert"
+      node_index = count.index
+    }
+  }
+
+  spec {
+    selector = {
+      k8s-app    = local.vm-storage-name
+      node_index = count.index
+    }
+
+    port {
+      protocol    = "TCP"
+      port        = 8400
+      target_port = 8400
+    }
+
+    type = "ClusterIP"
+  }
+}
+
+data "external" "realtime-cluster-vm-storage-service-for-insert-status" {
+  depends_on = [kubernetes_service.realtime-cluster-vm-storage-service-for-insert]
+  program    = ["bash", "-c", "kubectl get service -l k8s-app=${local.vm-storage-name}-service-for-insert -n ${var.configs.namespace} -o json | jq -c '{\"r\": .|tojson }'"]
+}
+
+output "realtime-cluster-vm-storage-service-list-for-insert" {
+  value = [for item in jsondecode(data.external.realtime-cluster-vm-storage-service-for-insert-status.result.r).items : item.spec.clusterIP]
+}
+
+//-----------------------------------------------------------------------------
+resource "kubernetes_service" "realtime-cluster-vm-storage-service-for-select" {
+  depends_on = [kubernetes_stateful_set.realtime-cluster-vm-storage]
+  count      = var.configs.realtime_cluster.storage_node_count
+  metadata {
+    namespace = var.configs.namespace
+    name      = "${local.vm-storage-name}-service-for-select-${count.index}"
+    labels = {
+      k8s-app    = "${local.vm-storage-name}-service-for-select"
+      node_index = count.index
+    }
+  }
+
+  spec {
+    selector = {
+      k8s-app    = local.vm-storage-name
+      node_index = count.index
+    }
+
+    port {
+      protocol    = "TCP"
+      port        = 8401
+      target_port = 8401
+    }
+
+    type = "ClusterIP"
+  }
+}
+
+data "external" "realtime-cluster-vm-storage-service-for-select-status" {
+  depends_on = [kubernetes_service.realtime-cluster-vm-storage-service-for-select]
+  program    = ["bash", "-c", "kubectl get service -l k8s-app=${local.vm-storage-name}-service-for-select -n ${var.configs.namespace} -o json | jq -c '{\"r\": .|tojson }'"]
+}
+
+output "realtime-cluster-vm-storage-service-list-for-select" {
+  value = [for item in jsondecode(data.external.realtime-cluster-vm-storage-service-for-select-status.result.r).items : item.spec.clusterIP]
 }

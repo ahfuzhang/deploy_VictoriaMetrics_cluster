@@ -4,7 +4,7 @@ locals {
 }
 
 resource "kubernetes_ingress_v1" "realtime-cluster-ingress" {
-  depends_on = [kubernetes_service.realtime-cluster-vm-select-services]
+  depends_on = [kubernetes_service.realtime-cluster-vm-select-service]
   metadata {
     name      = local.ingress-name
     namespace = var.configs.namespace
@@ -20,7 +20,7 @@ resource "kubernetes_ingress_v1" "realtime-cluster-ingress" {
         path {
           backend {
             service {
-              name = "realtime-cluster-grafana-services"
+              name = "realtime-cluster-grafana-service"
               port {
                 number = 3000
               }
@@ -29,18 +29,18 @@ resource "kubernetes_ingress_v1" "realtime-cluster-ingress" {
           path      = "/"
           path_type = "ImplementationSpecific"
         }
-        path {
-          backend {
-            service {
-              name = "realtime-cluster-vm-select-services"
-              port {
-                number = 3000
-              }
-            }
-          }
-          path      = "/select/"
-          path_type = "ImplementationSpecific"
-        }
+        # path {
+        #   backend {
+        #     service {
+        #       name = "realtime-cluster-vm-select-service"
+        #       port {
+        #         number = 3000
+        #       }
+        #     }
+        #   }
+        #   path      = "/select/"
+        #   path_type = "ImplementationSpecific"
+        # }
       }
     }
   }

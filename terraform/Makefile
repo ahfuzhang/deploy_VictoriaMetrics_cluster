@@ -1,5 +1,7 @@
 .PHONY:apply clean init check des
 
+pvc:
+	cd pvc && make init && make apply && cd ..
 
 # TF_LOG=TRACE
 apply:
@@ -15,4 +17,5 @@ check:
 	terraform validate
 
 des:
-	TF_LOG=INFO terraform destroy -auto-approve
+	# never destroy pvc, or you will lost all the data
+	TF_LOG=INFO terraform destroy

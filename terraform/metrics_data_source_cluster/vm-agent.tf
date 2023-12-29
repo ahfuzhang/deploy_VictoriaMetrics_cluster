@@ -8,6 +8,7 @@ locals {
 }
 
 resource "kubernetes_config_map" "metrics-data-source-cluster-vm-agent-file-sd" {
+  depends_on = [data.external.self-monitor-cluster-vm-agent-status]
   metadata {
     name      = "${local.name}-file-sd"
     namespace = var.configs.namespace
@@ -37,6 +38,7 @@ scrape_configs:
 }
 
 data "kubernetes_config_map" "self-monitor-cluster-vm-agent-exporters-data" {
+  depends_on = [data.external.self-monitor-cluster-vm-agent-status]
   metadata {
     name      = "self-monitor-cluster-vm-agent-exporters"
     namespace = var.configs.namespace
@@ -44,7 +46,7 @@ data "kubernetes_config_map" "self-monitor-cluster-vm-agent-exporters-data" {
 }
 
 locals {
-  exporters = data.kubernetes_config_map.self-monitor-cluster-vm-agent-exporters-data.data["exporters.yaml"] # todo: release version, delete this
+  exporters = data.kubernetes_config_map.self-monitor-cluster-vm-agent-exporters-data.data != null ? data.kubernetes_config_map.self-monitor-cluster-vm-agent-exporters-data.data["exporters.yaml"] : "" # todo: release version, delete this
 }
 
 locals {
@@ -56,10 +58,11 @@ locals {
 locals {
   #alert_dingtalk_webhook_list_for_metrics = join(",", [for item in var.alert_cluster_info.dingtalk_webhook_list : "\"http://${item.container_ip}:8060/metrics\""])
   #alert_alert_manager_list_for_metrics = join(",", [for item in var.alert_cluster_info.alert_manager_list : "\"http://${item.container_ip}:9093/metrics\""])
-  alert_vm_alert_list_for_metrics = join(",", [for item in var.alert_cluster_info.vm_alert_list : "\"http://${item.container_ip}:8880/metrics\""])
+  alert_vm_alert_list_for_metrics = join(",", [for item in var.alert_cluster_info.vm_alert_list : "\"http://${item.container_ip}:8880/alert-cluster-vm-alert/metrics\""])
 }
 
 resource "kubernetes_config_map" "metrics-data-source-cluster-vm-agent-exporters" {
+  depends_on = [data.external.self-monitor-cluster-vm-agent-status]
   metadata {
     name      = "${local.name}-exporters"
     namespace = var.configs.namespace
@@ -150,6 +153,7 @@ resource "kubernetes_deployment" "metrics-data-source-cluster-vm-agent" {
           image_pull_policy = "IfNotPresent"
           args = [
             "-httpListenAddr=:8429",
+            "-http.pathPrefix=/metrics-data-source-cluster-vm-agent/",
             "-loggerDisableTimestamps",
             "-loggerFormat=${var.configs.log.format}",
             "-loggerLevel=${var.configs.log.level}",
@@ -180,7 +184,8 @@ resource "kubernetes_deployment" "metrics-data-source-cluster-vm-agent" {
             "-remoteWrite.dropSamplesOnOverload=1",
             "-remoteWrite.flushInterval=15s",
             #"-remoteWrite.label=''",
-            "-remoteWrite.url=http://${var.realtime_cluster_info.insert_addr}/insert/0/prometheus/api/v1/write",
+            #"-remoteWrite.url=http://$${var.realtime_cluster_info.insert_addr}/insert/0/prometheus/api/v1/write",
+            "-remoteWrite.url=http://realtime-cluster-vm-insert-service:8480/insert/0/prometheus/api/v1/write",
             "-promscrape.config=/configs/file_sd_configs.yaml",
           ]
           name = "${local.vm-agent-name}-${count.index}"
@@ -263,4 +268,30 @@ data "external" "metrics-data-source-cluster-vm-agent-status" {
 
 output "metrics-data-source-cluster-vm-agent-containers" {
   value = [for item in jsondecode(data.external.metrics-data-source-cluster-vm-agent-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
+}
+
+resource "kubernetes_service" "metrics-data-source-cluster-vm-agent-service" {
+  depends_on = [data.external.metrics-data-source-cluster-vm-agent-status]
+  metadata {
+    namespace = var.configs.namespace
+    name      = "${local.name}-service"
+  }
+
+  spec {
+    selector = {
+      kubernetes_deployment_name = local.name
+    }
+
+    port {
+      protocol    = "TCP"
+      port        = 8429
+      target_port = 8429
+    }
+
+    type = "ClusterIP"
+  }
+}
+
+output "metrics-data-source-cluster-vm-agent-service-addr" {
+  value = "${kubernetes_service.metrics-data-source-cluster-vm-agent-service.spec.0.cluster_ip}:${kubernetes_service.metrics-data-source-cluster-vm-agent-service.spec.0.port.0.target_port}"
 }

@@ -1,8 +1,9 @@
 
 
 locals {
-  vm-select-name          = "realtime-cluster-vm-select"
-  storage_list_for_select = join(",", [for item in jsondecode(data.external.realtime-cluster-vm-storage-status.result.r).items : "${item.status.podIP}:8401"])
+  vm-select-name = "realtime-cluster-vm-select"
+  #storage_list_for_select = join(",", [for item in jsondecode(data.external.realtime-cluster-vm-storage-status.result.r).items : "${item.status.podIP}:8401"])
+  storage_list_for_select = join(",", [for index, item in range(0, var.configs.realtime_cluster.storage_node_count) : "realtime-cluster-vm-storage-service-for-select-${index}:8401"])
 }
 
 resource "kubernetes_deployment" "realtime-cluster-vm-select" {
@@ -74,8 +75,8 @@ resource "kubernetes_deployment" "realtime-cluster-vm-select" {
               memory = "4Gi"
             }
             requests = {
-              cpu    = "2"
-              memory = "4Gi"
+              cpu    = "0.5"
+              memory = "256Mi"
             }
           }
 
@@ -125,11 +126,11 @@ output "realtime-cluster-vm-select-containers" {
   value = [for item in jsondecode(data.external.realtime-cluster-vm-select-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
 }
 
-resource "kubernetes_service" "realtime-cluster-vm-select-services" {
+resource "kubernetes_service" "realtime-cluster-vm-select-service" {
   depends_on = [data.external.realtime-cluster-vm-select-status]
   metadata {
     namespace = var.configs.namespace
-    name      = "${local.vm-select-name}-services"
+    name      = "${local.vm-select-name}-service"
   }
 
   spec {
@@ -147,6 +148,6 @@ resource "kubernetes_service" "realtime-cluster-vm-select-services" {
   }
 }
 
-output "realtime-cluster-vm-select-services-addr" {
-  value = "${kubernetes_service.realtime-cluster-vm-select-services.spec.0.cluster_ip}:${kubernetes_service.realtime-cluster-vm-select-services.spec.0.port.0.target_port}"
+output "realtime-cluster-vm-select-service-addr" {
+  value = "${kubernetes_service.realtime-cluster-vm-select-service.spec.0.cluster_ip}:${kubernetes_service.realtime-cluster-vm-select-service.spec.0.port.0.target_port}"
 }

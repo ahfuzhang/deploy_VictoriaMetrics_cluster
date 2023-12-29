@@ -1,8 +1,9 @@
 
 
 locals {
-  vm-select-name          = "self-monitor-cluster-vm-select"
-  storage_list_for_select = join(",", [for item in jsondecode(data.external.self-monitor-cluster-vm-storage-status.result.r).items : "${item.status.podIP}:8401"])
+  vm-select-name = "self-monitor-cluster-vm-select"
+  #storage_list_for_select = join(",", [for item in jsondecode(data.external.self-monitor-cluster-vm-storage-status.result.r).items : "${item.status.podIP}:8401"])
+  storage_list_for_select = join(",", [for index, item in range(0, local.vm-storage-count) : "self-monitor-cluster-vm-storage-service-for-select-${index}:8401"])
 }
 
 resource "kubernetes_deployment" "self-monitor-cluster-vm-select" {
@@ -41,6 +42,7 @@ resource "kubernetes_deployment" "self-monitor-cluster-vm-select" {
             "-clusternativeListenAddr=:7401",
             "-dedup.minScrapeInterval=15s",
             "-httpListenAddr=:8481",
+            "-http.pathPrefix=/self-monitor-cluster-select/",
             "-loggerDisableTimestamps",
             "-loggerFormat=${var.configs.log.format}",
             "-loggerLevel=${var.configs.log.level}",
@@ -118,11 +120,11 @@ output "self-monitor-cluster-vm-select-containers" {
   value = [for item in jsondecode(data.external.self-monitor-cluster-vm-select-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
 }
 
-resource "kubernetes_service" "self-monitor-cluster-vm-select-services" {
+resource "kubernetes_service" "self-monitor-cluster-vm-select-service" {
   depends_on = [data.external.self-monitor-cluster-vm-select-status]
   metadata {
     namespace = var.configs.namespace
-    name      = "${local.vm-select-name}-services"
+    name      = "${local.vm-select-name}-service"
   }
 
   spec {
@@ -140,6 +142,6 @@ resource "kubernetes_service" "self-monitor-cluster-vm-select-services" {
   }
 }
 
-output "self-monitor-cluster-vm-select-services-addr" {
-  value = "${kubernetes_service.self-monitor-cluster-vm-select-services.spec.0.cluster_ip}:${kubernetes_service.self-monitor-cluster-vm-select-services.spec.0.port.0.target_port}"
+output "self-monitor-cluster-vm-select-service-addr" {
+  value = "${kubernetes_service.self-monitor-cluster-vm-select-service.spec.0.cluster_ip}:${kubernetes_service.self-monitor-cluster-vm-select-service.spec.0.port.0.target_port}"
 }

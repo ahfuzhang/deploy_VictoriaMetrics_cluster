@@ -72,8 +72,8 @@ resource "kubernetes_cron_job_v1" "realtime-cluster-vm-backup-hourly" {
                   memory = "1Gi"
                 }
                 requests = {
-                  cpu    = "1"
-                  memory = "1Gi"
+                  cpu    = "0.1"
+                  memory = "128Mi"
                 }
               }
 

@@ -1,12 +1,13 @@
 
 
 locals {
-  vm-storage-name = "self-monitor-cluster-vm-storage"
+  vm-storage-name  = "self-monitor-cluster-vm-storage"
+  vm-storage-count = 2 #todo
 }
 
 resource "kubernetes_stateful_set" "self-monitor-cluster-vm-storage" {
-  depends_on = [kubernetes_persistent_volume_claim.self-monitor-cluster-pvc]
-  count      = 2 #todo
+  #depends_on = [kubernetes_persistent_volume_claim.self-monitor-cluster-pvc]
+  count = local.vm-storage-count #todo
   metadata {
     namespace = var.configs.namespace
 
@@ -72,7 +73,7 @@ resource "kubernetes_stateful_set" "self-monitor-cluster-vm-storage" {
             "-storage.maxDailySeries=100000000",
             "-storage.maxHourlySeries=50000000",
             "-storage.minFreeDiskSpaceBytes=5GB",
-            "-storageDataPath=/vm-data/self-moniotor-cluster/sharding-${count.index}/",
+            "-storageDataPath=/vm-data/self-monitor-cluster/sharding-${count.index}/",
             "-vminsertAddr=:8400",
             "-vmselectAddr=:8401",
           ]
@@ -82,8 +83,8 @@ resource "kubernetes_stateful_set" "self-monitor-cluster-vm-storage" {
               memory = "32Gi"
             }
             requests = {
-              cpu    = "4"
-              memory = "32Gi"
+              cpu    = "1"
+              memory = "4Gi"
             }
           }
           port {
@@ -149,4 +150,79 @@ data "external" "self-monitor-cluster-vm-storage-status" {
 
 output "self-monitor-cluster-vm-storage-containers" {
   value = [for item in jsondecode(data.external.self-monitor-cluster-vm-storage-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
+}
+
+resource "kubernetes_service" "self-monitor-cluster-vm-storage-service-for-insert" {
+  depends_on = [kubernetes_stateful_set.self-monitor-cluster-vm-storage]
+  count      = local.vm-storage-count
+  metadata {
+    namespace = var.configs.namespace
+    name      = "${local.vm-storage-name}-service-for-insert-${count.index}"
+    labels = {
+      k8s-app    = "${local.vm-storage-name}-service-for-insert"
+      node_index = count.index
+    }
+  }
+
+  spec {
+    selector = {
+      k8s-app    = local.vm-storage-name
+      node_index = count.index
+    }
+
+    port {
+      protocol    = "TCP"
+      port        = 8400
+      target_port = 8400
+    }
+
+    type = "ClusterIP"
+  }
+}
+
+data "external" "self-monitor-cluster-vm-storage-service-for-insert-status" {
+  depends_on = [kubernetes_service.self-monitor-cluster-vm-storage-service-for-insert]
+  program    = ["bash", "-c", "kubectl get service -l k8s-app=${local.vm-storage-name}-service-for-insert -n ${var.configs.namespace} -o json | jq -c '{\"r\": .|tojson }'"]
+}
+
+output "self-monitor-cluster-vm-storage-service-list-for-insert" {
+  value = [for item in jsondecode(data.external.self-monitor-cluster-vm-storage-service-for-insert-status.result.r).items : item.spec.clusterIP]
+}
+
+//-----------------------------------------------------------------------------
+resource "kubernetes_service" "self-monitor-cluster-vm-storage-service-for-select" {
+  depends_on = [kubernetes_stateful_set.self-monitor-cluster-vm-storage]
+  count      = local.vm-storage-count
+  metadata {
+    namespace = var.configs.namespace
+    name      = "${local.vm-storage-name}-service-for-select-${count.index}"
+    labels = {
+      k8s-app    = "${local.vm-storage-name}-service-for-select"
+      node_index = count.index
+    }
+  }
+
+  spec {
+    selector = {
+      k8s-app    = local.vm-storage-name
+      node_index = count.index
+    }
+
+    port {
+      protocol    = "TCP"
+      port        = 8401
+      target_port = 8401
+    }
+
+    type = "ClusterIP"
+  }
+}
+
+data "external" "self-monitor-cluster-vm-storage-service-for-select-status" {
+  depends_on = [kubernetes_service.self-monitor-cluster-vm-storage-service-for-select]
+  program    = ["bash", "-c", "kubectl get service -l k8s-app=${local.vm-storage-name}-service-for-select -n ${var.configs.namespace} -o json | jq -c '{\"r\": .|tojson }'"]
+}
+
+output "self-monitor-cluster-vm-storage-service-list-for-select" {
+  value = [for item in jsondecode(data.external.self-monitor-cluster-vm-storage-service-for-select-status.result.r).items : item.spec.clusterIP]
 }

@@ -10,7 +10,26 @@ provider "kubernetes" {
 }
 ```
 
-1. write a file `terraform.tfvars`
+1. Create PVC
+```shell
+cd terraform/pvc
+cat <<EOF > terraform.tfvars
+configs = {
+  namespace = "xxxx"  # set namespace
+  pvc = {
+    storage_class_name = "yyyy"  # set class name
+  }
+}
+EOF
+make init
+make apply
+```
+
+**<font color="red">PVC should be created in a separate directory, so that PVC will not be destroyed when other resources are destroyed.
+(Don’t ask me why I know that PVC cannot be destroyed together)</font>**
+
+
+2. write a file `terraform.tfvars`
 
 ```
 configs = {
@@ -48,7 +67,7 @@ configs = {
 }
 ```
 
-2. config `kubectl` command line
+3. config `kubectl` command line
 
 ```
 kubectl config use-context ahfu
@@ -74,7 +93,7 @@ self-monitor-cluster.my-own-test.com 10.151.0.70 # change the ip to ingress ip
 realtime-cluster.my-own-test.com 10.151.0.71
 ```
 
-Then add `Prometheus` data source by `realtime-cluster-vm-select-services` and `self-monitor-vm-select-services`:
+Then add `Prometheus` data source by `realtime-cluster-vm-select-service` and `self-monitor-vm-select-service`:
 ```
 # like this:
 http://10.43.130.240:8481/select/0/prometheus/

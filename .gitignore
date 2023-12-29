@@ -4,5 +4,9 @@ terraform/terraform.tfvars
 terraform/.terraform
 terraform/terraform.tfstate*
 terraform/.terraform.lock.hcl
+terraform/pvc/terraform.tfvars
+terraform/pvc/.terraform
+terraform/pvc/terraform.tfstate*
+terraform/pvc/.terraform.lock.hcl
 terraform/historical_cluster/data/
 terraform/historical_cluster/docker_image/data/
