@@ -7,12 +7,12 @@ groups:
     type: "prometheus"
     eval_alignment: true
     rules:
-      - alert: "check flag"
-        expr: "flag > 0"
+      - alert: "vm error total"
+        expr: "(sum by (metric_name,cluster, region, env, role, container_ip) (increase(label_copy({__name__=~\".*_errors_total\"},\"__name__\",\"metric_name\")[1m])  ) )>0"
         for: 1m
         labels:
-          a: 1
-          b: xxx
+          #a: 1
+          #b: xxx
         annotations:
-          summary: High request latency
+          summary: VictoriaMetrics errors total
           description: ""

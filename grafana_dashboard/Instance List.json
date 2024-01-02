@@ -18,13 +18,13 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 12,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "Prometheus",
         "uid": "${ds}"
       },
       "fieldConfig": {
@@ -67,7 +67,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "http://realtime-cluster.sige-test.com/d/fb6a6330-1a95-4a17-8886-374edcbf601d/golang-process-info-vm-version?orgId=1&var-ds=${ds}&var-cluster=${__data.fields.cluster}&var-region=${__data.fields.region}&var-env=${__data.fields.env}&var-role=${__data.fields.role}&var-instance=${__data.fields.instance}&var-container_ip=All&var-container_name=All"
+                    "url": "/d/fb6a6330-1a95-4a17-8886-374edcbf601d/golang-process-info-vm-version?orgId=1&var-ds=${ds}&var-cluster=${__data.fields.cluster}&var-region=${__data.fields.region}&var-env=${__data.fields.env}&var-role=${__data.fields.role}&var-instance=${__data.fields.instance}&var-container_ip=All&var-container_name=All"
                   }
                 ]
               }
@@ -85,7 +85,7 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "http://realtime-cluster.sige-test.com/d/fb6a6330-1a95-4a17-8886-374edcbf601d/golang-process-info-vm-version?orgId=1&var-ds=${ds}&var-cluster=${__data.fields.cluster}&var-region=${__data.fields.region}&var-env=${__data.fields.env}&var-role=${__data.fields.role}&var-instance=All&var-container_ip=${__data.fields.container_ip}&var-container_name=All"
+                    "url": "/d/fb6a6330-1a95-4a17-8886-374edcbf601d/golang-process-info-vm-version?orgId=1&var-ds=${ds}&var-cluster=${__data.fields.cluster}&var-region=${__data.fields.region}&var-env=${__data.fields.env}&var-role=${__data.fields.role}&var-instance=All&var-container_ip=${__data.fields.container_ip}&var-container_name=All"
                   }
                 ]
               }
@@ -103,7 +103,25 @@
                   {
                     "targetBlank": true,
                     "title": "",
-                    "url": "http://realtime-cluster.sige-test.com/d/fb6a6330-1a95-4a17-8886-374edcbf601d/golang-process-info-vm-version?orgId=1&var-ds=${ds}&var-cluster=${__data.fields.cluster}&var-region=${__data.fields.region}&var-env=${__data.fields.env}&var-role=${__data.fields.role}&var-instance=All&var-container_ip=All&var-container_name=${__data.fields.container_name}"
+                    "url": "/d/fb6a6330-1a95-4a17-8886-374edcbf601d/golang-process-info-vm-version?orgId=1&var-ds=${ds}&var-cluster=${__data.fields.cluster}&var-region=${__data.fields.region}&var-env=${__data.fields.env}&var-role=${__data.fields.role}&var-instance=All&var-container_ip=All&var-container_name=${__data.fields.container_name}"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "role"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "",
+                    "url": "/d/fb6a6330-1a95-4a17-8886-374edcbf601d/golang-process-info-vm-version?orgId=1&var-ds=${ds}&var-cluster=${__data.fields.cluster}&var-region=${__data.fields.region}&var-env=${__data.fields.env}&var-role=${__data.fields.role}&var-instance=All&var-container_ip=All&var-container_name=All"
                   }
                 ]
               }
@@ -133,7 +151,7 @@
         "sortBy": [
           {
             "desc": false,
-            "displayName": "role"
+            "displayName": "container_name"
           }
         ]
       },
@@ -141,7 +159,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -198,18 +216,14 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": true,
-          "text": "vm-self-monitor-cluster",
-          "value": "e0141552-5223-4927-8c6f-1dd7ab9d50df"
-        },
+        "current": {},
         "hide": 0,
         "includeAll": false,
         "label": "data source",
         "multi": false,
         "name": "ds",
         "options": [],
-        "query": "victoriametrics-datasource",
+        "query": "prometheus",
         "queryValue": "",
         "refresh": 1,
         "regex": "",
@@ -226,6 +240,6 @@
   "timezone": "",
   "title": "Instance List",
   "uid": "b59eee18-f6f0-4a6b-ab86-cab1a4c9e1f7",
-  "version": 4,
+  "version": 3,
   "weekStart": ""
 }

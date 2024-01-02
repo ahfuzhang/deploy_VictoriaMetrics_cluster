@@ -38,7 +38,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "process_cpu_seconds_total = process_cpu_seconds_system_total + \nprocess_cpu_seconds_user_total\n\nIf only 1 cpu core, max value is 100%; 2 cpu's max value is 200%.",
@@ -175,7 +175,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_threads<br/>\ngo_goroutines<br/>\nprocess_num_threads<br/>",
@@ -298,7 +298,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_cgo_calls_count",
@@ -379,7 +379,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "ccbbd129-1bfa-4e70-9383-1246cff36a17"
           },
           "editorMode": "code",
@@ -394,7 +394,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "fieldConfig": {
@@ -475,7 +475,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "e0141552-5223-4927-8c6f-1dd7ab9d50df"
           },
           "editorMode": "code",
@@ -486,7 +486,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -498,7 +498,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -510,7 +510,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -522,7 +522,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -534,7 +534,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -550,7 +550,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "fieldConfig": {
@@ -614,7 +614,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -643,7 +643,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_memstats_heap_inuse_bytes + go_memstats_heap_idle_bytes = go_memstats_heap_sys_bytes <br/>\n<br/>\ngo_memstats_heap_idle_bytes > go_memstats_heap_released_bytes",
@@ -809,7 +809,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -825,7 +825,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "`go_memstats_heap_alloc_bytes / go_memstats_heap_inuse_bytes` should be as close to 100% as possible, otherwise it will prove that there is too much unused end part of each allocation",
@@ -959,7 +959,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -975,7 +975,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_memstats_mcache_sys_bytes include go_memstats_mcache_inuse_bytes",
@@ -1125,7 +1125,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_memstats_mspan_sys_bytes include go_memstats_mspan_inuse_bytes",
@@ -1275,7 +1275,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "The sum of the seven types of memory values is exactly go_memstats_sys_bytes",
@@ -1334,7 +1334,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "e0141552-5223-4927-8c6f-1dd7ab9d50df"
           },
           "editorMode": "code",
@@ -1347,7 +1347,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -1359,7 +1359,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -1371,7 +1371,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -1383,7 +1383,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -1395,7 +1395,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -1407,7 +1407,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -1423,7 +1423,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_memstats_heap_objects<br/>\n\n`go_memstats_heap_alloc_bytes / go_memstats_heap_objects` will be the average size of object.",
@@ -1505,7 +1505,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "e0141552-5223-4927-8c6f-1dd7ab9d50df"
           },
           "editorMode": "code",
@@ -1520,7 +1520,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_memstats_stack_sys_bytes include go_memstats_stack_inuse_bytes",
@@ -1670,7 +1670,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_memstats_alloc_bytes<br/>\ngo_memstats_alloc_bytes_total",
@@ -1765,7 +1765,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "e0141552-5223-4927-8c6f-1dd7ab9d50df"
           },
           "editorMode": "code",
@@ -1776,7 +1776,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -1792,7 +1792,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_memstats_frees_total<br/>\ngo_memstats_lookups_total<br/>\ngo_memstats_mallocs_total<br/>",
@@ -1930,7 +1930,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "fieldConfig": {
@@ -1994,7 +1994,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -2010,7 +2010,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_memstats_last_gc_time_seconds is a unix timestamp.<br/>\ngo_memstats_next_gc_bytes<br/>\n<br/>\n\n`Average interval` shows the time interval between two gc.",
@@ -2109,7 +2109,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "e0141552-5223-4927-8c6f-1dd7ab9d50df"
           },
           "editorMode": "code",
@@ -2120,7 +2120,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -2136,7 +2136,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "`go_memstats_gc_cpu_fraction` indicates the ratio of the CPU time occupied by the garbage collection process to the total CPU time of the program running. The smaller the better.",
@@ -2236,7 +2236,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_gc_forced_count",
@@ -2317,7 +2317,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "e0141552-5223-4927-8c6f-1dd7ab9d50df"
           },
           "editorMode": "code",
@@ -2332,7 +2332,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_gc_duration_seconds<br/>\ngo_gc_duration_seconds_sum<br/>\ngo_gc_duration_seconds_count<br/>\n<br/>\nIn fact, I don’t understand how the `go_gc_duration_seconds` histogram reflects the behavior of gc. This chart only uses heatmap to represent the relationship between time, quantile and time consumption.\n",
@@ -2402,7 +2402,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "e0141552-5223-4927-8c6f-1dd7ab9d50df"
           },
           "editorMode": "code",
@@ -2431,7 +2431,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "process_resident_memory_bytes<br/>\nprocess_resident_memory_peak_bytes<br/>",
@@ -2513,7 +2513,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "ccbbd129-1bfa-4e70-9383-1246cff36a17"
           },
           "editorMode": "code",
@@ -2524,7 +2524,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -2540,7 +2540,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "process_resident_memory_anon_bytes (Anonymous Memory)<br/>\nprocess_resident_memory_file_bytes<br/>\nprocess_resident_memory_shared_bytes<br/>",
@@ -2659,7 +2659,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -2671,7 +2671,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -2683,7 +2683,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -2699,7 +2699,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "process_virtual_memory_bytes<br/>\nprocess_virtual_memory_peak_bytes",
@@ -2781,7 +2781,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "ccbbd129-1bfa-4e70-9383-1246cff36a17"
           },
           "editorMode": "code",
@@ -2792,7 +2792,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -2808,7 +2808,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "process_minor_pagefaults_total<br/>\nprocess_major_pagefaults_total",
@@ -2889,7 +2889,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "e0141552-5223-4927-8c6f-1dd7ab9d50df"
           },
           "editorMode": "code",
@@ -2900,7 +2900,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -2929,7 +2929,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "process_io_read_bytes_total<br/>\nprocess_io_written_bytes_total<br/>\nprocess_io_storage_read_bytes_total<br/>\nprocess_io_storage_written_bytes_total<br/>\nprocess_io_read_syscalls_total<br/>\nprocess_io_write_syscalls_total",
@@ -3120,7 +3120,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -3132,7 +3132,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -3148,7 +3148,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "fieldConfig": {
@@ -3229,7 +3229,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "e0141552-5223-4927-8c6f-1dd7ab9d50df"
           },
           "editorMode": "code",
@@ -3244,7 +3244,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "process_max_fds <br/>\n\nThe value of the environment variable `GOMAXPROCS`.",
@@ -3328,7 +3328,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "The go_cpu_count in some k8s environments is the number of cpu cores of the entire physical machine, not the number of cpu cores of the container.",
@@ -3399,7 +3399,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_gomaxprocs<br/>\n\nThe value of the environment variable `GOMAXPROCS`.",
@@ -3470,7 +3470,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "process_start_time_seconds is a unix timestamp of process start.",
@@ -3541,7 +3541,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_memstats_last_gc_time_seconds is a unix timestamp.<br/>",
@@ -3612,7 +3612,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_memstats_next_gc_bytes",
@@ -3683,7 +3683,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_memstats_sys_bytes = <br/>\n\ngo_memstats_other_sys_bytes + go_memstats_buck_hash_sys_bytes + go_memstats_gc_sys_bytes + go_memstats_stack_sys_bytes + go_memstats_heap_idle_bytes + go_memstats_heap_inuse_bytes + go_memstats_mcache_sys_bytes + go_memstats_mspan_sys_bytes",
@@ -3752,7 +3752,7 @@
         },
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -3787,7 +3787,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "process_cpu_cores_available<br/>\n\nThe value of the environment variable `GOMAXPROCS`.",
@@ -3858,7 +3858,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_info",
@@ -3929,7 +3929,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "process_memory_limit_bytes",
@@ -4000,7 +4000,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_memlimit_bytes",
@@ -4071,7 +4071,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "description": "go_info_ext",
@@ -4168,7 +4168,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "fieldConfig": {
@@ -4232,7 +4232,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -4248,7 +4248,7 @@
     },
     {
       "datasource": {
-        "type": "victoriametrics-datasource",
+        "type": "prometheus",
         "uid": "${ds}"
       },
       "fieldConfig": {
@@ -4312,7 +4312,7 @@
       "targets": [
         {
           "datasource": {
-            "type": "victoriametrics-datasource",
+            "type": "prometheus",
             "uid": "${ds}"
           },
           "editorMode": "code",
@@ -4334,9 +4334,7 @@
     "list": [
       {
         "current": {
-          "selected": true,
-          "text": "vm-self-monitor-cluster",
-          "value": "e0141552-5223-4927-8c6f-1dd7ab9d50df"
+
         },
         "hide": 0,
         "includeAll": false,
@@ -4344,7 +4342,7 @@
         "multi": false,
         "name": "ds",
         "options": [],
-        "query": "victoriametrics-datasource",
+        "query": "prometheus",
         "queryValue": "",
         "refresh": 1,
         "regex": "",
@@ -4363,7 +4361,7 @@
           ]
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
+          "type": "prometheus",
           "uid": "${ds}"
         },
         "definition": "label_values(flag, cluster)",
@@ -4395,7 +4393,7 @@
           ]
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
+          "type": "prometheus",
           "uid": "${ds}"
         },
         "definition": "label_values(flag{cluster=~\"$cluster\"}, region)",
@@ -4427,7 +4425,7 @@
           ]
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
+          "type": "prometheus",
           "uid": "${ds}"
         },
         "definition": "label_values(flag{cluster=~\"$cluster\",region=~\"$region\"}, env)",
@@ -4459,7 +4457,7 @@
           ]
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
+          "type": "prometheus",
           "uid": "${ds}"
         },
         "definition": "label_values(flag{cluster=~\"$cluster\",region=~\"$region\",env=~\"$env\"}, role)",
@@ -4491,7 +4489,7 @@
           ]
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
+          "type": "prometheus",
           "uid": "${ds}"
         },
         "definition": "label_values(flag{cluster=~\"$cluster\",region=~\"$region\",env=~\"$env\",role=~\"$role\"}, instance)",
@@ -4523,7 +4521,7 @@
           ]
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
+          "type": "prometheus",
           "uid": "${ds}"
         },
         "definition": "label_values(flag{cluster=~\"$cluster\",region=~\"$region\",env=~\"$env\",role=~\"$role\"}, container_ip)",
@@ -4546,16 +4544,12 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": true,
-          "text": [
-            "realtime-cluster-vm-storage-0-0"
-          ],
-          "value": [
-            "realtime-cluster-vm-storage-0-0"
-          ]
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
-          "type": "victoriametrics-datasource",
+          "type": "prometheus",
           "uid": "${ds}"
         },
         "definition": "label_values(flag{cluster=~\"$cluster\",region=~\"$region\",env=~\"$env\",role=~\"$role\"}, container_name)",

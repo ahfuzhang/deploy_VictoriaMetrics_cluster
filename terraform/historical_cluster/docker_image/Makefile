@@ -34,9 +34,10 @@ docker-run:
 	  -e CONTAINER_NAME=xxxx \
 	  -e AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID) \
 	  -e AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY) \
-	  -e AWS_REGION=ap-southeast-1 \
-	  -e AWS_BUCKET=s3-backup-bucket \
-	  -e n_days_before=1 \
+	  -e AWS_REGION=$(AWS_REGION) \
+	  -e AWS_BUCKET=$(AWS_BUCKET) \
+	  -e n_days_before=3 \
+	  -e debug=0 \
 	  -v ./data:/vm-data/ \
 	  vm-historical:v1.95.1 \
-	  /bin/sh -x /daily.sh
+	  /bin/sh /daily.sh

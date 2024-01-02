@@ -55,7 +55,7 @@ resource "kubernetes_stateful_set" "historical-cluster-vm-storage" {
           image_pull_policy = "Always" #"IfNotPresent"
           command           = ["/bin/sh"]
           args = [
-            "-x",
+            #"-x",  # use debug=1 to show script log
             "/daily.sh",
           ]
           resources {
@@ -148,10 +148,14 @@ resource "kubernetes_stateful_set" "historical-cluster-vm-storage" {
           }
           env {
             name  = "n_days_before"
-            value = "1"
+            value = "5"
             # yesterday = 1
             # the day before yesterday = 2
             # 15 before days = 15
+          }
+          env {
+            name  = "debug"
+            value = "1" # set empty or 0 to disable debug mode; set debug=1 to enable
           }
           env {
             name  = "storage_base_path"

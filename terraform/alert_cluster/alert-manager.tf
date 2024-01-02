@@ -1,6 +1,6 @@
 locals {
-  alert-manager-name    = "alert-cluster-alert-manager"
-  dingtalk_webhook_addr = "${kubernetes_service.alert-cluster-dingtalk-webhook-service.spec.0.cluster_ip}:${kubernetes_service.alert-cluster-dingtalk-webhook-service.spec.0.port.0.target_port}"
+  alert-manager-name = "alert-cluster-alert-manager"
+  #dingtalk_webhook_addr = "${kubernetes_service.alert-cluster-dingtalk-webhook-service.spec.0.cluster_ip}:${kubernetes_service.alert-cluster-dingtalk-webhook-service.spec.0.port.0.target_port}"
 }
 
 resource "kubernetes_config_map" "alert-cluster-alert-manager-configs" {
@@ -10,19 +10,42 @@ resource "kubernetes_config_map" "alert-cluster-alert-manager-configs" {
   }
 
   data = {
-    "alertmanager.yaml" = <<EOF
+    "alertmanager.yaml"    = <<EOF
+# see: github.com/prometheus/alertmanager/config/notifiers.go:479
 global:
   resolve_timeout: 10m
+
+templates:
+- '/configs/vm_errors_total.tmpl'
+
 receivers:
 - name: 'webhook1'
   webhook_configs:
-  - url: 'http://${local.dingtalk_webhook_addr}/dingtalk/webhook1/send'
+    #- url: 'http://$${local.dingtalk_webhook_addr}/dingtalk/webhook1/send'
+    - url: 'http://alert-cluster-dingtalk-webhook-service:8060/dingtalk/webhook1/send'
+      #body: '{{ template "vm_errors_total.body" . }}'
+      max_alerts: 15
+
 route:
   group_by: ['alertname']
   group_wait: 30s
   group_interval: 1m
   repeat_interval: 1m
   receiver: 'webhook1'
+
+
+    EOF
+    "vm_errors_total.tmpl" = <<EOF
+{{ define "vm_errors_total.body" }}
+{{ range .Alerts }}
+    - Alert: {{ .Annotations.summary }}
+    - Description: {{ .Annotations.description }}
+    - Details:
+        {{ range .Labels.SortedPairs.Remove "altername" "altergroup"}} - {{ .Name }}: {{ .Value }}
+        {{ end }}
+{{ end }}
+{{ end }}
+
 
     EOF
   }

@@ -1,21 +1,8 @@
 locals {
-  vm-alert-name = "alert-cluster-vm-alert"
-  #alert-manager-addr = "${kubernetes_service.alert-cluster-alert-manager-service.spec.0.cluster_ip}:${kubernetes_service.alert-cluster-alert-manager-service.spec.0.port.0.target_port}"
+  self-monitor-cluster-vm-alert-name = "self-monitor-cluster-vm-alert"
 }
 
-resource "kubernetes_config_map" "alert-cluster-vm-alert-configs" {
-  count = 2 #todo
-  metadata {
-    name      = "alert-cluster-vm-alert-configs-${count.index}"
-    namespace = var.configs.namespace
-  }
-
-  data = {
-    "rules.yaml" = file("alert_cluster/rules/rules_${count.index}.yaml") #todo
-  }
-}
-
-resource "kubernetes_deployment" "alert-cluster-vm-alert" {
+resource "kubernetes_deployment" "self-monitor-cluster-vm-alert" {
   count = 2 #todo
   depends_on = [
     kubernetes_deployment.alert-cluster-dingtalk-webhook,
@@ -24,22 +11,22 @@ resource "kubernetes_deployment" "alert-cluster-vm-alert" {
   ]
   metadata {
     namespace = var.configs.namespace
-    name      = "${local.vm-alert-name}-${count.index}"
+    name      = "${local.self-monitor-cluster-vm-alert-name}-${count.index}"
   }
 
   spec {
-    replicas = 2 # 当这里为 2 时，两个容器做同样的告警查询。通过冗余来解决单点问题，缺点是资源消耗高一倍
+    replicas = 1 # 当这里为 2 时，两个容器做同样的告警查询。通过冗余来解决单点问题，缺点是资源消耗高一倍
 
     selector {
       match_labels = {
-        kubernetes_deployment_name = local.vm-alert-name
+        kubernetes_deployment_name = local.self-monitor-cluster-vm-alert-name
       }
     }
 
     template {
       metadata {
         labels = {
-          kubernetes_deployment_name = local.vm-alert-name
+          kubernetes_deployment_name = local.self-monitor-cluster-vm-alert-name
         }
       }
 
@@ -54,19 +41,19 @@ resource "kubernetes_deployment" "alert-cluster-vm-alert" {
             "-datasource.roundDigits=2",
             "-datasource.showURL", # 便于排查问题
             #"-datasource.url=$${var.realtime_cluster_info.select_addr}",
-            "-datasource.url=http://realtime-cluster-vm-select-service:8481/select/0/prometheus/",
+            "-datasource.url=http://self-monitor-cluster-vm-select-service:8481/self-monitor-cluster-select/select/0/prometheus/",
             "-evaluationInterval=1m",
-            "-external.label='from=\"vm-alert\"'",
+            "-external.label='from=\"self-monitor-cluster-vm-alert\"'",
             "-external.url=",
             "-httpListenAddr=:8880",
-            "-http.pathPrefix=/alert-cluster-vm-alert/",
+            "-http.pathPrefix=/self-monitor-cluster-vm-alert/",
             "-loggerDisableTimestamps",
             "-loggerFormat=${var.configs.log.format}",
             "-loggerLevel=${var.configs.log.level}",
             "-loggerOutput=${var.configs.log.output}",
             "-pushmetrics.extraLabel=region=\"${var.configs.region}\"",
             "-pushmetrics.extraLabel=env=\"${var.configs.env}\"",
-            "-pushmetrics.extraLabel=cluster=\"alert-cluster\"",
+            "-pushmetrics.extraLabel=cluster=\"self-monitor-cluster\"",
             "-pushmetrics.extraLabel=role=\"vm-alert\"",
             "-pushmetrics.extraLabel=container_ip=\"$(CONTAINER_IP)\"",
             "-pushmetrics.extraLabel=container_name=\"$(CONTAINER_NAME)\"",
@@ -80,7 +67,7 @@ resource "kubernetes_deployment" "alert-cluster-vm-alert" {
             "-remoteRead.lookback=1h",
             "-remoteRead.showURL",
             #"-remoteRead.url=http://$${var.realtime_cluster_info.select_addr}/select/0/prometheus/",
-            "-remoteRead.url=http://realtime-cluster-vm-select-service:8481/select/0/prometheus/",
+            "-remoteRead.url=http://self-monitor-cluster-vm-select-service:8481/self-monitor-cluster-select/select/0/prometheus/",
             # remote write  用于保存 recording rules 的结果
             "-remoteWrite.concurrency=2",
             "-remoteWrite.flushInterval=15s",
@@ -91,11 +78,11 @@ resource "kubernetes_deployment" "alert-cluster-vm-alert" {
             "-remoteWrite.sendTimeout=30s",
             "-remoteWrite.showURL",
             #"-remoteWrite.url=http://$${var.realtime_cluster_info.insert_addr}/insert/0/prometheus/", # vm-insert
-            "-remoteWrite.url=http://realtime-cluster-vm-insert-service:8480/insert/0/prometheus/", # vm-insert
+            "-remoteWrite.url=http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/", # vm-insert
             #规则文件
             "-rule=/rules/rules.yaml"
           ]
-          name = "${local.vm-alert-name}-${count.index}"
+          name = "${local.self-monitor-cluster-vm-alert-name}-${count.index}"
 
           resources {
             limits = {
@@ -153,25 +140,25 @@ resource "kubernetes_deployment" "alert-cluster-vm-alert" {
   }
 }
 
-data "external" "alert-cluster-vm-alert-status" {
-  depends_on = [kubernetes_deployment.alert-cluster-vm-alert]
-  program    = ["bash", "-c", "kubectl get pods -l kubernetes_deployment_name=${local.vm-alert-name} -n ${var.configs.namespace} -o json | jq -c '{\"r\": .|tojson }'"]
+data "external" "self-monitor-cluster-vm-alert-status" {
+  depends_on = [kubernetes_deployment.self-monitor-cluster-vm-alert]
+  program    = ["bash", "-c", "kubectl get pods -l kubernetes_deployment_name=${local.self-monitor-cluster-vm-alert-name} -n ${var.configs.namespace} -o json | jq -c '{\"r\": .|tojson }'"]
 }
 
-output "alert-cluster-vm-alert-containers" {
-  value = [for item in jsondecode(data.external.alert-cluster-vm-alert-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
+output "self-monitor-cluster-vm-alert-containers" {
+  value = [for item in jsondecode(data.external.self-monitor-cluster-vm-alert-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
 }
 
-resource "kubernetes_service" "alert-cluster-vm-alert-service" {
-  depends_on = [data.external.alert-cluster-vm-alert-status]
+resource "kubernetes_service" "self-monitor-cluster-vm-alert-service" {
+  depends_on = [data.external.self-monitor-cluster-vm-alert-status]
   metadata {
     namespace = var.configs.namespace
-    name      = "${local.vm-alert-name}-service"
+    name      = "${local.self-monitor-cluster-vm-alert-name}-service"
   }
 
   spec {
     selector = {
-      kubernetes_deployment_name = local.vm-alert-name
+      kubernetes_deployment_name = local.self-monitor-cluster-vm-alert-name
     }
 
     port {
@@ -184,6 +171,6 @@ resource "kubernetes_service" "alert-cluster-vm-alert-service" {
   }
 }
 
-output "alert-cluster-vm-alert-service-addr" {
-  value = "${kubernetes_service.alert-cluster-vm-alert-service.spec.0.cluster_ip}:${kubernetes_service.alert-cluster-vm-alert-service.spec.0.port.0.target_port}"
+output "self-monitor-cluster-vm-alert-service-addr" {
+  value = "${kubernetes_service.self-monitor-cluster-vm-alert-service.spec.0.cluster_ip}:${kubernetes_service.self-monitor-cluster-vm-alert-service.spec.0.port.0.target_port}"
 }

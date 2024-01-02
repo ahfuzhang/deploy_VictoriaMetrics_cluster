@@ -122,6 +122,9 @@ http {
         location /self-monitor-cluster-vm-agent/ {
            proxy_pass http://self-monitor-cluster-vm-agent-service:8429;
         }
+        location /self-monitor-cluster-vm-alert/ {
+          proxy_pass http://self-monitor-cluster-vm-alert-service:8880;
+        }
 
         # metrics-data-source-cluster
         location /metrics-data-source-cluster-vm-agent/ {
@@ -194,6 +197,13 @@ Roles:
         </li>
         <li>
           <a href="/self-monitor-cluster-vm-agent/targets" target="_blank">/self-monitor-cluster-vm-agent/targets</a>
+        </li>
+      </ul>
+    </li>
+    <li> vm-alert:
+      <ul>
+        <li>
+          <a href="/self-monitor-cluster-vm-alert/" target="_blank">/self-monitor-cluster-vm-alert/</a>
         </li>
       </ul>
     </li>
