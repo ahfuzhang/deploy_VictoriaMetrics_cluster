@@ -1,0 +1,26 @@
+
+dashboard:
+  uid: ""
+  title: "vm-agent"
+  description: ""
+  labels: "cluster=~\"$cluster\",region=~\"$region\",env=~\"$env\",role=\"vm-agent\",instance=~\"$instance\",container_ip=~\"$container_ip\",container_name=~\"$container_name\""
+  metrics:
+    counter:
+    guage:
+      vm_cache_chars_current:
+      vm_cache_entries:
+      vm_persistentqueue_bytes_pending:
+      vm_promscrape_active_scrapers:
+      vm_promscrape_scrape_pool_targets:
+      vm_promscrape_targets:
+      vm_tcplistener_conns:
+      vmagent_remotewrite_pending_inmemory_blocks:
+      vmagent_remotewrite_queue_blocked:
+      vmagent_remotewrite_queues:
+    heatmap:
+    value:
+      metrics_push_interval_seconds:
+      vm_cache_chars_max:
+      vmagent_remotewrite_rate_limit:
+    timestamp_value:
+    text:

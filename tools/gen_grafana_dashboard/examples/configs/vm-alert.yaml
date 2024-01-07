@@ -1,0 +1,27 @@
+
+dashboard:
+  uid: ""
+  title: "vm-alert"
+  description: ""
+  labels: "cluster=~\"$cluster\",region=~\"$region\",env=~\"$env\",role=\"vm-alert\",instance=~\"$instance\",container_ip=~\"$container_ip\",container_name=~\"$container_name\""
+  metrics:
+    counter:
+    guage:
+      vm_cache_chars_current:
+      vm_cache_entries:
+      metrics_push_interval_seconds:
+        unit: s
+      vm_tcplistener_conns:
+      vmalert_alerting_rules_last_evaluation_samples:
+      vmalert_alerting_rules_last_evaluation_series_fetched:
+      vmalert_alerts_firing:
+      vmalert_alerts_pending:
+      vmalert_iteration_duration_seconds:
+        unit: s
+    heatmap:
+    value:
+      vm_cache_chars_max:
+      vmalert_iteration_interval_seconds:
+        unit: s
+    timestamp_value:
+    text:

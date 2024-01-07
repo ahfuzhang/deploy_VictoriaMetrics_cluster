@@ -1,0 +1,957 @@
+vm_promscrape_config_last_reload_success_timestamp_seconds 1703837626
+vm_promscrape_config_last_reload_successful 1
+vm_promscrape_config_reloads_errors_total 0
+vm_promscrape_config_reloads_total 0
+process_cpu_cores_available 2
+process_memory_limit_bytes 1073741824
+vm_cache_chars_current{type="promql/regexp"} 0
+vm_cache_chars_max{type="promql/regexp"} 1000000
+vm_cache_entries{type="promql/regexp"} 0
+vm_cache_misses_total{type="promql/regexp"} 0
+vm_cache_requests_total{type="promql/regexp"} 0
+vm_concurrent_insert_capacity 8
+vm_concurrent_insert_current 0
+vm_concurrent_insert_limit_reached_total 0
+vm_concurrent_insert_limit_timeout_total 0
+vm_filestream_buffered_read_bytes_total 0
+vm_filestream_buffered_read_calls_total 0
+vm_filestream_buffered_write_calls_total 1
+vm_filestream_buffered_written_bytes_total 0
+vm_filestream_read_duration_seconds_total 0
+vm_filestream_readers 1
+vm_filestream_real_read_bytes_total 0
+vm_filestream_real_read_calls_total 0
+vm_filestream_real_write_calls_total 0
+vm_filestream_real_written_bytes_total 0
+vm_filestream_write_duration_seconds_total 3.7e-07
+vm_filestream_writers 1
+vm_fs_read_bytes_total 0
+vm_fs_read_calls_total 0
+vm_fs_readers 0
+vm_http_conn_timeout_closed_conns_total 0
+vm_http_request_errors_total{path="*", reason="unsupported"} 0
+vm_http_request_errors_total{path="*", reason="wrong_auth_key"} 0
+vm_http_request_errors_total{path="*", reason="wrong_basic_auth"} 0
+vm_http_request_errors_total{path="/newrelic/infra/v2/metrics/events/bulk", protocol="newrelic"} 0
+vm_http_requests_all_total 15
+vm_http_requests_total{path="*/favicon.ico"} 0
+vm_http_requests_total{path="/debug/pprof/"} 0
+vm_http_requests_total{path="/debug/pprof/cmdline"} 0
+vm_http_requests_total{path="/debug/pprof/default"} 0
+vm_http_requests_total{path="/debug/pprof/mutex"} 0
+vm_http_requests_total{path="/debug/pprof/profile"} 0
+vm_http_requests_total{path="/debug/pprof/symbol"} 0
+vm_http_requests_total{path="/debug/pprof/trace"} 0
+vm_http_requests_total{path="/metrics"} 1
+vm_http_requests_total{path="/newrelic", protocol="newrelic"} 0
+vm_http_requests_total{path="/newrelic/infra/v2/metrics/events/bulk", protocol="newrelic"} 0
+vm_http_requests_total{path="/newrelic/inventory/deltas", protocol="newrelic"} 0
+vm_ingestserver_request_errors_total{type="graphite", name="write", net="tcp"} 0
+vm_ingestserver_request_errors_total{type="graphite", name="write", net="udp"} 0
+vm_ingestserver_request_errors_total{type="influx", name="write", net="tcp"} 0
+vm_ingestserver_request_errors_total{type="influx", name="write", net="udp"} 0
+vm_ingestserver_request_errors_total{type="opentsdb", name="write", net="tcp"} 0
+vm_ingestserver_request_errors_total{type="opentsdb", name="write", net="udp"} 0
+vm_ingestserver_request_errors_total{type="opentsdbhttp", name="write", net="tcp"} 0
+vm_ingestserver_requests_total{type="graphite", name="write", net="tcp"} 0
+vm_ingestserver_requests_total{type="graphite", name="write", net="udp"} 0
+vm_ingestserver_requests_total{type="influx", name="write", net="tcp"} 0
+vm_ingestserver_requests_total{type="influx", name="write", net="udp"} 0
+vm_ingestserver_requests_total{type="opentsdb", name="write", net="tcp"} 0
+vm_ingestserver_requests_total{type="opentsdb", name="write", net="udp"} 0
+vm_ingestserver_requests_total{type="opentsdbhttp", name="write", net="tcp"} 0
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="error", location="VictoriaMetrics/lib/protoparser/prometheus/parser.go:231"} 3
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/app/vmagent/main.go:121"} 1
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/app/vmagent/main.go:147"} 1
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/app/vmagent/remotewrite/client.go:203"} 1
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/httpserver/httpserver.go:101"} 1
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/httpserver/httpserver.go:102"} 1
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/logger/flag.go:12"} 1
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/logger/flag.go:13"} 1
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/logger/flag.go:20"} 27
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/memory/memory.go:42"} 1
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/persistentqueue/fastqueue.go:66"} 1
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/promscrape/config.go:139"} 1
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/promscrape/config.go:145"} 1
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/promscrape/scraper.go:112"} 1
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/promscrape/scraper.go:428"} 4
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="warn", location="VictoriaMetrics/app/vmagent/remotewrite/client.go:403"} 2
+vm_log_messages_total{app_version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", level="warn", location="VictoriaMetrics/lib/promscrape/scrapework.go:387"} 16008
+vm_nfs_dir_remove_failed_attempts_total 0
+vm_nfs_pending_dirs_to_remove 0
+vm_persistentqueue_blocks_dropped_total{path="vmagent-remotewrite-data/persistent-queue/1_759B5176EE55BBBF"} 0
+vm_persistentqueue_blocks_read_total{path="vmagent-remotewrite-data/persistent-queue/1_759B5176EE55BBBF"} 0
+vm_persistentqueue_blocks_written_total{path="vmagent-remotewrite-data/persistent-queue/1_759B5176EE55BBBF"} 0
+vm_persistentqueue_bytes_dropped_total{path="vmagent-remotewrite-data/persistent-queue/1_759B5176EE55BBBF"} 0
+vm_persistentqueue_bytes_pending{path="vmagent-remotewrite-data/persistent-queue/1_759B5176EE55BBBF"} 0
+vm_persistentqueue_bytes_read_total{path="vmagent-remotewrite-data/persistent-queue/1_759B5176EE55BBBF"} 0
+vm_persistentqueue_bytes_written_total{path="vmagent-remotewrite-data/persistent-queue/1_759B5176EE55BBBF"} 0
+vm_persistentqueue_read_duration_seconds_total 0
+vm_persistentqueue_write_duration_seconds_total 0
+vm_promscrape_active_scrapers{type="azure_sd_configs"} 0
+vm_promscrape_active_scrapers{type="consul_sd_configs"} 0
+vm_promscrape_active_scrapers{type="consulagent_sd_configs"} 0
+vm_promscrape_active_scrapers{type="digitalocean_sd_configs"} 0
+vm_promscrape_active_scrapers{type="dns_sd_configs"} 0
+vm_promscrape_active_scrapers{type="docker_sd_configs"} 0
+vm_promscrape_active_scrapers{type="dockerswarm_sd_configs"} 0
+vm_promscrape_active_scrapers{type="ec2_sd_configs"} 0
+vm_promscrape_active_scrapers{type="eureka_sd_configs"} 0
+vm_promscrape_active_scrapers{type="file_sd_configs"} 14
+vm_promscrape_active_scrapers{type="gce_sd_configs"} 0
+vm_promscrape_active_scrapers{type="http_sd_configs"} 0
+vm_promscrape_active_scrapers{type="kubernetes_sd_configs"} 0
+vm_promscrape_active_scrapers{type="kuma_sd_configs"} 0
+vm_promscrape_active_scrapers{type="nomad_sd_configs"} 0
+vm_promscrape_active_scrapers{type="openstack_sd_configs"} 0
+vm_promscrape_active_scrapers{type="static_configs"} 0
+vm_promscrape_active_scrapers{type="yandexcloud_sd_configs"} 0
+vm_promscrape_config_changes_total{type="azure_sd_configs"} 0
+vm_promscrape_config_changes_total{type="consul_sd_configs"} 0
+vm_promscrape_config_changes_total{type="consulagent_sd_configs"} 0
+vm_promscrape_config_changes_total{type="digitalocean_sd_configs"} 0
+vm_promscrape_config_changes_total{type="dns_sd_configs"} 0
+vm_promscrape_config_changes_total{type="docker_sd_configs"} 0
+vm_promscrape_config_changes_total{type="dockerswarm_sd_configs"} 0
+vm_promscrape_config_changes_total{type="ec2_sd_configs"} 0
+vm_promscrape_config_changes_total{type="eureka_sd_configs"} 0
+vm_promscrape_config_changes_total{type="file_sd_configs"} 26
+vm_promscrape_config_changes_total{type="gce_sd_configs"} 0
+vm_promscrape_config_changes_total{type="http_sd_configs"} 0
+vm_promscrape_config_changes_total{type="kubernetes_sd_configs"} 0
+vm_promscrape_config_changes_total{type="kuma_sd_configs"} 0
+vm_promscrape_config_changes_total{type="nomad_sd_configs"} 0
+vm_promscrape_config_changes_total{type="openstack_sd_configs"} 0
+vm_promscrape_config_changes_total{type="static_configs"} 0
+vm_promscrape_config_changes_total{type="yandexcloud_sd_configs"} 0
+vm_promscrape_conn_bytes_read_total 287485086
+vm_promscrape_conn_bytes_written_total 8294270
+vm_promscrape_conn_read_errors_total 7
+vm_promscrape_conn_reads_total 99697
+vm_promscrape_conn_write_errors_total 0
+vm_promscrape_conn_writes_total 41512
+vm_promscrape_conns 13
+vm_promscrape_dial_errors_total 15999
+vm_promscrape_dials_total 24696
+vm_promscrape_discovery_consul_service_watchers 0
+vm_promscrape_discovery_consul_service_watchers_created_total 0
+vm_promscrape_discovery_consul_service_watchers_stopped_total 0
+vm_promscrape_discovery_consulagent_service_watchers 0
+vm_promscrape_discovery_consulagent_service_watchers_created_total 0
+vm_promscrape_discovery_consulagent_service_watchers_stopped_total 0
+vm_promscrape_discovery_kubernetes_group_watchers 0
+vm_promscrape_discovery_nomad_service_watchers 0
+vm_promscrape_discovery_nomad_service_watchers_created_total 0
+vm_promscrape_discovery_nomad_service_watchers_stopped_total 0
+vm_promscrape_discovery_requests_total 0
+vm_promscrape_discovery_retries_total 0
+vm_promscrape_discoveryutils_configmap_entries_count 0
+vm_promscrape_max_scrape_size_exceeded_errors_total 0
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.468e-07...1.668e-07"} 1
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.896e-07...2.154e-07"} 1
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="2.154e-07...2.448e-07"} 1
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="2.448e-07...2.783e-07"} 2
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="2.783e-07...3.162e-07"} 7
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="3.162e-07...3.594e-07"} 9
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="3.594e-07...4.084e-07"} 7
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="4.084e-07...4.642e-07"} 9
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="4.642e-07...5.275e-07"} 13
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="5.275e-07...5.995e-07"} 8
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="5.995e-07...6.813e-07"} 28
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="6.813e-07...7.743e-07"} 78
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="7.743e-07...8.799e-07"} 162
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="8.799e-07...1.000e-06"} 87
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.000e-06...1.136e-06"} 21
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.136e-06...1.292e-06"} 7
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.292e-06...1.468e-06"} 15
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.468e-06...1.668e-06"} 7
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.668e-06...1.896e-06"} 6
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.896e-06...2.154e-06"} 2
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="2.154e-06...2.448e-06"} 1
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="2.448e-06...2.783e-06"} 1
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="2.783e-06...3.162e-06"} 1
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="5.995e-06...6.813e-06"} 3
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="6.813e-06...7.743e-06"} 3
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="7.743e-06...8.799e-06"} 7
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="8.799e-06...1.000e-05"} 15
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.000e-05...1.136e-05"} 98
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.136e-05...1.292e-05"} 994
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.292e-05...1.468e-05"} 4680
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.468e-05...1.668e-05"} 7498
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.668e-05...1.896e-05"} 2080
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.896e-05...2.154e-05"} 195
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="2.154e-05...2.448e-05"} 160
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="2.448e-05...2.783e-05"} 146
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="2.783e-05...3.162e-05"} 61
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="3.162e-05...3.594e-05"} 122
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="3.594e-05...4.084e-05"} 419
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="4.084e-05...4.642e-05"} 2907
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="4.642e-05...5.275e-05"} 1762
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="5.275e-05...5.995e-05"} 212
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="5.995e-05...6.813e-05"} 55
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="6.813e-05...7.743e-05"} 66
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="7.743e-05...8.799e-05"} 35
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="8.799e-05...1.000e-04"} 140
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.000e-04...1.136e-04"} 410
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.136e-04...1.292e-04"} 60
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.292e-04...1.468e-04"} 42
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.468e-04...1.668e-04"} 151
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.668e-04...1.896e-04"} 236
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.896e-04...2.154e-04"} 277
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="2.154e-04...2.448e-04"} 1047
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="2.448e-04...2.783e-04"} 553
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="2.783e-04...3.162e-04"} 3694
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="3.162e-04...3.594e-04"} 15141
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="3.594e-04...4.084e-04"} 8904
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="4.084e-04...4.642e-04"} 1860
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="4.642e-04...5.275e-04"} 329
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="5.275e-04...5.995e-04"} 368
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="5.995e-04...6.813e-04"} 367
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="6.813e-04...7.743e-04"} 337
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="7.743e-04...8.799e-04"} 336
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="8.799e-04...1.000e-03"} 734
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.000e-03...1.136e-03"} 445
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.136e-03...1.292e-03"} 326
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.292e-03...1.468e-03"} 169
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.468e-03...1.668e-03"} 62
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.668e-03...1.896e-03"} 17
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="1.896e-03...2.154e-03"} 7
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="2.154e-03...2.448e-03"} 3
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="2.448e-03...2.783e-03"} 3
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="2.783e-03...3.162e-03"} 1
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="3.162e-03...3.594e-03"} 1
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="4.084e-03...4.642e-03"} 1
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="4.642e-03...5.275e-03"} 1
+vm_promscrape_push_data_duration_seconds_bucket{vmrange="5.275e-03...5.995e-03"} 1
+vm_promscrape_push_data_duration_seconds_sum 14.732236874999975
+vm_promscrape_push_data_duration_seconds_count 58015
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="0...1.000e-09"} 21
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="8.799e-04...1.000e-03"} 6002
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="1.896e-03...2.154e-03"} 5727
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="2.783e-03...3.162e-03"} 5422
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="3.594e-03...4.084e-03"} 5607
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="4.642e-03...5.275e-03"} 8480
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="5.995e-03...6.813e-03"} 7048
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="6.813e-03...7.743e-03"} 2264
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="7.743e-03...8.799e-03"} 346
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="8.799e-03...1.000e-02"} 110
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="1.000e-02...1.136e-02"} 24
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="1.136e-02...1.292e-02"} 22
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="1.292e-02...1.468e-02"} 20
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="1.468e-02...1.668e-02"} 31
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="1.668e-02...1.896e-02"} 45
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="1.896e-02...2.154e-02"} 35
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="2.154e-02...2.448e-02"} 30
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="2.448e-02...2.783e-02"} 10
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="2.783e-02...3.162e-02"} 7
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="3.162e-02...3.594e-02"} 16
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="3.594e-02...4.084e-02"} 26
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="4.084e-02...4.642e-02"} 19
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="4.642e-02...5.275e-02"} 8
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="5.275e-02...5.995e-02"} 4
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="5.995e-02...6.813e-02"} 105
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="6.813e-02...7.743e-02"} 53
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="7.743e-02...8.799e-02"} 16
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="8.799e-02...1.000e-01"} 7
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="7.743e-01...8.799e-01"} 1
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="2.783e+00...3.162e+00"} 15995
+vm_promscrape_scrape_duration_seconds_bucket{vmrange="4.642e+00...5.275e+00"} 3
+vm_promscrape_scrape_duration_seconds_sum 49194.443999992334
+vm_promscrape_scrape_duration_seconds_count 57504
+vm_promscrape_scrape_pool_targets{scrape_job="file", status="down"} 0
+vm_promscrape_scrape_pool_targets{scrape_job="file", status="up"} 14
+vm_promscrape_scrape_requests_total 57504
+vm_promscrape_scrape_response_size_bytes_bucket{vmrange="0...1.000e-09"} 15999
+vm_promscrape_scrape_response_size_bytes_bucket{vmrange="1.292e+02...1.468e+02"} 9
+vm_promscrape_scrape_response_size_bytes_bucket{vmrange="2.154e+03...2.448e+03"} 5639
+vm_promscrape_scrape_response_size_bytes_bucket{vmrange="5.275e+03...5.995e+03"} 550
+vm_promscrape_scrape_response_size_bytes_bucket{vmrange="2.448e+04...2.783e+04"} 21
+vm_promscrape_scrape_response_size_bytes_bucket{vmrange="2.783e+04...3.162e+04"} 588
+vm_promscrape_scrape_response_size_bytes_bucket{vmrange="3.162e+04...3.594e+04"} 188
+vm_promscrape_scrape_response_size_bytes_bucket{vmrange="3.594e+04...4.084e+04"} 1474
+vm_promscrape_scrape_response_size_bytes_bucket{vmrange="4.084e+04...4.642e+04"} 21160
+vm_promscrape_scrape_response_size_bytes_bucket{vmrange="4.642e+04...5.275e+04"} 11600
+vm_promscrape_scrape_response_size_bytes_bucket{vmrange="5.275e+04...5.995e+04"} 136
+vm_promscrape_scrape_response_size_bytes_bucket{vmrange="5.995e+04...6.813e+04"} 140
+vm_promscrape_scrape_response_size_bytes_sum 1604297884
+vm_promscrape_scrape_response_size_bytes_count 57504
+vm_promscrape_scrape_retries_total 7
+vm_promscrape_scraped_samples_bucket{vmrange="0...1.000e-09"} 16008
+vm_promscrape_scraped_samples_bucket{vmrange="5.995e+01...6.813e+01"} 5639
+vm_promscrape_scraped_samples_bucket{vmrange="1.136e+02...1.292e+02"} 550
+vm_promscrape_scraped_samples_bucket{vmrange="3.162e+02...3.594e+02"} 549
+vm_promscrape_scraped_samples_bucket{vmrange="3.594e+02...4.084e+02"} 23
+vm_promscrape_scraped_samples_bucket{vmrange="4.084e+02...4.642e+02"} 612
+vm_promscrape_scraped_samples_bucket{vmrange="4.642e+02...5.275e+02"} 289
+vm_promscrape_scraped_samples_bucket{vmrange="5.275e+02...5.995e+02"} 5582
+vm_promscrape_scraped_samples_bucket{vmrange="5.995e+02...6.813e+02"} 27940
+vm_promscrape_scraped_samples_bucket{vmrange="6.813e+02...7.743e+02"} 173
+vm_promscrape_scraped_samples_bucket{vmrange="7.743e+02...8.799e+02"} 139
+vm_promscrape_scraped_samples_sum 22227948
+vm_promscrape_scraped_samples_count 57504
+vm_promscrape_scrapers_started_total{type="azure_sd_configs"} 0
+vm_promscrape_scrapers_started_total{type="consul_sd_configs"} 0
+vm_promscrape_scrapers_started_total{type="consulagent_sd_configs"} 0
+vm_promscrape_scrapers_started_total{type="digitalocean_sd_configs"} 0
+vm_promscrape_scrapers_started_total{type="dns_sd_configs"} 0
+vm_promscrape_scrapers_started_total{type="docker_sd_configs"} 0
+vm_promscrape_scrapers_started_total{type="dockerswarm_sd_configs"} 0
+vm_promscrape_scrapers_started_total{type="ec2_sd_configs"} 0
+vm_promscrape_scrapers_started_total{type="eureka_sd_configs"} 0
+vm_promscrape_scrapers_started_total{type="file_sd_configs"} 20
+vm_promscrape_scrapers_started_total{type="gce_sd_configs"} 0
+vm_promscrape_scrapers_started_total{type="http_sd_configs"} 0
+vm_promscrape_scrapers_started_total{type="kubernetes_sd_configs"} 0
+vm_promscrape_scrapers_started_total{type="kuma_sd_configs"} 0
+vm_promscrape_scrapers_started_total{type="nomad_sd_configs"} 0
+vm_promscrape_scrapers_started_total{type="openstack_sd_configs"} 0
+vm_promscrape_scrapers_started_total{type="static_configs"} 0
+vm_promscrape_scrapers_started_total{type="yandexcloud_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="azure_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="consul_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="consulagent_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="digitalocean_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="dns_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="docker_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="dockerswarm_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="ec2_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="eureka_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="file_sd_configs"} 6
+vm_promscrape_scrapers_stopped_total{type="gce_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="http_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="kubernetes_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="kuma_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="nomad_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="openstack_sd_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="static_configs"} 0
+vm_promscrape_scrapers_stopped_total{type="yandexcloud_sd_configs"} 0
+vm_promscrape_scrapes_failed_total 16008
+vm_promscrape_scrapes_gunzip_failed_total 0
+vm_promscrape_scrapes_gunziped_total 35307
+vm_promscrape_scrapes_skipped_by_sample_limit_total 0
+vm_promscrape_scrapes_timed_out_total 0
+vm_promscrape_scrapes_total{status_code="200"} 41496
+vm_promscrape_scrapes_total{status_code="400"} 9
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="5.995e-04...6.813e-04"} 5
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="6.813e-04...7.743e-04"} 10
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="7.743e-04...8.799e-04"} 25
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="8.799e-04...1.000e-03"} 37
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="1.000e-03...1.136e-03"} 11
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="1.136e-03...1.292e-03"} 15
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="1.292e-03...1.468e-03"} 3111
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="1.468e-03...1.668e-03"} 553
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="1.668e-03...1.896e-03"} 174
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="1.896e-03...2.154e-03"} 190
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="2.154e-03...2.448e-03"} 316
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="2.448e-03...2.783e-03"} 351
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="2.783e-03...3.162e-03"} 369
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="3.162e-03...3.594e-03"} 217
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="3.594e-03...4.084e-03"} 159
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="4.084e-03...4.642e-03"} 49
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="4.642e-03...5.275e-03"} 29
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="5.275e-03...5.995e-03"} 14
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="5.995e-03...6.813e-03"} 3
+vm_promscrape_service_discovery_duration_seconds_bucket{type="file_sd_configs",vmrange="7.743e-03...8.799e-03"} 1
+vm_promscrape_service_discovery_duration_seconds_sum{type="file_sd_configs"} 10.453675648999988
+vm_promscrape_service_discovery_duration_seconds_count{type="file_sd_configs"} 5639
+vm_promscrape_stale_samples_created_total 1587
+vm_promscrape_targets{type="azure_sd_configs", status="down"} 0
+vm_promscrape_targets{type="azure_sd_configs", status="up"} 0
+vm_promscrape_targets{type="consul_sd_configs", status="down"} 0
+vm_promscrape_targets{type="consul_sd_configs", status="up"} 0
+vm_promscrape_targets{type="consulagent_sd_configs", status="down"} 0
+vm_promscrape_targets{type="consulagent_sd_configs", status="up"} 0
+vm_promscrape_targets{type="digitalocean_sd_configs", status="down"} 0
+vm_promscrape_targets{type="digitalocean_sd_configs", status="up"} 0
+vm_promscrape_targets{type="dns_sd_configs", status="down"} 0
+vm_promscrape_targets{type="dns_sd_configs", status="up"} 0
+vm_promscrape_targets{type="docker_sd_configs", status="down"} 0
+vm_promscrape_targets{type="docker_sd_configs", status="up"} 0
+vm_promscrape_targets{type="dockerswarm_sd_configs", status="down"} 0
+vm_promscrape_targets{type="dockerswarm_sd_configs", status="up"} 0
+vm_promscrape_targets{type="ec2_sd_configs", status="down"} 0
+vm_promscrape_targets{type="ec2_sd_configs", status="up"} 0
+vm_promscrape_targets{type="eureka_sd_configs", status="down"} 0
+vm_promscrape_targets{type="eureka_sd_configs", status="up"} 0
+vm_promscrape_targets{type="file_sd_configs", status="down"} 0
+vm_promscrape_targets{type="file_sd_configs", status="up"} 14
+vm_promscrape_targets{type="gce_sd_configs", status="down"} 0
+vm_promscrape_targets{type="gce_sd_configs", status="up"} 0
+vm_promscrape_targets{type="http_sd_configs", status="down"} 0
+vm_promscrape_targets{type="http_sd_configs", status="up"} 0
+vm_promscrape_targets{type="kubernetes_sd_configs", status="down"} 0
+vm_promscrape_targets{type="kubernetes_sd_configs", status="up"} 0
+vm_promscrape_targets{type="kuma_sd_configs", status="down"} 0
+vm_promscrape_targets{type="kuma_sd_configs", status="up"} 0
+vm_promscrape_targets{type="nomad_sd_configs", status="down"} 0
+vm_promscrape_targets{type="nomad_sd_configs", status="up"} 0
+vm_promscrape_targets{type="openstack_sd_configs", status="down"} 0
+vm_promscrape_targets{type="openstack_sd_configs", status="up"} 0
+vm_promscrape_targets{type="static_configs", status="down"} 0
+vm_promscrape_targets{type="static_configs", status="up"} 0
+vm_promscrape_targets{type="yandexcloud_sd_configs", status="down"} 0
+vm_promscrape_targets{type="yandexcloud_sd_configs", status="up"} 0
+vm_protoparser_blocks_read_total{type="native"} 0
+vm_protoparser_parse_errors_total{type="native"} 0
+vm_protoparser_process_errors_total{type="native"} 0
+vm_protoparser_read_calls_total{type="csvimport"} 0
+vm_protoparser_read_calls_total{type="datadog"} 0
+vm_protoparser_read_calls_total{type="graphite"} 0
+vm_protoparser_read_calls_total{type="influx"} 0
+vm_protoparser_read_calls_total{type="native"} 0
+vm_protoparser_read_calls_total{type="newrelic"} 0
+vm_protoparser_read_calls_total{type="opentsdb"} 0
+vm_protoparser_read_calls_total{type="opentsdbhttp"} 0
+vm_protoparser_read_calls_total{type="prometheus"} 68
+vm_protoparser_read_calls_total{type="promremotewrite"} 0
+vm_protoparser_read_calls_total{type="vmimport"} 0
+vm_protoparser_read_errors_total{type="csvimport"} 0
+vm_protoparser_read_errors_total{type="datadog"} 0
+vm_protoparser_read_errors_total{type="graphite"} 0
+vm_protoparser_read_errors_total{type="influx"} 0
+vm_protoparser_read_errors_total{type="native"} 0
+vm_protoparser_read_errors_total{type="newrelic"} 0
+vm_protoparser_read_errors_total{type="opentsdb"} 0
+vm_protoparser_read_errors_total{type="opentsdbhttp"} 0
+vm_protoparser_read_errors_total{type="prometheus"} 0
+vm_protoparser_read_errors_total{type="promremotewrite"} 0
+vm_protoparser_read_errors_total{type="vmimport"} 0
+vm_protoparser_rows_dropped_total{type="opentelemetry",reason="unsupported_histogram_aggregation"} 0
+vm_protoparser_rows_dropped_total{type="opentelemetry",reason="unsupported_metric_type"} 0
+vm_protoparser_rows_dropped_total{type="opentelemetry",reason="unsupported_sum_aggregation"} 0
+vm_protoparser_rows_read_total{type="csvimport"} 0
+vm_protoparser_rows_read_total{type="datadog"} 0
+vm_protoparser_rows_read_total{type="graphite"} 0
+vm_protoparser_rows_read_total{type="influx"} 0
+vm_protoparser_rows_read_total{type="native"} 0
+vm_protoparser_rows_read_total{type="opentelemetry"} 0
+vm_protoparser_rows_read_total{type="opentsdb"} 0
+vm_protoparser_rows_read_total{type="opentsdbhttp"} 0
+vm_protoparser_rows_read_total{type="prometheus"} 1533
+vm_protoparser_rows_read_total{type="promremotewrite"} 0
+vm_protoparser_rows_read_total{type="promscrape"} 22229481
+vm_protoparser_rows_read_total{type="vmimport"} 0
+vm_protoparser_unmarshal_errors_total{type="datadog"} 0
+vm_protoparser_unmarshal_errors_total{type="newrelic"} 0
+vm_protoparser_unmarshal_errors_total{type="opentsdbhttp"} 0
+vm_protoparser_unmarshal_errors_total{type="promremotewrite"} 0
+vm_rows_invalid_total{type="csvimport"} 0
+vm_rows_invalid_total{type="graphite"} 0
+vm_rows_invalid_total{type="influx"} 0
+vm_rows_invalid_total{type="opentsdb"} 0
+vm_rows_invalid_total{type="opentsdbhttp"} 0
+vm_rows_invalid_total{type="prometheus"} 3
+vm_rows_invalid_total{type="vmimport"} 0
+vm_tcplistener_accepts_total{name="http", addr=":8429"} 15
+vm_tcplistener_conns{name="http", addr=":8429"} 1
+vm_tcplistener_errors_total{name="http", addr=":8429", type="accept"} 0
+vm_tcplistener_errors_total{name="http", addr=":8429", type="close"} 0
+vm_tcplistener_errors_total{name="http", addr=":8429", type="read"} 0
+vm_tcplistener_errors_total{name="http", addr=":8429", type="write"} 0
+vm_tcplistener_read_bytes_total{name="http", addr=":8429"} 12670
+vm_tcplistener_read_calls_total{name="http", addr=":8429"} 29
+vm_tcplistener_read_timeouts_total{name="http", addr=":8429"} 0
+vm_tcplistener_write_calls_total{name="http", addr=":8429"} 69
+vm_tcplistener_write_timeouts_total{name="http", addr=":8429"} 0
+vm_tcplistener_written_bytes_total{name="http", addr=":8429"} 251631
+vm_zstd_block_compress_calls_total 0
+vm_zstd_block_compressed_bytes_total 0
+vm_zstd_block_decompress_calls_total 0
+vm_zstd_block_original_bytes_total 0
+vmagent_daily_series_limit_rows_dropped_total 0
+vmagent_hourly_series_limit_rows_dropped_total 0
+vmagent_http_request_errors_total{path="/api/v1/import", protocol="vmimport"} 0
+vmagent_http_request_errors_total{path="/api/v1/import/csv", protocol="csvimport"} 0
+vmagent_http_request_errors_total{path="/api/v1/import/native", protocol="nativeimport"} 0
+vmagent_http_request_errors_total{path="/api/v1/import/prometheus", protocol="prometheusimport"} 0
+vmagent_http_request_errors_total{path="/api/v1/write", protocol="promremotewrite"} 0
+vmagent_http_request_errors_total{path="/datadog/api/v1/series", protocol="datadog"} 0
+vmagent_http_request_errors_total{path="/influx/write", protocol="influx"} 0
+vmagent_http_request_errors_total{path="/opentelemetry/api/v1/push", protocol="opentelemetry"} 0
+vmagent_http_request_errors_total{path="/target_response"} 0
+vmagent_http_requests_total{path="/-/reload"} 0
+vmagent_http_requests_total{path="/api/v1/import", protocol="vmimport"} 0
+vmagent_http_requests_total{path="/api/v1/import/csv", protocol="csvimport"} 0
+vmagent_http_requests_total{path="/api/v1/import/native", protocol="nativeimport"} 0
+vmagent_http_requests_total{path="/api/v1/import/prometheus", protocol="prometheusimport"} 0
+vmagent_http_requests_total{path="/api/v1/status/config"} 0
+vmagent_http_requests_total{path="/api/v1/targets"} 0
+vmagent_http_requests_total{path="/api/v1/write", protocol="promremotewrite"} 0
+vmagent_http_requests_total{path="/config"} 0
+vmagent_http_requests_total{path="/datadog/api/v1/check_run", protocol="datadog"} 0
+vmagent_http_requests_total{path="/datadog/api/v1/metadata", protocol="datadog"} 0
+vmagent_http_requests_total{path="/datadog/api/v1/series", protocol="datadog"} 0
+vmagent_http_requests_total{path="/datadog/api/v1/validate", protocol="datadog"} 0
+vmagent_http_requests_total{path="/datadog/intake", protocol="datadog"} 0
+vmagent_http_requests_total{path="/influx/query", protocol="influx"} 0
+vmagent_http_requests_total{path="/influx/write", protocol="influx"} 0
+vmagent_http_requests_total{path="/metric-relabel-debug"} 0
+vmagent_http_requests_total{path="/opentelemetry/api/v1/push", protocol="opentelemetry"} 0
+vmagent_http_requests_total{path="/service-discovery"} 0
+vmagent_http_requests_total{path="/target-relabel-debug"} 0
+vmagent_http_requests_total{path="/target_response"} 0
+vmagent_http_requests_total{path="/targets"} 6
+vmagent_relabel_config_last_reload_success_timestamp_seconds 1703837626
+vmagent_relabel_config_last_reload_successful 1
+vmagent_relabel_config_reloads_errors_total 0
+vmagent_relabel_config_reloads_total 0
+vmagent_remotewrite_block_size_bytes_bucket{vmrange="3.594e+02...4.084e+02"} 6
+vmagent_remotewrite_block_size_bytes_bucket{vmrange="2.154e+03...2.448e+03"} 70
+vmagent_remotewrite_block_size_bytes_bucket{vmrange="2.448e+03...2.783e+03"} 204
+vmagent_remotewrite_block_size_bytes_bucket{vmrange="4.084e+03...4.642e+03"} 1
+vmagent_remotewrite_block_size_bytes_bucket{vmrange="8.799e+03...1.000e+04"} 6772
+vmagent_remotewrite_block_size_bytes_bucket{vmrange="1.000e+04...1.136e+04"} 25726
+vmagent_remotewrite_block_size_bytes_bucket{vmrange="1.136e+04...1.292e+04"} 147
+vmagent_remotewrite_block_size_bytes_bucket{vmrange="1.292e+04...1.468e+04"} 4
+vmagent_remotewrite_block_size_bytes_bucket{vmrange="1.468e+04...1.668e+04"} 589
+vmagent_remotewrite_block_size_bytes_bucket{vmrange="1.668e+04...1.896e+04"} 33
+vmagent_remotewrite_block_size_bytes_bucket{vmrange="1.896e+04...2.154e+04"} 140
+vmagent_remotewrite_block_size_bytes_bucket{vmrange="2.154e+04...2.448e+04"} 422
+vmagent_remotewrite_block_size_bytes_sum 360188320
+vmagent_remotewrite_block_size_bytes_count 34114
+vmagent_remotewrite_block_size_rows_bucket{vmrange="8.799e+00...1.000e+01"} 6
+vmagent_remotewrite_block_size_rows_bucket{vmrange="1.292e+02...1.468e+02"} 274
+vmagent_remotewrite_block_size_rows_bucket{vmrange="3.594e+02...4.084e+02"} 1
+vmagent_remotewrite_block_size_rows_bucket{vmrange="5.275e+02...5.995e+02"} 46
+vmagent_remotewrite_block_size_rows_bucket{vmrange="5.995e+02...6.813e+02"} 29950
+vmagent_remotewrite_block_size_rows_bucket{vmrange="6.813e+02...7.743e+02"} 2515
+vmagent_remotewrite_block_size_rows_bucket{vmrange="7.743e+02...8.799e+02"} 134
+vmagent_remotewrite_block_size_rows_bucket{vmrange="8.799e+02...1.000e+03"} 277
+vmagent_remotewrite_block_size_rows_bucket{vmrange="1.000e+03...1.136e+03"} 341
+vmagent_remotewrite_block_size_rows_bucket{vmrange="1.136e+03...1.292e+03"} 80
+vmagent_remotewrite_block_size_rows_bucket{vmrange="1.292e+03...1.468e+03"} 203
+vmagent_remotewrite_block_size_rows_bucket{vmrange="1.468e+03...1.668e+03"} 287
+vmagent_remotewrite_block_size_rows_sum 22746290
+vmagent_remotewrite_block_size_rows_count 34114
+vmagent_remotewrite_blocks_sent_total{url="1:secret-url"} 34114
+vmagent_remotewrite_bytes_sent_total{url="1:secret-url"} 360188320
+vmagent_remotewrite_conn_bytes_read_total 6621190
+vmagent_remotewrite_conn_bytes_written_total 369414009
+vmagent_remotewrite_conn_read_errors_total 631
+vmagent_remotewrite_conn_reads_total 34746
+vmagent_remotewrite_conn_write_errors_total 0
+vmagent_remotewrite_conn_writes_total 34117
+vmagent_remotewrite_conns 2
+vmagent_remotewrite_dial_errors_total 2
+vmagent_remotewrite_dials_total 4377
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="5.275e-04...5.995e-04"} 1
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="5.995e-04...6.813e-04"} 2
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="6.813e-04...7.743e-04"} 1
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="7.743e-04...8.799e-04"} 2
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="8.799e-04...1.000e-03"} 4
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="1.000e-03...1.136e-03"} 7
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="1.136e-03...1.292e-03"} 19
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="1.292e-03...1.468e-03"} 40
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="1.468e-03...1.668e-03"} 56
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="1.668e-03...1.896e-03"} 63
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="1.896e-03...2.154e-03"} 616
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="2.154e-03...2.448e-03"} 2027
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="2.448e-03...2.783e-03"} 3244
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="2.783e-03...3.162e-03"} 2364
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="3.162e-03...3.594e-03"} 1872
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="3.594e-03...4.084e-03"} 1923
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="4.084e-03...4.642e-03"} 2178
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="4.642e-03...5.275e-03"} 2731
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="5.275e-03...5.995e-03"} 3383
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="5.995e-03...6.813e-03"} 2857
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="6.813e-03...7.743e-03"} 2313
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="7.743e-03...8.799e-03"} 2321
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="8.799e-03...1.000e-02"} 2083
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="1.000e-02...1.136e-02"} 1527
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="1.136e-02...1.292e-02"} 931
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="1.292e-02...1.468e-02"} 649
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="1.468e-02...1.668e-02"} 381
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="1.668e-02...1.896e-02"} 194
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="1.896e-02...2.154e-02"} 130
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="2.154e-02...2.448e-02"} 93
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="2.448e-02...2.783e-02"} 46
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="2.783e-02...3.162e-02"} 27
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="3.162e-02...3.594e-02"} 10
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="3.594e-02...4.084e-02"} 9
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="4.084e-02...4.642e-02"} 7
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="4.642e-02...5.275e-02"} 1
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="5.275e-02...5.995e-02"} 2
+vmagent_remotewrite_duration_seconds_bucket{url="1:secret-url",vmrange="5.995e-02...6.813e-02"} 2
+vmagent_remotewrite_duration_seconds_sum{url="1:secret-url"} 204.81091659799867
+vmagent_remotewrite_duration_seconds_count{url="1:secret-url"} 34116
+vmagent_remotewrite_errors_total{url="1:secret-url"} 2
+vmagent_remotewrite_global_relabel_metrics_dropped_total 0
+vmagent_remotewrite_global_rows_pushed_before_relabel_total 22747071
+vmagent_remotewrite_packets_dropped_total{url="1:secret-url"} 0
+vmagent_remotewrite_pending_data_bytes{path="vmagent-remotewrite-data/persistent-queue/1_759B5176EE55BBBF", url="1:secret-url"} 0
+vmagent_remotewrite_pending_inmemory_blocks{path="vmagent-remotewrite-data/persistent-queue/1_759B5176EE55BBBF", url="1:secret-url"} 0
+vmagent_remotewrite_push_failures_total 0
+vmagent_remotewrite_queue_blocked{path="vmagent-remotewrite-data/persistent-queue/1_759B5176EE55BBBF", url="1:secret-url"} 0
+vmagent_remotewrite_queues{url="1:secret-url"} 4
+vmagent_remotewrite_rate_limit_reached_total{url="1:secret-url"} 0
+vmagent_remotewrite_rate_limit{url="1:secret-url"} 0
+vmagent_remotewrite_relabel_metrics_dropped_total{path="vmagent-remotewrite-data/persistent-queue/1_759B5176EE55BBBF", url="1:secret-url"} 0
+vmagent_remotewrite_requests_total{url="1:secret-url", status_code="2XX"} 34114
+vmagent_remotewrite_retries_count_total{url="1:secret-url"} 2
+vmagent_remotewrite_rows_pushed_after_relabel_total{path="vmagent-remotewrite-data/persistent-queue/1_759B5176EE55BBBF", url="1:secret-url"} 22747071
+vmagent_remotewrite_samples_dropped_total 0
+vmagent_remotewrite_send_duration_seconds_total{url="1:secret-url"} 208.99857995800107
+vmagent_rows_inserted_total{type="csvimport"} 0
+vmagent_rows_inserted_total{type="datadog"} 0
+vmagent_rows_inserted_total{type="graphite"} 0
+vmagent_rows_inserted_total{type="influx"} 0
+vmagent_rows_inserted_total{type="native"} 0
+vmagent_rows_inserted_total{type="newrelic"} 0
+vmagent_rows_inserted_total{type="opentelemetry"} 0
+vmagent_rows_inserted_total{type="opentsdb"} 0
+vmagent_rows_inserted_total{type="opentsdbhttp"} 0
+vmagent_rows_inserted_total{type="prometheus"} 0
+vmagent_rows_inserted_total{type="promremotewrite"} 0
+vmagent_rows_inserted_total{type="vmimport"} 0
+go_sched_latencies_seconds_bucket{le="0"} 0
+go_sched_latencies_seconds_bucket{le="2.56e-07"} 310622
+go_sched_latencies_seconds_bucket{le="4.48e-07"} 351653
+go_sched_latencies_seconds_bucket{le="7.68e-07"} 369699
+go_sched_latencies_seconds_bucket{le="1.28e-06"} 380086
+go_sched_latencies_seconds_bucket{le="2.048e-06"} 394649
+go_sched_latencies_seconds_bucket{le="3.584e-06"} 417950
+go_sched_latencies_seconds_bucket{le="6.144e-06"} 536861
+go_sched_latencies_seconds_bucket{le="1.024e-05"} 599438
+go_sched_latencies_seconds_bucket{le="1.6384e-05"} 612744
+go_sched_latencies_seconds_bucket{le="3.2768e-05"} 618892
+go_sched_latencies_seconds_bucket{le="5.7344e-05"} 623364
+go_sched_latencies_seconds_bucket{le="9.8304e-05"} 625690
+go_sched_latencies_seconds_bucket{le="0.00016384"} 631902
+go_sched_latencies_seconds_bucket{le="0.000262144"} 636025
+go_sched_latencies_seconds_bucket{le="0.000458752"} 639638
+go_sched_latencies_seconds_bucket{le="0.000786432"} 643722
+go_sched_latencies_seconds_bucket{le="0.00131072"} 646856
+go_sched_latencies_seconds_bucket{le="0.002097152"} 650309
+go_sched_latencies_seconds_bucket{le="0.003670016"} 652279
+go_sched_latencies_seconds_bucket{le="0.007340032"} 652710
+go_sched_latencies_seconds_bucket{le="0.012582912"} 652719
+go_sched_latencies_seconds_bucket{le="0.02097152"} 652719
+go_sched_latencies_seconds_bucket{le="0.033554432"} 652719
+go_sched_latencies_seconds_bucket{le="0.058720256"} 652719
+go_sched_latencies_seconds_bucket{le="0.100663296"} 652719
+go_sched_latencies_seconds_bucket{le="0.16777216"} 652719
+go_sched_latencies_seconds_bucket{le="0.268435456"} 652719
+go_sched_latencies_seconds_bucket{le="0.469762048"} 652719
+go_sched_latencies_seconds_bucket{le="0.805306368"} 652719
+go_sched_latencies_seconds_bucket{le="+Inf"} 652719
+go_mutex_wait_seconds_total 0.000269784
+go_gc_mark_assist_cpu_seconds_total 8.109485621
+go_gc_cpu_seconds_total 65.454717968
+go_gc_pauses_seconds_bucket{le="0"} 0
+go_gc_pauses_seconds_bucket{le="2.56e-07"} 0
+go_gc_pauses_seconds_bucket{le="4.48e-07"} 0
+go_gc_pauses_seconds_bucket{le="7.68e-07"} 0
+go_gc_pauses_seconds_bucket{le="1.28e-06"} 0
+go_gc_pauses_seconds_bucket{le="2.048e-06"} 0
+go_gc_pauses_seconds_bucket{le="3.584e-06"} 25
+go_gc_pauses_seconds_bucket{le="6.144e-06"} 3371
+go_gc_pauses_seconds_bucket{le="1.024e-05"} 5752
+go_gc_pauses_seconds_bucket{le="1.6384e-05"} 5879
+go_gc_pauses_seconds_bucket{le="3.2768e-05"} 14604
+go_gc_pauses_seconds_bucket{le="5.7344e-05"} 26744
+go_gc_pauses_seconds_bucket{le="9.8304e-05"} 31171
+go_gc_pauses_seconds_bucket{le="0.00016384"} 32282
+go_gc_pauses_seconds_bucket{le="0.000262144"} 32346
+go_gc_pauses_seconds_bucket{le="0.000458752"} 32376
+go_gc_pauses_seconds_bucket{le="0.000786432"} 32519
+go_gc_pauses_seconds_bucket{le="0.00131072"} 32527
+go_gc_pauses_seconds_bucket{le="0.002097152"} 32529
+go_gc_pauses_seconds_bucket{le="0.003670016"} 32529
+go_gc_pauses_seconds_bucket{le="0.007340032"} 32529
+go_gc_pauses_seconds_bucket{le="0.012582912"} 32529
+go_gc_pauses_seconds_bucket{le="0.02097152"} 32529
+go_gc_pauses_seconds_bucket{le="0.033554432"} 32529
+go_gc_pauses_seconds_bucket{le="0.058720256"} 32529
+go_gc_pauses_seconds_bucket{le="0.100663296"} 32529
+go_gc_pauses_seconds_bucket{le="0.16777216"} 32529
+go_gc_pauses_seconds_bucket{le="0.268435456"} 32529
+go_gc_pauses_seconds_bucket{le="0.469762048"} 32529
+go_gc_pauses_seconds_bucket{le="0.805306368"} 32529
+go_gc_pauses_seconds_bucket{le="+Inf"} 32529
+go_scavenge_cpu_seconds_total 1.056239875
+go_memlimit_bytes 9223372036854775807
+go_memstats_alloc_bytes 12612376
+go_memstats_alloc_bytes_total 25996707184
+go_memstats_buck_hash_sys_bytes 1700604
+go_memstats_frees_total 91157704
+go_memstats_gc_cpu_fraction 4.482986571619441e-05
+go_memstats_gc_sys_bytes 4601896
+go_memstats_heap_alloc_bytes 12612376
+go_memstats_heap_idle_bytes 6078464
+go_memstats_heap_inuse_bytes 13910016
+go_memstats_heap_objects 18281
+go_memstats_heap_released_bytes 4554752
+go_memstats_heap_sys_bytes 19988480
+go_memstats_last_gc_time_seconds 1.7041759219970465e+09
+go_memstats_lookups_total 0
+go_memstats_mallocs_total 91175985
+go_memstats_mcache_inuse_bytes 2400
+go_memstats_mcache_sys_bytes 15600
+go_memstats_mspan_inuse_bytes 92736
+go_memstats_mspan_sys_bytes 114072
+go_memstats_next_gc_bytes 14014400
+go_memstats_other_sys_bytes 552796
+go_memstats_stack_inuse_bytes 917504
+go_memstats_stack_sys_bytes 917504
+go_memstats_sys_bytes 27890952
+go_cgo_calls_count 69091
+go_cpu_count 48
+go_gc_duration_seconds{quantile="0"} 4.2608e-05
+go_gc_duration_seconds{quantile="0.25"} 5.883e-05
+go_gc_duration_seconds{quantile="0.5"} 7.6961e-05
+go_gc_duration_seconds{quantile="0.75"} 8.6533e-05
+go_gc_duration_seconds{quantile="1"} 0.000574299
+go_gc_duration_seconds_sum 1.477696719
+go_gc_duration_seconds_count 16264
+go_gc_forced_count 0
+go_gomaxprocs 2
+go_goroutines 95
+go_threads 10
+go_info{version="go1.21.5"} 1
+go_info_ext{compiler="gc", GOARCH="amd64", GOOS="linux", GOROOT=""} 1
+process_cpu_seconds_system_total 77.97
+process_cpu_seconds_total 562.88
+process_cpu_seconds_user_total 484.91
+process_major_pagefaults_total 0
+process_minor_pagefaults_total 2607429
+process_num_threads 9
+process_resident_memory_bytes 31678464
+process_start_time_seconds 1703837626
+process_virtual_memory_bytes 1273782272
+process_virtual_memory_peak_bytes 1276395520
+process_resident_memory_peak_bytes 32890880
+process_resident_memory_anon_bytes 21753856
+process_resident_memory_file_bytes 9924608
+process_resident_memory_shared_bytes 0
+process_io_read_bytes_total 401672942
+process_io_written_bytes_total 620176932
+process_io_read_syscalls_total 1033337
+process_io_write_syscalls_total 569087
+process_io_storage_read_bytes_total 0
+process_io_storage_written_bytes_total 4096
+metrics_push_block_size_bytes_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="6.813e+03...7.743e+03"} 1
+metrics_push_block_size_bytes_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="7.743e+03...8.799e+03"} 15
+metrics_push_block_size_bytes_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="8.799e+03...1.000e+04"} 5087
+metrics_push_block_size_bytes_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.000e+04...1.136e+04"} 17452
+metrics_push_block_size_bytes_sum{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 227290671
+metrics_push_block_size_bytes_count{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 22555
+metrics_push_bytes_pushed_total{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 227290671
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.000e-03...1.136e-03"} 1
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.136e-03...1.292e-03"} 1
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.292e-03...1.468e-03"} 7
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.468e-03...1.668e-03"} 32
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.668e-03...1.896e-03"} 98
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.896e-03...2.154e-03"} 892
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="2.154e-03...2.448e-03"} 2225
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="2.448e-03...2.783e-03"} 2431
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="2.783e-03...3.162e-03"} 1983
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="3.162e-03...3.594e-03"} 1698
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="3.594e-03...4.084e-03"} 1768
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="4.084e-03...4.642e-03"} 2442
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="4.642e-03...5.275e-03"} 2302
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="5.275e-03...5.995e-03"} 1923
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="5.995e-03...6.813e-03"} 1695
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="6.813e-03...7.743e-03"} 1488
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="7.743e-03...8.799e-03"} 956
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="8.799e-03...1.000e-02"} 418
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.000e-02...1.136e-02"} 140
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.136e-02...1.292e-02"} 45
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.292e-02...1.468e-02"} 6
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.668e-02...1.896e-02"} 1
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="2.783e-02...3.162e-02"} 1
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="3.162e-02...3.594e-02"} 1
+metrics_push_duration_seconds_bucket{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="5.275e-02...5.995e-02"} 1
+metrics_push_duration_seconds_sum{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 100.3532234519997
+metrics_push_duration_seconds_count{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 22555
+metrics_push_errors_total{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 0
+metrics_push_interval_seconds{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 15
+metrics_push_total{url="http://10.43.48.63:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 22555
+process_max_fds 1048576
+process_open_fds 28
+vm_app_version{version="vmagent-20231212-224644-tags-v1.96.0-0-g304fe0565", short_version="v1.96.0"} 1
+vm_allowed_memory_bytes 858993459
+vm_available_memory_bytes 1073741824
+vm_available_cpu_cores 2
+vm_gogc 30
+vm_app_start_timestamp 1703837626
+vm_app_uptime_seconds 338334
+flag{name="blockcache.missesBeforeCaching", value="2", is_set="false"} 1
+flag{name="cacheExpireDuration", value="30m0s", is_set="false"} 1
+flag{name="configAuthKey", value="secret", is_set="false"} 1
+flag{name="csvTrimTimestamp", value="1ms", is_set="false"} 1
+flag{name="datadog.maxInsertRequestSize", value="67108864", is_set="false"} 1
+flag{name="datadog.sanitizeMetricName", value="true", is_set="false"} 1
+flag{name="denyQueryTracing", value="false", is_set="false"} 1
+flag{name="dryRun", value="false", is_set="false"} 1
+flag{name="enableMultitenantHandlers", value="false", is_set="false"} 1
+flag{name="enableTCP6", value="false", is_set="false"} 1
+flag{name="envflag.enable", value="false", is_set="false"} 1
+flag{name="envflag.prefix", value="", is_set="false"} 1
+flag{name="filestream.disableFadvise", value="false", is_set="false"} 1
+flag{name="flagsAuthKey", value="secret", is_set="false"} 1
+flag{name="fs.disableMmap", value="false", is_set="false"} 1
+flag{name="graphiteListenAddr", value="", is_set="false"} 1
+flag{name="graphiteListenAddr.useProxyProtocol", value="false", is_set="false"} 1
+flag{name="graphiteTrimTimestamp", value="1s", is_set="false"} 1
+flag{name="http.connTimeout", value="2m0s", is_set="false"} 1
+flag{name="http.disableResponseCompression", value="false", is_set="false"} 1
+flag{name="http.header.csp", value="", is_set="false"} 1
+flag{name="http.header.frameOptions", value="", is_set="false"} 1
+flag{name="http.header.hsts", value="", is_set="false"} 1
+flag{name="http.idleConnTimeout", value="1m0s", is_set="false"} 1
+flag{name="http.maxGracefulShutdownDuration", value="7s", is_set="false"} 1
+flag{name="http.pathPrefix", value="/metrics-data-source-cluster-vm-agent/", is_set="true"} 1
+flag{name="http.shutdownDelay", value="0s", is_set="false"} 1
+flag{name="httpAuth.password", value="secret", is_set="false"} 1
+flag{name="httpAuth.username", value="", is_set="false"} 1
+flag{name="httpListenAddr", value=":8429", is_set="true"} 1
+flag{name="httpListenAddr.useProxyProtocol", value="false", is_set="false"} 1
+flag{name="import.maxLineLen", value="10485760", is_set="false"} 1
+flag{name="influx.databaseNames", value="", is_set="false"} 1
+flag{name="influx.maxLineSize", value="262144", is_set="false"} 1
+flag{name="influxDBLabel", value="db", is_set="false"} 1
+flag{name="influxListenAddr", value="", is_set="false"} 1
+flag{name="influxListenAddr.useProxyProtocol", value="false", is_set="false"} 1
+flag{name="influxMeasurementFieldSeparator", value="_", is_set="false"} 1
+flag{name="influxSkipMeasurement", value="false", is_set="false"} 1
+flag{name="influxSkipSingleField", value="false", is_set="false"} 1
+flag{name="influxTrimTimestamp", value="1ms", is_set="false"} 1
+flag{name="insert.maxQueueDuration", value="1m0s", is_set="false"} 1
+flag{name="internStringCacheExpireDuration", value="6m0s", is_set="false"} 1
+flag{name="internStringDisableCache", value="false", is_set="false"} 1
+flag{name="internStringMaxLen", value="500", is_set="false"} 1
+flag{name="loggerDisableTimestamps", value="true", is_set="true"} 1
+flag{name="loggerErrorsPerSecondLimit", value="0", is_set="false"} 1
+flag{name="loggerFormat", value="json", is_set="true"} 1
+flag{name="loggerJSONFields", value="", is_set="false"} 1
+flag{name="loggerLevel", value="INFO", is_set="true"} 1
+flag{name="loggerMaxArgLen", value="1000", is_set="false"} 1
+flag{name="loggerOutput", value="stdout", is_set="true"} 1
+flag{name="loggerTimezone", value="UTC", is_set="false"} 1
+flag{name="loggerWarnsPerSecondLimit", value="0", is_set="false"} 1
+flag{name="maxConcurrentInserts", value="8", is_set="true"} 1
+flag{name="maxInsertRequestSize", value="32MB", is_set="true"} 1
+flag{name="memory.allowedBytes", value="0", is_set="false"} 1
+flag{name="memory.allowedPercent", value="80", is_set="true"} 1
+flag{name="metricsAuthKey", value="secret", is_set="false"} 1
+flag{name="newrelic.maxInsertRequestSize", value="67108864", is_set="false"} 1
+flag{name="opentsdbHTTPListenAddr", value="", is_set="false"} 1
+flag{name="opentsdbHTTPListenAddr.useProxyProtocol", value="false", is_set="false"} 1
+flag{name="opentsdbListenAddr", value="", is_set="false"} 1
+flag{name="opentsdbListenAddr.useProxyProtocol", value="false", is_set="false"} 1
+flag{name="opentsdbTrimTimestamp", value="1s", is_set="false"} 1
+flag{name="opentsdbhttp.maxInsertRequestSize", value="33554432", is_set="false"} 1
+flag{name="opentsdbhttpTrimTimestamp", value="1ms", is_set="false"} 1
+flag{name="pprofAuthKey", value="secret", is_set="false"} 1
+flag{name="prevCacheRemovalPercent", value="0.1", is_set="false"} 1
+flag{name="promscrape.azureSDCheckInterval", value="1m0s", is_set="false"} 1
+flag{name="promscrape.cluster.memberLabel", value="", is_set="false"} 1
+flag{name="promscrape.cluster.memberNum", value="1", is_set="true"} 1
+flag{name="promscrape.cluster.memberURLTemplate", value="", is_set="false"} 1
+flag{name="promscrape.cluster.membersCount", value="2", is_set="true"} 1
+flag{name="promscrape.cluster.name", value="self-monitor-cluster-vm-agent-1", is_set="true"} 1
+flag{name="promscrape.cluster.replicationFactor", value="1", is_set="true"} 1
+flag{name="promscrape.config", value="/configs/file_sd_configs.yaml", is_set="true"} 1
+flag{name="promscrape.config.dryRun", value="false", is_set="false"} 1
+flag{name="promscrape.config.strictParse", value="true", is_set="true"} 1
+flag{name="promscrape.configCheckInterval", value="1m0s", is_set="true"} 1
+flag{name="promscrape.consul.waitTime", value="0s", is_set="false"} 1
+flag{name="promscrape.consulSDCheckInterval", value="30s", is_set="false"} 1
+flag{name="promscrape.consulagentSDCheckInterval", value="30s", is_set="false"} 1
+flag{name="promscrape.digitaloceanSDCheckInterval", value="1m0s", is_set="false"} 1
+flag{name="promscrape.disableCompression", value="false", is_set="false"} 1
+flag{name="promscrape.disableKeepAlive", value="false", is_set="false"} 1
+flag{name="promscrape.discovery.concurrency", value="100", is_set="false"} 1
+flag{name="promscrape.discovery.concurrentWaitTime", value="1m0s", is_set="false"} 1
+flag{name="promscrape.dnsSDCheckInterval", value="30s", is_set="false"} 1
+flag{name="promscrape.dockerSDCheckInterval", value="30s", is_set="false"} 1
+flag{name="promscrape.dockerswarmSDCheckInterval", value="30s", is_set="false"} 1
+flag{name="promscrape.dropOriginalLabels", value="false", is_set="false"} 1
+flag{name="promscrape.ec2SDCheckInterval", value="1m0s", is_set="false"} 1
+flag{name="promscrape.eurekaSDCheckInterval", value="30s", is_set="false"} 1
+flag{name="promscrape.fileSDCheckInterval", value="1m0s", is_set="true"} 1
+flag{name="promscrape.gceSDCheckInterval", value="1m0s", is_set="false"} 1
+flag{name="promscrape.httpSDCheckInterval", value="1m0s", is_set="true"} 1
+flag{name="promscrape.kubernetes.apiServerTimeout", value="30m0s", is_set="false"} 1
+flag{name="promscrape.kubernetesSDCheckInterval", value="30s", is_set="false"} 1
+flag{name="promscrape.kumaSDCheckInterval", value="30s", is_set="false"} 1
+flag{name="promscrape.maxDroppedTargets", value="1000", is_set="false"} 1
+flag{name="promscrape.maxResponseHeadersSize", value="4096", is_set="false"} 1
+flag{name="promscrape.maxScrapeSize", value="16MB", is_set="true"} 1
+flag{name="promscrape.minResponseSizeForStreamParse", value="1000000", is_set="false"} 1
+flag{name="promscrape.noStaleMarkers", value="false", is_set="false"} 1
+flag{name="promscrape.nomad.waitTime", value="0s", is_set="false"} 1
+flag{name="promscrape.nomadSDCheckInterval", value="30s", is_set="false"} 1
+flag{name="promscrape.openstackSDCheckInterval", value="30s", is_set="false"} 1
+flag{name="promscrape.seriesLimitPerTarget", value="50000", is_set="true"} 1
+flag{name="promscrape.streamParse", value="false", is_set="false"} 1
+flag{name="promscrape.suppressDuplicateScrapeTargetErrors", value="false", is_set="false"} 1
+flag{name="promscrape.suppressScrapeErrors", value="false", is_set="false"} 1
+flag{name="promscrape.suppressScrapeErrorsDelay", value="0s", is_set="false"} 1
+flag{name="promscrape.yandexcloudSDCheckInterval", value="30s", is_set="false"} 1
+flag{name="pushmetrics.extraLabel", value="\"region=\\\"HK\\\"\",\"env=\\\"test\\\"\",\"cluster=\\\"metrics-data-source-cluster\\\"\",\"role=\\\"vm-agent\\\"\",\"container_ip=\\\"10.42.0.115\\\"\",\"container_name=\\\"metrics-data-source-cluster-vm-agent-1-56d897d49b-tc2l4\\\"\"", is_set="true"} 1
+flag{name="pushmetrics.interval", value="15s", is_set="true"} 1
+flag{name="pushmetrics.url", value="secret", is_set="true"} 1
+flag{name="remoteWrite.aws.accessKey", value="secret", is_set="false"} 1
+flag{name="remoteWrite.aws.ec2Endpoint", value="", is_set="false"} 1
+flag{name="remoteWrite.aws.region", value="", is_set="false"} 1
+flag{name="remoteWrite.aws.roleARN", value="", is_set="false"} 1
+flag{name="remoteWrite.aws.secretKey", value="secret", is_set="false"} 1
+flag{name="remoteWrite.aws.service", value="", is_set="false"} 1
+flag{name="remoteWrite.aws.stsEndpoint", value="", is_set="false"} 1
+flag{name="remoteWrite.aws.useSigv4", value="", is_set="false"} 1
+flag{name="remoteWrite.basicAuth.password", value="secret", is_set="false"} 1
+flag{name="remoteWrite.basicAuth.passwordFile", value="secret", is_set="false"} 1
+flag{name="remoteWrite.basicAuth.username", value="", is_set="false"} 1
+flag{name="remoteWrite.bearerToken", value="secret", is_set="false"} 1
+flag{name="remoteWrite.bearerTokenFile", value="secret", is_set="false"} 1
+flag{name="remoteWrite.disableOnDiskQueue", value="true", is_set="true"} 1
+flag{name="remoteWrite.dropSamplesOnOverload", value="true", is_set="true"} 1
+flag{name="remoteWrite.flushInterval", value="15s", is_set="true"} 1
+flag{name="remoteWrite.forcePromProto", value="", is_set="false"} 1
+flag{name="remoteWrite.forceVMProto", value="", is_set="false"} 1
+flag{name="remoteWrite.headers", value="", is_set="false"} 1
+flag{name="remoteWrite.keepDanglingQueues", value="false", is_set="false"} 1
+flag{name="remoteWrite.label", value="", is_set="false"} 1
+flag{name="remoteWrite.maxBlockSize", value="8388608", is_set="false"} 1
+flag{name="remoteWrite.maxDailySeries", value="0", is_set="false"} 1
+flag{name="remoteWrite.maxDiskUsagePerURL", value="", is_set="false"} 1
+flag{name="remoteWrite.maxHourlySeries", value="0", is_set="false"} 1
+flag{name="remoteWrite.maxRowsPerBlock", value="10000", is_set="false"} 1
+flag{name="remoteWrite.multitenantURL", value="", is_set="false"} 1
+flag{name="remoteWrite.oauth2.clientID", value="", is_set="false"} 1
+flag{name="remoteWrite.oauth2.clientSecret", value="secret", is_set="false"} 1
+flag{name="remoteWrite.oauth2.clientSecretFile", value="secret", is_set="false"} 1
+flag{name="remoteWrite.oauth2.scopes", value="", is_set="false"} 1
+flag{name="remoteWrite.oauth2.tokenUrl", value="secret", is_set="false"} 1
+flag{name="remoteWrite.proxyURL", value="", is_set="false"} 1
+flag{name="remoteWrite.queues", value="4", is_set="false"} 1
+flag{name="remoteWrite.rateLimit", value="", is_set="false"} 1
+flag{name="remoteWrite.relabelConfig", value="", is_set="false"} 1
+flag{name="remoteWrite.roundDigits", value="", is_set="false"} 1
+flag{name="remoteWrite.sendTimeout", value="", is_set="false"} 1
+flag{name="remoteWrite.shardByURL", value="false", is_set="false"} 1
+flag{name="remoteWrite.shardByURL.labels", value="", is_set="false"} 1
+flag{name="remoteWrite.showURL", value="false", is_set="false"} 1
+flag{name="remoteWrite.significantFigures", value="", is_set="false"} 1
+flag{name="remoteWrite.streamAggr.config", value="", is_set="false"} 1
+flag{name="remoteWrite.streamAggr.dedupInterval", value="", is_set="false"} 1
+flag{name="remoteWrite.streamAggr.dropInput", value="", is_set="false"} 1
+flag{name="remoteWrite.streamAggr.keepInput", value="", is_set="false"} 1
+flag{name="remoteWrite.tlsCAFile", value="", is_set="false"} 1
+flag{name="remoteWrite.tlsCertFile", value="", is_set="false"} 1
+flag{name="remoteWrite.tlsInsecureSkipVerify", value="", is_set="false"} 1
+flag{name="remoteWrite.tlsKeyFile", value="secret", is_set="false"} 1
+flag{name="remoteWrite.tlsServerName", value="", is_set="false"} 1
+flag{name="remoteWrite.tmpDataPath", value="vmagent-remotewrite-data", is_set="false"} 1
+flag{name="remoteWrite.url", value="secret", is_set="true"} 1
+flag{name="remoteWrite.urlRelabelConfig", value="", is_set="false"} 1
+flag{name="remoteWrite.vmProtoCompressLevel", value="0", is_set="false"} 1
+flag{name="sortLabels", value="false", is_set="false"} 1
+flag{name="tls", value="false", is_set="false"} 1
+flag{name="tlsCertFile", value="", is_set="false"} 1
+flag{name="tlsCipherSuites", value="", is_set="false"} 1
+flag{name="tlsKeyFile", value="secret", is_set="false"} 1
+flag{name="tlsMinVersion", value="", is_set="false"} 1
+flag{name="usePromCompatibleNaming", value="false", is_set="false"} 1
+flag{name="version", value="false", is_set="false"} 1

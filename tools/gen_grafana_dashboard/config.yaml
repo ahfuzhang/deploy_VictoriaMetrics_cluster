@@ -1,0 +1,28 @@
+
+dashboard:
+  uid: ""
+  title: "vm-insert"
+  description: ""
+  labels: "cluster=~\"$cluster\",region=~\"$region\",env=~\"$env\",role=\"vm-insert\",instance=~\"$instance\",container_ip=~\"$container_ip\",container_name=~\"$container_name\""
+  metrics:
+    counter:
+    gauge:
+      vm_cache_chars_current:
+        unit: short
+      vm_cache_entries:
+      vm_cache_chars_current:
+      vm_cache_entries:
+      vm_rpc_rows_pending:
+      vm_tcpdialer_conns:
+      vm_tcplistener_conns:
+    heatmap:
+    value:
+      vm_promscrape_config_last_reload_successful:
+      vm_cache_chars_max:
+      vm_concurrent_insert_capacity:
+      vm_concurrent_insert_current:
+      vm_rpc_vmstorage_is_reachable:
+      vm_rpc_vmstorage_is_read_only:
+    timestamp_value:
+      vm_promscrape_config_last_reload_success_timestamp_seconds:
+    text:

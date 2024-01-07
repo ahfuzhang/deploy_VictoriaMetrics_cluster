@@ -29,7 +29,7 @@ docker-run:
 	  -e count_index=0 \
 	  -e storage_base_path=/vm-data/historical-cluster/ \
 	  -e s3_storage_base_path=/metrics/vmstorage-backup/realtime-cluster/daily/ \
-	  -e push_metrics_addr= \
+	  -e push_metrics_addr=http://host.docker.internal:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus \
 	  -e CONTAINER_IP=127.0.0.1 \
 	  -e CONTAINER_NAME=xxxx \
 	  -e AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID) \
@@ -37,7 +37,7 @@ docker-run:
 	  -e AWS_REGION=$(AWS_REGION) \
 	  -e AWS_BUCKET=$(AWS_BUCKET) \
 	  -e n_days_before=3 \
-	  -e debug=0 \
+	  -e debug=1 \
 	  -v ./data:/vm-data/ \
 	  vm-historical:v1.95.1 \
 	  /bin/sh /daily.sh

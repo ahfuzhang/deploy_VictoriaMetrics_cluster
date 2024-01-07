@@ -4,6 +4,10 @@ FROM --platform=linux/amd64 victoriametrics/vmstorage:v1.95.1-cluster as builder
 #FROM --platform=linux/amd64 victoriametrics/vmselect:v1.95.1-cluster as builder3
 
 FROM --platform=linux/amd64 alpine:3.16
+RUN apk update \
+	&& apk add curl
+
+
 COPY --from=builder1 /vmrestore-prod /vmrestore-prod
 COPY --from=builder2 /vmstorage-prod /vmstorage-prod
 #COPY --from=builder3 /vmselect-prod /vmselect-prod

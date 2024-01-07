@@ -1,0 +1,17 @@
+
+dashboard:
+  uid: ""
+  title: "alert-manager"
+  description: ""
+  labels: "cluster=~\"$cluster\",region=~\"$region\",env=~\"$env\",role=\"alert-manager\",instance=~\"$instance\",container_ip=~\"$container_ip\",container_name=~\"$container_name\""
+  metrics:
+    counter:
+    guage:
+      alertmanager_alerts:
+      alertmanager_http_requests_in_flight:
+      alertmanager_marked_alerts:
+      alertmanager_silences:
+    heatmap:
+    value:
+    timestamp_value:
+    text:

@@ -148,7 +148,7 @@ resource "kubernetes_stateful_set" "historical-cluster-vm-storage" {
           }
           env {
             name  = "n_days_before"
-            value = "5"
+            value = "1"
             # yesterday = 1
             # the day before yesterday = 2
             # 15 before days = 15

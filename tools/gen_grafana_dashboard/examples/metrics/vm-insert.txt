@@ -1,0 +1,675 @@
+process_cpu_cores_available 2
+process_memory_limit_bytes 2147483648
+vm_cache_chars_current{type="promql/regexp"} 0
+vm_cache_chars_max{type="promql/regexp"} 1000000
+vm_cache_entries{type="promql/regexp"} 0
+vm_cache_misses_total{type="promql/regexp"} 0
+vm_cache_requests_total{type="promql/regexp"} 0
+vm_concurrent_insert_capacity 8
+vm_concurrent_insert_current 0
+vm_concurrent_insert_limit_reached_total 0
+vm_concurrent_insert_limit_timeout_total 0
+vm_filestream_buffered_read_bytes_total 0
+vm_filestream_buffered_read_calls_total 0
+vm_filestream_buffered_write_calls_total 0
+vm_filestream_buffered_written_bytes_total 0
+vm_filestream_read_duration_seconds_total 0
+vm_filestream_readers 0
+vm_filestream_real_read_bytes_total 0
+vm_filestream_real_read_calls_total 0
+vm_filestream_real_write_calls_total 0
+vm_filestream_real_written_bytes_total 0
+vm_filestream_write_duration_seconds_total 0
+vm_filestream_writers 0
+vm_fs_read_bytes_total 0
+vm_fs_read_calls_total 0
+vm_fs_readers 0
+vm_http_conn_timeout_closed_conns_total 27840
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.292e-05...1.468e-05"} 1
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.468e-05...1.668e-05"} 2
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.668e-05...1.896e-05"} 8
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.896e-05...2.154e-05"} 5
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="2.154e-05...2.448e-05"} 57
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="2.448e-05...2.783e-05"} 581
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="2.783e-05...3.162e-05"} 262
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="3.162e-05...3.594e-05"} 132
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="3.594e-05...4.084e-05"} 114
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="4.084e-05...4.642e-05"} 159
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="4.642e-05...5.275e-05"} 369
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="5.275e-05...5.995e-05"} 141
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="5.995e-05...6.813e-05"} 80
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="6.813e-05...7.743e-05"} 35
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="7.743e-05...8.799e-05"} 40
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="8.799e-05...1.000e-04"} 53
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.000e-04...1.136e-04"} 19
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.136e-04...1.292e-04"} 9
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.292e-04...1.468e-04"} 3
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.468e-04...1.668e-04"} 1
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.668e-04...1.896e-04"} 11
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.896e-04...2.154e-04"} 17
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="2.154e-04...2.448e-04"} 27
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="2.448e-04...2.783e-04"} 22
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="2.783e-04...3.162e-04"} 20
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="3.162e-04...3.594e-04"} 30
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="3.594e-04...4.084e-04"} 43
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="4.084e-04...4.642e-04"} 77
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="4.642e-04...5.275e-04"} 154
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="5.275e-04...5.995e-04"} 283
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="5.995e-04...6.813e-04"} 632
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="6.813e-04...7.743e-04"} 231
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="7.743e-04...8.799e-04"} 262
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="8.799e-04...1.000e-03"} 109
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.000e-03...1.136e-03"} 90
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.136e-03...1.292e-03"} 111
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.292e-03...1.468e-03"} 240
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.468e-03...1.668e-03"} 292
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.668e-03...1.896e-03"} 333
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="1.896e-03...2.154e-03"} 540
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="2.154e-03...2.448e-03"} 989
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="2.448e-03...2.783e-03"} 1387
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="2.783e-03...3.162e-03"} 902
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="3.162e-03...3.594e-03"} 1785
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="3.594e-03...4.084e-03"} 1936
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="4.084e-03...4.642e-03"} 694
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="4.642e-03...5.275e-03"} 323
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="5.275e-03...5.995e-03"} 54
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="5.995e-03...6.813e-03"} 13
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="7.743e-03...8.799e-03"} 1
+vm_http_request_duration_seconds_bucket{path="/metrics",vmrange="8.799e-03...1.000e-02"} 4
+vm_http_request_duration_seconds_sum{path="/metrics"} 31.025734258000153
+vm_http_request_duration_seconds_count{path="/metrics"} 13683
+vm_http_request_errors_total{path="*", reason="unsupported"} 1
+vm_http_request_errors_total{path="*", reason="wrong_auth_key"} 0
+vm_http_request_errors_total{path="*", reason="wrong_basic_auth"} 0
+vm_http_request_errors_total{path="/insert/{}/datadog/api/v1/series", protocol="datadog"} 0
+vm_http_request_errors_total{path="/insert/{}/influx/write", protocol="influx"} 0
+vm_http_request_errors_total{path="/insert/{}/newrelic/infra/v2/metrics/events/bulk", protocol="newrelic"} 0
+vm_http_request_errors_total{path="/insert/{}/opentelemetry/api/v1/push", protocol="opentelemetry"} 0
+vm_http_request_errors_total{path="/insert/{}/prometheus/", protocol="promremotewrite"} 0
+vm_http_request_errors_total{path="/insert/{}/prometheus/api/v1/import", protocol="vmimport"} 0
+vm_http_request_errors_total{path="/insert/{}/prometheus/api/v1/import/csv", protocol="csvimport"} 0
+vm_http_request_errors_total{path="/insert/{}/prometheus/api/v1/import/native", protocol="nativeimport"} 0
+vm_http_request_errors_total{path="/insert/{}/prometheus/api/v1/import/prometheus", protocol="prometheusimport"} 0
+vm_http_requests_all_total 306363
+vm_http_requests_total{path="*/favicon.ico"} 0
+vm_http_requests_total{path="/debug/pprof/"} 0
+vm_http_requests_total{path="/debug/pprof/cmdline"} 0
+vm_http_requests_total{path="/debug/pprof/default"} 0
+vm_http_requests_total{path="/debug/pprof/mutex"} 0
+vm_http_requests_total{path="/debug/pprof/profile"} 0
+vm_http_requests_total{path="/debug/pprof/symbol"} 0
+vm_http_requests_total{path="/debug/pprof/trace"} 0
+vm_http_requests_total{path="/insert/{}/datadog/api/v1/check_run", protocol="datadog"} 0
+vm_http_requests_total{path="/insert/{}/datadog/api/v1/metadata", protocol="datadog"} 0
+vm_http_requests_total{path="/insert/{}/datadog/api/v1/series", protocol="datadog"} 0
+vm_http_requests_total{path="/insert/{}/datadog/api/v1/validate", protocol="datadog"} 0
+vm_http_requests_total{path="/insert/{}/datadog/intake", protocol="datadog"} 0
+vm_http_requests_total{path="/insert/{}/influx/query", protocol="influx"} 0
+vm_http_requests_total{path="/insert/{}/influx/write", protocol="influx"} 0
+vm_http_requests_total{path="/insert/{}/newrelic", protocol="newrelic"} 0
+vm_http_requests_total{path="/insert/{}/newrelic/infra/v2/metrics/events/bulk", protocol="newrelic"} 0
+vm_http_requests_total{path="/insert/{}/newrelic/inventory/deltas", protocol="newrelic"} 0
+vm_http_requests_total{path="/insert/{}/opentelemetry/api/v1/push", protocol="opentelemetry"} 0
+vm_http_requests_total{path="/insert/{}/prometheus/", protocol="promremotewrite"} 35641
+vm_http_requests_total{path="/insert/{}/prometheus/api/v1/import", protocol="vmimport"} 0
+vm_http_requests_total{path="/insert/{}/prometheus/api/v1/import/csv", protocol="csvimport"} 0
+vm_http_requests_total{path="/insert/{}/prometheus/api/v1/import/native", protocol="nativeimport"} 0
+vm_http_requests_total{path="/insert/{}/prometheus/api/v1/import/prometheus", protocol="prometheusimport"} 257034
+vm_http_requests_total{path="/metrics"} 13684
+vm_ingestserver_request_errors_total{type="clusternative", net="tcp"} 0
+vm_ingestserver_request_errors_total{type="graphite", name="write", net="tcp"} 0
+vm_ingestserver_request_errors_total{type="graphite", name="write", net="udp"} 0
+vm_ingestserver_request_errors_total{type="influx", name="write", net="tcp"} 0
+vm_ingestserver_request_errors_total{type="influx", name="write", net="udp"} 0
+vm_ingestserver_request_errors_total{type="opentsdb", name="write", net="tcp"} 0
+vm_ingestserver_request_errors_total{type="opentsdb", name="write", net="udp"} 0
+vm_ingestserver_request_errors_total{type="opentsdbhttp", name="write", net="tcp"} 0
+vm_ingestserver_requests_total{type="clusternative", net="tcp"} 0
+vm_ingestserver_requests_total{type="graphite", name="write", net="tcp"} 0
+vm_ingestserver_requests_total{type="graphite", name="write", net="udp"} 0
+vm_ingestserver_requests_total{type="influx", name="write", net="tcp"} 0
+vm_ingestserver_requests_total{type="influx", name="write", net="udp"} 0
+vm_ingestserver_requests_total{type="opentsdb", name="write", net="tcp"} 0
+vm_ingestserver_requests_total{type="opentsdb", name="write", net="udp"} 0
+vm_ingestserver_requests_total{type="opentsdbhttp", name="write", net="tcp"} 0
+vm_log_messages_total{app_version="vminsert-20231212-224957-tags-v1.96.0-cluster-0-gd59ee93d0", level="info", location="VictoriaMetrics/app/vminsert/main.go:100"} 1
+vm_log_messages_total{app_version="vminsert-20231212-224957-tags-v1.96.0-cluster-0-gd59ee93d0", level="info", location="VictoriaMetrics/app/vminsert/main.go:119"} 1
+vm_log_messages_total{app_version="vminsert-20231212-224957-tags-v1.96.0-cluster-0-gd59ee93d0", level="info", location="VictoriaMetrics/app/vminsert/netstorage/netstorage.go:273"} 2
+vm_log_messages_total{app_version="vminsert-20231212-224957-tags-v1.96.0-cluster-0-gd59ee93d0", level="info", location="VictoriaMetrics/lib/httpserver/httpserver.go:101"} 1
+vm_log_messages_total{app_version="vminsert-20231212-224957-tags-v1.96.0-cluster-0-gd59ee93d0", level="info", location="VictoriaMetrics/lib/httpserver/httpserver.go:102"} 1
+vm_log_messages_total{app_version="vminsert-20231212-224957-tags-v1.96.0-cluster-0-gd59ee93d0", level="info", location="VictoriaMetrics/lib/ingestserver/clusternative/server.go:43"} 1
+vm_log_messages_total{app_version="vminsert-20231212-224957-tags-v1.96.0-cluster-0-gd59ee93d0", level="info", location="VictoriaMetrics/lib/logger/flag.go:12"} 1
+vm_log_messages_total{app_version="vminsert-20231212-224957-tags-v1.96.0-cluster-0-gd59ee93d0", level="info", location="VictoriaMetrics/lib/logger/flag.go:13"} 1
+vm_log_messages_total{app_version="vminsert-20231212-224957-tags-v1.96.0-cluster-0-gd59ee93d0", level="info", location="VictoriaMetrics/lib/logger/flag.go:20"} 16
+vm_log_messages_total{app_version="vminsert-20231212-224957-tags-v1.96.0-cluster-0-gd59ee93d0", level="info", location="VictoriaMetrics/lib/memory/memory.go:42"} 1
+vm_log_messages_total{app_version="vminsert-20231212-224957-tags-v1.96.0-cluster-0-gd59ee93d0", level="warn", location="VictoriaMetrics/lib/httpserver/httpserver.go:282"} 1
+vm_metrics_with_dropped_labels_total 0
+vm_nfs_dir_remove_failed_attempts_total 0
+vm_nfs_pending_dirs_to_remove 0
+vm_protoparser_blocks_read_total{type="clusternative"} 0
+vm_protoparser_blocks_read_total{type="native"} 0
+vm_protoparser_parse_errors_total{type="clusternative"} 0
+vm_protoparser_parse_errors_total{type="native"} 0
+vm_protoparser_process_errors_total{type="clusternative"} 0
+vm_protoparser_process_errors_total{type="native"} 0
+vm_protoparser_read_calls_total{type="csvimport"} 0
+vm_protoparser_read_calls_total{type="datadog"} 0
+vm_protoparser_read_calls_total{type="graphite"} 0
+vm_protoparser_read_calls_total{type="influx"} 0
+vm_protoparser_read_calls_total{type="native"} 0
+vm_protoparser_read_calls_total{type="newrelic"} 0
+vm_protoparser_read_calls_total{type="opentsdb"} 0
+vm_protoparser_read_calls_total{type="opentsdbhttp"} 0
+vm_protoparser_read_calls_total{type="prometheus"} 1489653
+vm_protoparser_read_calls_total{type="promremotewrite"} 35641
+vm_protoparser_read_calls_total{type="vmimport"} 0
+vm_protoparser_read_errors_total{type="clusternative"} 0
+vm_protoparser_read_errors_total{type="csvimport"} 0
+vm_protoparser_read_errors_total{type="datadog"} 0
+vm_protoparser_read_errors_total{type="graphite"} 0
+vm_protoparser_read_errors_total{type="influx"} 0
+vm_protoparser_read_errors_total{type="native"} 0
+vm_protoparser_read_errors_total{type="newrelic"} 0
+vm_protoparser_read_errors_total{type="opentsdb"} 0
+vm_protoparser_read_errors_total{type="opentsdbhttp"} 0
+vm_protoparser_read_errors_total{type="prometheus"} 0
+vm_protoparser_read_errors_total{type="promremotewrite"} 0
+vm_protoparser_read_errors_total{type="vmimport"} 0
+vm_protoparser_rows_dropped_total{type="opentelemetry",reason="unsupported_histogram_aggregation"} 0
+vm_protoparser_rows_dropped_total{type="opentelemetry",reason="unsupported_metric_type"} 0
+vm_protoparser_rows_dropped_total{type="opentelemetry",reason="unsupported_sum_aggregation"} 0
+vm_protoparser_rows_read_total{type="clusternative"} 0
+vm_protoparser_rows_read_total{type="csvimport"} 0
+vm_protoparser_rows_read_total{type="datadog"} 0
+vm_protoparser_rows_read_total{type="graphite"} 0
+vm_protoparser_rows_read_total{type="influx"} 0
+vm_protoparser_rows_read_total{type="native"} 0
+vm_protoparser_rows_read_total{type="opentelemetry"} 0
+vm_protoparser_rows_read_total{type="opentsdb"} 0
+vm_protoparser_rows_read_total{type="opentsdbhttp"} 0
+vm_protoparser_rows_read_total{type="prometheus"} 166568760
+vm_protoparser_rows_read_total{type="promremotewrite"} 14871209
+vm_protoparser_rows_read_total{type="promscrape"} 166568760
+vm_protoparser_rows_read_total{type="vmimport"} 0
+vm_protoparser_unmarshal_errors_total{type="datadog"} 0
+vm_protoparser_unmarshal_errors_total{type="newrelic"} 0
+vm_protoparser_unmarshal_errors_total{type="opentsdbhttp"} 0
+vm_protoparser_unmarshal_errors_total{type="promremotewrite"} 0
+vm_protoparser_write_errors_total{type="clusternative"} 0
+vm_relabel_config_last_reload_success_timestamp_seconds 1703831980
+vm_relabel_config_last_reload_successful 1
+vm_relabel_config_reloads_errors_total 0
+vm_relabel_config_reloads_total 0
+vm_relabel_metrics_dropped_total 0
+vm_rows_inserted_total{type="clusternative"} 0
+vm_rows_inserted_total{type="csvimport"} 0
+vm_rows_inserted_total{type="datadog"} 0
+vm_rows_inserted_total{type="graphite"} 0
+vm_rows_inserted_total{type="influx"} 0
+vm_rows_inserted_total{type="native"} 0
+vm_rows_inserted_total{type="newrelic"} 0
+vm_rows_inserted_total{type="opentelemetry"} 0
+vm_rows_inserted_total{type="opentsdb"} 0
+vm_rows_inserted_total{type="opentsdbhttp"} 0
+vm_rows_inserted_total{type="prometheus"} 166568760
+vm_rows_inserted_total{type="promremotewrite"} 14871209
+vm_rows_inserted_total{type="vmimport"} 0
+vm_rows_invalid_total{type="csvimport"} 0
+vm_rows_invalid_total{type="graphite"} 0
+vm_rows_invalid_total{type="influx"} 0
+vm_rows_invalid_total{type="opentsdb"} 0
+vm_rows_invalid_total{type="opentsdbhttp"} 0
+vm_rows_invalid_total{type="prometheus"} 0
+vm_rows_invalid_total{type="vmimport"} 0
+vm_rows_per_insert_bucket{type="prometheus",vmrange="8.799e-01...1.000e+00"} 2303
+vm_rows_per_insert_bucket{type="prometheus",vmrange="1.896e+00...2.154e+00"} 2236
+vm_rows_per_insert_bucket{type="prometheus",vmrange="2.783e+00...3.162e+00"} 1534
+vm_rows_per_insert_bucket{type="prometheus",vmrange="3.594e+00...4.084e+00"} 1691
+vm_rows_per_insert_bucket{type="prometheus",vmrange="4.642e+00...5.275e+00"} 475
+vm_rows_per_insert_bucket{type="prometheus",vmrange="5.995e+00...6.813e+00"} 1279
+vm_rows_per_insert_bucket{type="prometheus",vmrange="6.813e+00...7.743e+00"} 389
+vm_rows_per_insert_bucket{type="prometheus",vmrange="7.743e+00...8.799e+00"} 291
+vm_rows_per_insert_bucket{type="prometheus",vmrange="8.799e+00...1.000e+01"} 498
+vm_rows_per_insert_bucket{type="prometheus",vmrange="1.000e+01...1.136e+01"} 233
+vm_rows_per_insert_bucket{type="prometheus",vmrange="1.136e+01...1.292e+01"} 162
+vm_rows_per_insert_bucket{type="prometheus",vmrange="1.292e+01...1.468e+01"} 1243
+vm_rows_per_insert_bucket{type="prometheus",vmrange="1.468e+01...1.668e+01"} 878
+vm_rows_per_insert_bucket{type="prometheus",vmrange="1.668e+01...1.896e+01"} 1319
+vm_rows_per_insert_bucket{type="prometheus",vmrange="1.896e+01...2.154e+01"} 1683
+vm_rows_per_insert_bucket{type="prometheus",vmrange="2.154e+01...2.448e+01"} 1510
+vm_rows_per_insert_bucket{type="prometheus",vmrange="2.448e+01...2.783e+01"} 1996
+vm_rows_per_insert_bucket{type="prometheus",vmrange="2.783e+01...3.162e+01"} 4601
+vm_rows_per_insert_bucket{type="prometheus",vmrange="3.162e+01...3.594e+01"} 4894
+vm_rows_per_insert_bucket{type="prometheus",vmrange="3.594e+01...4.084e+01"} 2883
+vm_rows_per_insert_bucket{type="prometheus",vmrange="4.084e+01...4.642e+01"} 4356
+vm_rows_per_insert_bucket{type="prometheus",vmrange="4.642e+01...5.275e+01"} 9615
+vm_rows_per_insert_bucket{type="prometheus",vmrange="5.275e+01...5.995e+01"} 4403
+vm_rows_per_insert_bucket{type="prometheus",vmrange="5.995e+01...6.813e+01"} 9370
+vm_rows_per_insert_bucket{type="prometheus",vmrange="6.813e+01...7.743e+01"} 10465
+vm_rows_per_insert_bucket{type="prometheus",vmrange="7.743e+01...8.799e+01"} 7573
+vm_rows_per_insert_bucket{type="prometheus",vmrange="8.799e+01...1.000e+02"} 15798
+vm_rows_per_insert_bucket{type="prometheus",vmrange="1.000e+02...1.136e+02"} 23442
+vm_rows_per_insert_bucket{type="prometheus",vmrange="1.136e+02...1.292e+02"} 170557
+vm_rows_per_insert_bucket{type="prometheus",vmrange="1.292e+02...1.468e+02"} 611752
+vm_rows_per_insert_bucket{type="prometheus",vmrange="1.468e+02...1.668e+02"} 232413
+vm_rows_per_insert_bucket{type="prometheus",vmrange="1.668e+02...1.896e+02"} 100777
+vm_rows_per_insert_sum{type="prometheus"} 166568760
+vm_rows_per_insert_count{type="prometheus"} 1232619
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="8.799e-01...1.000e+00"} 526
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="2.783e+00...3.162e+00"} 4
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="4.642e+00...5.275e+00"} 38
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="6.813e+00...7.743e+00"} 20
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="7.743e+00...8.799e+00"} 3
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="8.799e+00...1.000e+01"} 8477
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="1.000e+01...1.136e+01"} 9
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="1.136e+01...1.292e+01"} 2
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="1.292e+01...1.468e+01"} 17
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="1.468e+01...1.668e+01"} 18
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="1.668e+01...1.896e+01"} 2913
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="1.896e+01...2.154e+01"} 200
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="2.154e+01...2.448e+01"} 47
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="2.448e+01...2.783e+01"} 3
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="1.136e+02...1.292e+02"} 3
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="1.292e+02...1.468e+02"} 398
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="1.468e+02...1.668e+02"} 43
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="2.448e+02...2.783e+02"} 12
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="2.783e+02...3.162e+02"} 1
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="3.162e+02...3.594e+02"} 609
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="3.594e+02...4.084e+02"} 1551
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="4.084e+02...4.642e+02"} 47
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="4.642e+02...5.275e+02"} 3838
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="5.275e+02...5.995e+02"} 7135
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="5.995e+02...6.813e+02"} 7154
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="6.813e+02...7.743e+02"} 1077
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="7.743e+02...8.799e+02"} 7
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="8.799e+02...1.000e+03"} 5
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="1.000e+03...1.136e+03"} 152
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="1.136e+03...1.292e+03"} 42
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="1.292e+03...1.468e+03"} 637
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="1.468e+03...1.668e+03"} 53
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="1.668e+03...1.896e+03"} 3
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="1.896e+03...2.154e+03"} 565
+vm_rows_per_insert_bucket{type="promremotewrite",vmrange="2.448e+03...2.783e+03"} 32
+vm_rows_per_insert_sum{type="promremotewrite"} 14871209
+vm_rows_per_insert_count{type="promremotewrite"} 35641
+vm_rpc_rerouted_rows_processed_total{name="vminsert"} 0
+vm_rpc_reroutes_total{name="vminsert"} 0
+vm_rpc_rows_incompletely_replicated_total{name="vminsert"} 0
+vm_tcplistener_accepts_total{name="clusternative", addr=":7400"} 0
+vm_tcplistener_accepts_total{name="http", addr=":8480"} 30246
+vm_tcplistener_conns{name="clusternative", addr=":7400"} 0
+vm_tcplistener_conns{name="http", addr=":8480"} 19
+vm_tcplistener_errors_total{name="clusternative", addr=":7400", type="accept"} 0
+vm_tcplistener_errors_total{name="clusternative", addr=":7400", type="close"} 0
+vm_tcplistener_errors_total{name="clusternative", addr=":7400", type="read"} 0
+vm_tcplistener_errors_total{name="clusternative", addr=":7400", type="write"} 0
+vm_tcplistener_errors_total{name="http", addr=":8480", type="accept"} 0
+vm_tcplistener_errors_total{name="http", addr=":8480", type="close"} 0
+vm_tcplistener_errors_total{name="http", addr=":8480", type="read"} 0
+vm_tcplistener_errors_total{name="http", addr=":8480", type="write"} 0
+vm_tcplistener_read_bytes_total{name="clusternative", addr=":7400"} 0
+vm_tcplistener_read_bytes_total{name="http", addr=":8480"} 2190629842
+vm_tcplistener_read_calls_total{name="clusternative", addr=":7400"} 0
+vm_tcplistener_read_calls_total{name="http", addr=":8480"} 994625
+vm_tcplistener_read_timeouts_total{name="clusternative", addr=":7400"} 0
+vm_tcplistener_read_timeouts_total{name="http", addr=":8480"} 1941
+vm_tcplistener_write_calls_total{name="clusternative", addr=":7400"} 0
+vm_tcplistener_write_calls_total{name="http", addr=":8480"} 322061
+vm_tcplistener_write_timeouts_total{name="clusternative", addr=":7400"} 0
+vm_tcplistener_write_timeouts_total{name="http", addr=":8480"} 0
+vm_tcplistener_written_bytes_total{name="clusternative", addr=":7400"} 0
+vm_tcplistener_written_bytes_total{name="http", addr=":8480"} 165992229
+vm_tenant_inserted_rows_total{type="prometheus",accountID="0",projectID="0"} 166568760
+vm_tenant_inserted_rows_total{type="promremotewrite",accountID="0",projectID="0"} 14871209
+vm_too_long_label_names_total 0
+vm_too_long_label_values_total 0
+vm_zstd_block_compress_calls_total 0
+vm_zstd_block_compressed_bytes_total 0
+vm_zstd_block_decompress_calls_total 0
+vm_zstd_block_original_bytes_total 0
+vminsert_request_duration_seconds_bucket{vmrange="1.000e-05...1.136e-05"} 1
+vminsert_request_duration_seconds_bucket{vmrange="1.136e-05...1.292e-05"} 9
+vminsert_request_duration_seconds_bucket{vmrange="1.292e-05...1.468e-05"} 7
+vminsert_request_duration_seconds_bucket{vmrange="1.468e-05...1.668e-05"} 15
+vminsert_request_duration_seconds_bucket{vmrange="1.668e-05...1.896e-05"} 23
+vminsert_request_duration_seconds_bucket{vmrange="1.896e-05...2.154e-05"} 31
+vminsert_request_duration_seconds_bucket{vmrange="2.154e-05...2.448e-05"} 47
+vminsert_request_duration_seconds_bucket{vmrange="2.448e-05...2.783e-05"} 45
+vminsert_request_duration_seconds_bucket{vmrange="2.783e-05...3.162e-05"} 35
+vminsert_request_duration_seconds_bucket{vmrange="3.162e-05...3.594e-05"} 38
+vminsert_request_duration_seconds_bucket{vmrange="3.594e-05...4.084e-05"} 52
+vminsert_request_duration_seconds_bucket{vmrange="4.084e-05...4.642e-05"} 49
+vminsert_request_duration_seconds_bucket{vmrange="4.642e-05...5.275e-05"} 52
+vminsert_request_duration_seconds_bucket{vmrange="5.275e-05...5.995e-05"} 61
+vminsert_request_duration_seconds_bucket{vmrange="5.995e-05...6.813e-05"} 112
+vminsert_request_duration_seconds_bucket{vmrange="6.813e-05...7.743e-05"} 412
+vminsert_request_duration_seconds_bucket{vmrange="7.743e-05...8.799e-05"} 189
+vminsert_request_duration_seconds_bucket{vmrange="8.799e-05...1.000e-04"} 260
+vminsert_request_duration_seconds_bucket{vmrange="1.000e-04...1.136e-04"} 279
+vminsert_request_duration_seconds_bucket{vmrange="1.136e-04...1.292e-04"} 335
+vminsert_request_duration_seconds_bucket{vmrange="1.292e-04...1.468e-04"} 670
+vminsert_request_duration_seconds_bucket{vmrange="1.468e-04...1.668e-04"} 1184
+vminsert_request_duration_seconds_bucket{vmrange="1.668e-04...1.896e-04"} 2048
+vminsert_request_duration_seconds_bucket{vmrange="1.896e-04...2.154e-04"} 1966
+vminsert_request_duration_seconds_bucket{vmrange="2.154e-04...2.448e-04"} 1320
+vminsert_request_duration_seconds_bucket{vmrange="2.448e-04...2.783e-04"} 859
+vminsert_request_duration_seconds_bucket{vmrange="2.783e-04...3.162e-04"} 338
+vminsert_request_duration_seconds_bucket{vmrange="3.162e-04...3.594e-04"} 195
+vminsert_request_duration_seconds_bucket{vmrange="3.594e-04...4.084e-04"} 201
+vminsert_request_duration_seconds_bucket{vmrange="4.084e-04...4.642e-04"} 269
+vminsert_request_duration_seconds_bucket{vmrange="4.642e-04...5.275e-04"} 1413
+vminsert_request_duration_seconds_bucket{vmrange="5.275e-04...5.995e-04"} 2930
+vminsert_request_duration_seconds_bucket{vmrange="5.995e-04...6.813e-04"} 4670
+vminsert_request_duration_seconds_bucket{vmrange="6.813e-04...7.743e-04"} 7581
+vminsert_request_duration_seconds_bucket{vmrange="7.743e-04...8.799e-04"} 14517
+vminsert_request_duration_seconds_bucket{vmrange="8.799e-04...1.000e-03"} 41321
+vminsert_request_duration_seconds_bucket{vmrange="1.000e-03...1.136e-03"} 15712
+vminsert_request_duration_seconds_bucket{vmrange="1.136e-03...1.292e-03"} 42810
+vminsert_request_duration_seconds_bucket{vmrange="1.292e-03...1.468e-03"} 19870
+vminsert_request_duration_seconds_bucket{vmrange="1.468e-03...1.668e-03"} 13392
+vminsert_request_duration_seconds_bucket{vmrange="1.668e-03...1.896e-03"} 14175
+vminsert_request_duration_seconds_bucket{vmrange="1.896e-03...2.154e-03"} 9633
+vminsert_request_duration_seconds_bucket{vmrange="2.154e-03...2.448e-03"} 8419
+vminsert_request_duration_seconds_bucket{vmrange="2.448e-03...2.783e-03"} 9836
+vminsert_request_duration_seconds_bucket{vmrange="2.783e-03...3.162e-03"} 11448
+vminsert_request_duration_seconds_bucket{vmrange="3.162e-03...3.594e-03"} 12651
+vminsert_request_duration_seconds_bucket{vmrange="3.594e-03...4.084e-03"} 10707
+vminsert_request_duration_seconds_bucket{vmrange="4.084e-03...4.642e-03"} 7861
+vminsert_request_duration_seconds_bucket{vmrange="4.642e-03...5.275e-03"} 6455
+vminsert_request_duration_seconds_bucket{vmrange="5.275e-03...5.995e-03"} 5189
+vminsert_request_duration_seconds_bucket{vmrange="5.995e-03...6.813e-03"} 4217
+vminsert_request_duration_seconds_bucket{vmrange="6.813e-03...7.743e-03"} 4012
+vminsert_request_duration_seconds_bucket{vmrange="7.743e-03...8.799e-03"} 4216
+vminsert_request_duration_seconds_bucket{vmrange="8.799e-03...1.000e-02"} 2972
+vminsert_request_duration_seconds_bucket{vmrange="1.000e-02...1.136e-02"} 1968
+vminsert_request_duration_seconds_bucket{vmrange="1.136e-02...1.292e-02"} 1165
+vminsert_request_duration_seconds_bucket{vmrange="1.292e-02...1.468e-02"} 634
+vminsert_request_duration_seconds_bucket{vmrange="1.468e-02...1.668e-02"} 385
+vminsert_request_duration_seconds_bucket{vmrange="1.668e-02...1.896e-02"} 292
+vminsert_request_duration_seconds_bucket{vmrange="1.896e-02...2.154e-02"} 189
+vminsert_request_duration_seconds_bucket{vmrange="2.154e-02...2.448e-02"} 149
+vminsert_request_duration_seconds_bucket{vmrange="2.448e-02...2.783e-02"} 144
+vminsert_request_duration_seconds_bucket{vmrange="2.783e-02...3.162e-02"} 195
+vminsert_request_duration_seconds_bucket{vmrange="3.162e-02...3.594e-02"} 189
+vminsert_request_duration_seconds_bucket{vmrange="3.594e-02...4.084e-02"} 135
+vminsert_request_duration_seconds_bucket{vmrange="4.084e-02...4.642e-02"} 79
+vminsert_request_duration_seconds_bucket{vmrange="4.642e-02...5.275e-02"} 34
+vminsert_request_duration_seconds_bucket{vmrange="5.275e-02...5.995e-02"} 6
+vminsert_request_duration_seconds_bucket{vmrange="5.995e-02...6.813e-02"} 4
+vminsert_request_duration_seconds_bucket{vmrange="6.813e-02...7.743e-02"} 1
+vminsert_request_duration_seconds_sum 690.0378325719947
+vminsert_request_duration_seconds_count 292678
+vm_rpc_buf_pending_bytes{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 0
+vm_rpc_buf_pending_bytes{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 0
+vm_rpc_connection_errors_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 0
+vm_rpc_connection_errors_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 0
+vm_rpc_dial_errors_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 0
+vm_rpc_dial_errors_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 0
+vm_rpc_handshake_errors_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 0
+vm_rpc_handshake_errors_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 0
+vm_rpc_rows_dropped_on_overload_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 0
+vm_rpc_rows_dropped_on_overload_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 0
+vm_rpc_rows_pending{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 0
+vm_rpc_rows_pending{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 0
+vm_rpc_rows_pushed_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 90373409
+vm_rpc_rows_pushed_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 91066560
+vm_rpc_rows_rerouted_from_here_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 0
+vm_rpc_rows_rerouted_from_here_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 0
+vm_rpc_rows_rerouted_to_here_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 0
+vm_rpc_rows_rerouted_to_here_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 0
+vm_rpc_rows_sent_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 181439969
+vm_rpc_rows_sent_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 181439969
+vm_rpc_send_duration_seconds_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 354.34548497699535
+vm_rpc_send_duration_seconds_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 359.9688832730118
+vm_rpc_vmstorage_is_reachable{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 1
+vm_rpc_vmstorage_is_reachable{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 1
+vm_rpc_vmstorage_is_read_only{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 0
+vm_rpc_vmstorage_is_read_only{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 0
+vm_tcpdialer_conns{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 1
+vm_tcpdialer_conns{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 1
+vm_tcpdialer_dials_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 1
+vm_tcpdialer_dials_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 1
+vm_tcpdialer_errors_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400", type="close"} 0
+vm_tcpdialer_errors_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400", type="dial"} 0
+vm_tcpdialer_errors_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400", type="read"} 0
+vm_tcpdialer_errors_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400", type="write"} 0
+vm_tcpdialer_errors_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400", type="close"} 0
+vm_tcpdialer_errors_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400", type="dial"} 0
+vm_tcpdialer_errors_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400", type="read"} 0
+vm_tcpdialer_errors_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400", type="write"} 0
+vm_tcpdialer_read_bytes_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 442650
+vm_tcpdialer_read_bytes_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 442650
+vm_tcpdialer_read_calls_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 442648
+vm_tcpdialer_read_calls_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 442648
+vm_tcpdialer_read_timeouts_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 0
+vm_tcpdialer_read_timeouts_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 0
+vm_tcpdialer_write_calls_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 548608
+vm_tcpdialer_write_calls_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 548608
+vm_tcpdialer_write_timeouts_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 0
+vm_tcpdialer_write_timeouts_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 0
+vm_tcpdialer_written_bytes_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-0:8400"} 2355291939
+vm_tcpdialer_written_bytes_total{name="vminsert", addr="self-monitor-cluster-vm-storage-service-for-insert-1:8400"} 2353127395
+go_sched_latencies_seconds_bucket{le="0"} 0
+go_sched_latencies_seconds_bucket{le="2.56e-07"} 1096102
+go_sched_latencies_seconds_bucket{le="4.48e-07"} 1261881
+go_sched_latencies_seconds_bucket{le="7.68e-07"} 1344058
+go_sched_latencies_seconds_bucket{le="1.28e-06"} 1372492
+go_sched_latencies_seconds_bucket{le="2.048e-06"} 1387350
+go_sched_latencies_seconds_bucket{le="3.584e-06"} 1519896
+go_sched_latencies_seconds_bucket{le="6.144e-06"} 1866623
+go_sched_latencies_seconds_bucket{le="1.024e-05"} 2032586
+go_sched_latencies_seconds_bucket{le="1.6384e-05"} 2180167
+go_sched_latencies_seconds_bucket{le="3.2768e-05"} 2242139
+go_sched_latencies_seconds_bucket{le="5.7344e-05"} 2257501
+go_sched_latencies_seconds_bucket{le="9.8304e-05"} 2349171
+go_sched_latencies_seconds_bucket{le="0.00016384"} 2394650
+go_sched_latencies_seconds_bucket{le="0.000262144"} 2438082
+go_sched_latencies_seconds_bucket{le="0.000458752"} 2473167
+go_sched_latencies_seconds_bucket{le="0.000786432"} 2493902
+go_sched_latencies_seconds_bucket{le="0.00131072"} 2503961
+go_sched_latencies_seconds_bucket{le="0.002097152"} 2509569
+go_sched_latencies_seconds_bucket{le="0.003670016"} 2511586
+go_sched_latencies_seconds_bucket{le="0.007340032"} 2512070
+go_sched_latencies_seconds_bucket{le="0.012582912"} 2512110
+go_sched_latencies_seconds_bucket{le="0.02097152"} 2512115
+go_sched_latencies_seconds_bucket{le="0.033554432"} 2512116
+go_sched_latencies_seconds_bucket{le="0.058720256"} 2512116
+go_sched_latencies_seconds_bucket{le="0.100663296"} 2512116
+go_sched_latencies_seconds_bucket{le="0.16777216"} 2512116
+go_sched_latencies_seconds_bucket{le="0.268435456"} 2512116
+go_sched_latencies_seconds_bucket{le="0.469762048"} 2512116
+go_sched_latencies_seconds_bucket{le="0.805306368"} 2512116
+go_sched_latencies_seconds_bucket{le="+Inf"} 2512116
+go_mutex_wait_seconds_total 47.001133536
+go_gc_mark_assist_cpu_seconds_total 90.025637397
+go_gc_cpu_seconds_total 275.353315008
+go_gc_pauses_seconds_bucket{le="0"} 0
+go_gc_pauses_seconds_bucket{le="2.56e-07"} 0
+go_gc_pauses_seconds_bucket{le="4.48e-07"} 0
+go_gc_pauses_seconds_bucket{le="7.68e-07"} 0
+go_gc_pauses_seconds_bucket{le="1.28e-06"} 0
+go_gc_pauses_seconds_bucket{le="2.048e-06"} 12
+go_gc_pauses_seconds_bucket{le="3.584e-06"} 3920
+go_gc_pauses_seconds_bucket{le="6.144e-06"} 49730
+go_gc_pauses_seconds_bucket{le="1.024e-05"} 65303
+go_gc_pauses_seconds_bucket{le="1.6384e-05"} 66901
+go_gc_pauses_seconds_bucket{le="3.2768e-05"} 124957
+go_gc_pauses_seconds_bucket{le="5.7344e-05"} 177120
+go_gc_pauses_seconds_bucket{le="9.8304e-05"} 219344
+go_gc_pauses_seconds_bucket{le="0.00016384"} 249231
+go_gc_pauses_seconds_bucket{le="0.000262144"} 254620
+go_gc_pauses_seconds_bucket{le="0.000458752"} 258655
+go_gc_pauses_seconds_bucket{le="0.000786432"} 259746
+go_gc_pauses_seconds_bucket{le="0.00131072"} 259926
+go_gc_pauses_seconds_bucket{le="0.002097152"} 259962
+go_gc_pauses_seconds_bucket{le="0.003670016"} 259965
+go_gc_pauses_seconds_bucket{le="0.007340032"} 259967
+go_gc_pauses_seconds_bucket{le="0.012582912"} 259967
+go_gc_pauses_seconds_bucket{le="0.02097152"} 259967
+go_gc_pauses_seconds_bucket{le="0.033554432"} 259967
+go_gc_pauses_seconds_bucket{le="0.058720256"} 259967
+go_gc_pauses_seconds_bucket{le="0.100663296"} 259967
+go_gc_pauses_seconds_bucket{le="0.16777216"} 259967
+go_gc_pauses_seconds_bucket{le="0.268435456"} 259967
+go_gc_pauses_seconds_bucket{le="0.469762048"} 259967
+go_gc_pauses_seconds_bucket{le="0.805306368"} 259967
+go_gc_pauses_seconds_bucket{le="+Inf"} 259967
+go_scavenge_cpu_seconds_total 42.872321978
+go_memlimit_bytes 9223372036854775807
+go_memstats_alloc_bytes 8291848
+go_memstats_alloc_bytes_total 155554848104
+go_memstats_buck_hash_sys_bytes 1679907
+go_memstats_frees_total 42415269
+go_memstats_gc_cpu_fraction 0.00023875545322263154
+go_memstats_gc_sys_bytes 4114720
+go_memstats_heap_alloc_bytes 8291848
+go_memstats_heap_idle_bytes 19316736
+go_memstats_heap_inuse_bytes 9224192
+go_memstats_heap_objects 6046
+go_memstats_heap_released_bytes 17670144
+go_memstats_heap_sys_bytes 28540928
+go_memstats_last_gc_time_seconds 1.7042450814546719e+09
+go_memstats_lookups_total 0
+go_memstats_mallocs_total 42421315
+go_memstats_mcache_inuse_bytes 2400
+go_memstats_mcache_sys_bytes 15600
+go_memstats_mspan_inuse_bytes 67200
+go_memstats_mspan_sys_bytes 97776
+go_memstats_next_gc_bytes 9250600
+go_memstats_other_sys_bytes 552677
+go_memstats_stack_inuse_bytes 753664
+go_memstats_stack_sys_bytes 753664
+go_memstats_sys_bytes 35755272
+go_cgo_calls_count 2114428
+go_cpu_count 48
+go_gc_duration_seconds{quantile="0"} 1.9789e-05
+go_gc_duration_seconds{quantile="0.25"} 5.8706e-05
+go_gc_duration_seconds{quantile="0.5"} 8.495e-05
+go_gc_duration_seconds{quantile="0.75"} 0.00011883
+go_gc_duration_seconds{quantile="1"} 0.00100738
+go_gc_duration_seconds_sum 14.332787427
+go_gc_duration_seconds_count 129983
+go_gc_forced_count 0
+go_gomaxprocs 2
+go_goroutines 49
+go_threads 11
+go_info{version="go1.21.5"} 1
+go_info_ext{compiler="gc", GOARCH="amd64", GOOS="linux", GOROOT=""} 1
+process_cpu_seconds_system_total 476.26
+process_cpu_seconds_total 2204.13
+process_cpu_seconds_user_total 1727.87
+process_major_pagefaults_total 0
+process_minor_pagefaults_total 28831746
+process_num_threads 10
+process_resident_memory_bytes 23998464
+process_start_time_seconds 1703831980
+process_virtual_memory_bytes 1271705600
+process_virtual_memory_peak_bytes 1272098816
+process_resident_memory_peak_bytes 39215104
+process_resident_memory_anon_bytes 16510976
+process_resident_memory_file_bytes 7487488
+process_resident_memory_shared_bytes 0
+process_io_read_bytes_total 2215132212
+process_io_written_bytes_total 4876148341
+process_io_read_syscalls_total 4881122
+process_io_write_syscalls_total 3152144
+process_io_storage_read_bytes_total 0
+process_io_storage_written_bytes_total 0
+process_max_fds 1048576
+process_open_fds 30
+vm_app_version{version="vminsert-20231212-224957-tags-v1.96.0-cluster-0-gd59ee93d0", short_version="v1.96.0-cluster"} 1
+vm_allowed_memory_bytes 1717986918
+vm_available_memory_bytes 2147483648
+vm_available_cpu_cores 2
+vm_gogc 30
+vm_app_start_timestamp 1703831980
+vm_app_uptime_seconds 413105
+flag{name="blockcache.missesBeforeCaching", value="2", is_set="false"} 1
+flag{name="cacheExpireDuration", value="30m0s", is_set="false"} 1
+flag{name="clusternative.vminsertConnsShutdownDuration", value="25s", is_set="false"} 1
+flag{name="clusternativeListenAddr", value=":7400", is_set="true"} 1
+flag{name="csvTrimTimestamp", value="1ms", is_set="false"} 1
+flag{name="datadog.maxInsertRequestSize", value="67108864", is_set="false"} 1
+flag{name="datadog.sanitizeMetricName", value="true", is_set="false"} 1
+flag{name="denyQueryTracing", value="false", is_set="false"} 1
+flag{name="disableRerouting", value="true", is_set="false"} 1
+flag{name="dropSamplesOnOverload", value="true", is_set="true"} 1
+flag{name="enableTCP6", value="false", is_set="false"} 1
+flag{name="envflag.enable", value="false", is_set="false"} 1
+flag{name="envflag.prefix", value="", is_set="false"} 1
+flag{name="filestream.disableFadvise", value="false", is_set="false"} 1
+flag{name="flagsAuthKey", value="secret", is_set="false"} 1
+flag{name="fs.disableMmap", value="false", is_set="false"} 1
+flag{name="graphiteListenAddr", value="", is_set="false"} 1
+flag{name="graphiteListenAddr.useProxyProtocol", value="false", is_set="false"} 1
+flag{name="graphiteTrimTimestamp", value="1s", is_set="false"} 1
+flag{name="http.connTimeout", value="2m0s", is_set="false"} 1
+flag{name="http.disableResponseCompression", value="false", is_set="false"} 1
+flag{name="http.header.csp", value="", is_set="false"} 1
+flag{name="http.header.frameOptions", value="", is_set="false"} 1
+flag{name="http.header.hsts", value="", is_set="false"} 1
+flag{name="http.idleConnTimeout", value="1m0s", is_set="false"} 1
+flag{name="http.maxGracefulShutdownDuration", value="7s", is_set="false"} 1
+flag{name="http.pathPrefix", value="/self-monitor-cluster-insert/", is_set="true"} 1
+flag{name="http.shutdownDelay", value="0s", is_set="false"} 1
+flag{name="httpAuth.password", value="secret", is_set="false"} 1
+flag{name="httpAuth.username", value="", is_set="false"} 1
+flag{name="httpListenAddr", value=":8480", is_set="true"} 1
+flag{name="httpListenAddr.useProxyProtocol", value="false", is_set="false"} 1
+flag{name="import.maxLineLen", value="10485760", is_set="false"} 1
+flag{name="influx.databaseNames", value="", is_set="false"} 1
+flag{name="influx.maxLineSize", value="262144", is_set="false"} 1
+flag{name="influxDBLabel", value="db", is_set="false"} 1
+flag{name="influxListenAddr", value="", is_set="false"} 1
+flag{name="influxListenAddr.useProxyProtocol", value="false", is_set="false"} 1
+flag{name="influxMeasurementFieldSeparator", value="_", is_set="false"} 1
+flag{name="influxSkipMeasurement", value="false", is_set="false"} 1
+flag{name="influxSkipSingleField", value="false", is_set="false"} 1
+flag{name="influxTrimTimestamp", value="1ms", is_set="false"} 1
+flag{name="insert.maxQueueDuration", value="1m0s", is_set="true"} 1
+flag{name="internStringCacheExpireDuration", value="6m0s", is_set="false"} 1
+flag{name="internStringDisableCache", value="false", is_set="false"} 1
+flag{name="internStringMaxLen", value="500", is_set="false"} 1
+flag{name="loggerDisableTimestamps", value="true", is_set="true"} 1
+flag{name="loggerErrorsPerSecondLimit", value="0", is_set="false"} 1
+flag{name="loggerFormat", value="json", is_set="true"} 1
+flag{name="loggerJSONFields", value="", is_set="false"} 1
+flag{name="loggerLevel", value="INFO", is_set="true"} 1
+flag{name="loggerMaxArgLen", value="1000", is_set="false"} 1
+flag{name="loggerOutput", value="stdout", is_set="true"} 1
+flag{name="loggerTimezone", value="UTC", is_set="false"} 1
+flag{name="loggerWarnsPerSecondLimit", value="0", is_set="false"} 1
+flag{name="maxConcurrentInserts", value="8", is_set="true"} 1
+flag{name="maxInsertRequestSize", value="32MB", is_set="true"} 1
+flag{name="maxLabelValueLen", value="1024", is_set="true"} 1
+flag{name="maxLabelsPerTimeseries", value="30", is_set="true"} 1
+flag{name="memory.allowedBytes", value="0", is_set="false"} 1
+flag{name="memory.allowedPercent", value="80", is_set="true"} 1
+flag{name="metricsAuthKey", value="secret", is_set="false"} 1
+flag{name="newrelic.maxInsertRequestSize", value="67108864", is_set="false"} 1
+flag{name="opentsdbHTTPListenAddr", value="", is_set="false"} 1
+flag{name="opentsdbHTTPListenAddr.useProxyProtocol", value="false", is_set="false"} 1
+flag{name="opentsdbListenAddr", value="", is_set="false"} 1
+flag{name="opentsdbListenAddr.useProxyProtocol", value="false", is_set="false"} 1
+flag{name="opentsdbTrimTimestamp", value="1s", is_set="false"} 1
+flag{name="opentsdbhttp.maxInsertRequestSize", value="33554432", is_set="false"} 1
+flag{name="opentsdbhttpTrimTimestamp", value="1ms", is_set="false"} 1
+flag{name="pprofAuthKey", value="secret", is_set="false"} 1
+flag{name="prevCacheRemovalPercent", value="0.1", is_set="false"} 1
+flag{name="pushmetrics.extraLabel", value="", is_set="false"} 1
+flag{name="pushmetrics.interval", value="10s", is_set="false"} 1
+flag{name="pushmetrics.url", value="secret", is_set="false"} 1
+flag{name="relabelConfig", value="", is_set="false"} 1
+flag{name="replicationFactor", value="2", is_set="true"} 1
+flag{name="rpc.disableCompression", value="false", is_set="false"} 1
+flag{name="sortLabels", value="false", is_set="false"} 1
+flag{name="storageNode", value="self-monitor-cluster-vm-storage-service-for-insert-0:8400,self-monitor-cluster-vm-storage-service-for-insert-1:8400", is_set="true"} 1
+flag{name="tls", value="false", is_set="false"} 1
+flag{name="tlsCertFile", value="", is_set="false"} 1
+flag{name="tlsCipherSuites", value="", is_set="false"} 1
+flag{name="tlsKeyFile", value="secret", is_set="false"} 1
+flag{name="tlsMinVersion", value="", is_set="false"} 1
+flag{name="usePromCompatibleNaming", value="false", is_set="false"} 1
+flag{name="version", value="false", is_set="false"} 1
+flag{name="vmstorageDialTimeout", value="3s", is_set="false"} 1
+flag{name="vmstorageUserTimeout", value="3s", is_set="false"} 1

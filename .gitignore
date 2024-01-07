@@ -10,3 +10,4 @@ terraform/pvc/terraform.tfstate*
 terraform/pvc/.terraform.lock.hcl
 terraform/historical_cluster/data/
 terraform/historical_cluster/docker_image/data/
+.DS_Store

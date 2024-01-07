@@ -1,0 +1,29 @@
+
+dashboard:
+  uid: ""
+  title: "vm-storage"
+  description: ""
+  labels: "cluster=~\"$cluster\",region=~\"$region\",env=~\"$env\",role=\"vm-storage\",instance=~\"$instance\",container_ip=~\"$container_ip\",container_name=~\"$container_name\""
+  metrics:
+    counter:
+    guage:
+      vm_active_merges:
+      vm_blocks:
+      vm_cache_chars_current:
+      vm_cache_entries:
+      vm_object_references:
+      vm_part_references:
+      vm_partition_references:
+      vm_parts:
+      vm_pending_rows:
+      vm_rows:
+      vm_tcplistener_conns:
+      vm_vmselect_conns:
+    heatmap:
+    value:
+      vm_cache_chars_max:
+      vm_storage_is_read_only:
+      vm_cache_size_max_bytes:
+        unit: decbytes
+    timestamp_value:
+    text:

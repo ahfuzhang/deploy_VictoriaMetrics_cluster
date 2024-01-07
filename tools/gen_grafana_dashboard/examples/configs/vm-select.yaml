@@ -1,0 +1,24 @@
+
+dashboard:
+  uid: ""
+  title: "vm-select"
+  description: ""
+  labels: "cluster=~\"$cluster\",region=~\"$region\",env=~\"$env\",role=\"vm-select\",instance=~\"$instance\",container_ip=~\"$container_ip\",container_name=~\"$container_name\""
+  metrics:
+    counter:
+    guage:
+      vm_cache_chars_current:
+      vm_cache_entries:
+      vm_concurrent_queries:
+      vm_request_duration_seconds:
+        unit: s
+      vm_tcpdialer_conns:
+      vm_tcpdialer_conns_idle:
+      vm_tcplistener_conns:
+      vm_vmselect_conns:
+    heatmap:
+    value:
+      vm_cache_chars_max:
+      vm_tcpdialer_addr_available:
+    timestamp_value:
+    text:

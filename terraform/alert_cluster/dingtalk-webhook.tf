@@ -10,7 +10,7 @@ resource "kubernetes_config_map" "alert-cluster-dingtalk-webhook-configs" {
   }
 
   data = {
-    "webhook-dingtalk.yaml" = <<EOF
+    "webhook-dingtalk.yaml"         = <<EOF
 templates:
   - /configs/vm_errors_total.tmpl
 targets:
@@ -22,7 +22,7 @@ targets:
       title: '{{ template "vm_errors_total.link.title" . }}'
       text: '{{ template "vm_errors_total.link.content" . }}'
     EOF
-    "vm_errors_total.tmpl"  = <<EOF
+    "vm_errors_total.tmpl"          = <<EOF
 
 {{ define "__subject" }}[{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .GroupLabels.SortedPairs.Values | join " " }} {{ if gt (len .CommonLabels) (len .GroupLabels) }}({{ with .CommonLabels.Remove .GroupLabels.Names }}{{ .Values | join " " }}{{ end }}){{ end }}{{ end }}
 {{ define "__alertmanagerURL" }}{{ .ExternalURL }}/#/alerts?receiver={{ .Receiver }}{{ end }}
@@ -41,6 +41,9 @@ targets:
 #### \[{{ .Labels.severity | upper }}\] {{ .Annotations.summary }}
 
 **Description:** {{ .Labels.metric_name }} | {{ .Annotations.description }}
+
+
+**Event Time:** {{ dateInZone "2006.01.02 15:04:05" (.StartsAt) "UTC" }}
 
 **Graph:** [📈](http://${var.configs.realtime_cluster.domain}/d/fb6a6330-1a95-4a17-8886-374edcbf601f/golang-process-info-vm-version?orgId=1&var-ds=e8e45132-8b73-458c-b52e-c71c10a0bd4d&var-cluster={{ .Labels.cluster }}&var-region={{ .Labels.region }}&var-env={{ .Labels.env }}&var-role={{ .Labels.role }}&var-instance=All&var-container_ip={{ .Labels.container_ip }}&var-container_name=All)
 

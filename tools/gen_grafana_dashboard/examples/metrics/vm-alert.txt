@@ -1,0 +1,477 @@
+process_cpu_cores_available 1
+process_memory_limit_bytes 2147483648
+vm_cache_chars_current{type="promql/regexp"} 21
+vm_cache_chars_max{type="promql/regexp"} 1000000
+vm_cache_entries{type="promql/regexp"} 1
+vm_cache_misses_total{type="promql/regexp"} 1
+vm_cache_requests_total{type="promql/regexp"} 5427
+vm_filestream_buffered_read_bytes_total 0
+vm_filestream_buffered_read_calls_total 0
+vm_filestream_buffered_write_calls_total 0
+vm_filestream_buffered_written_bytes_total 0
+vm_filestream_read_duration_seconds_total 0
+vm_filestream_readers 0
+vm_filestream_real_read_bytes_total 0
+vm_filestream_real_read_calls_total 0
+vm_filestream_real_write_calls_total 0
+vm_filestream_real_written_bytes_total 0
+vm_filestream_write_duration_seconds_total 0
+vm_filestream_writers 0
+vm_fs_read_bytes_total 0
+vm_fs_read_calls_total 0
+vm_fs_readers 0
+vm_http_conn_timeout_closed_conns_total 0
+vm_http_request_errors_total{path="*", reason="unsupported"} 1
+vm_http_request_errors_total{path="*", reason="wrong_auth_key"} 0
+vm_http_request_errors_total{path="*", reason="wrong_basic_auth"} 0
+vm_http_requests_all_total 21
+vm_http_requests_total{path="*/favicon.ico"} 1
+vm_http_requests_total{path="/debug/pprof/"} 0
+vm_http_requests_total{path="/debug/pprof/cmdline"} 0
+vm_http_requests_total{path="/debug/pprof/default"} 0
+vm_http_requests_total{path="/debug/pprof/mutex"} 0
+vm_http_requests_total{path="/debug/pprof/profile"} 0
+vm_http_requests_total{path="/debug/pprof/symbol"} 0
+vm_http_requests_total{path="/debug/pprof/trace"} 0
+vm_http_requests_total{path="/metrics"} 1
+vm_log_messages_total{app_version="vmalert-20231212-224707-tags-v1.96.0-0-g304fe0565", level="error", location="VictoriaMetrics/app/vmalert/rule/group.go:363"} 9
+vm_log_messages_total{app_version="vmalert-20231212-224707-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/app/vmalert/config/log/logger.go:52"} 2
+vm_log_messages_total{app_version="vmalert-20231212-224707-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/app/vmalert/main.go:165"} 1
+vm_log_messages_total{app_version="vmalert-20231212-224707-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/app/vmalert/rule/group.go:479"} 2
+vm_log_messages_total{app_version="vmalert-20231212-224707-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/httpserver/httpserver.go:101"} 1
+vm_log_messages_total{app_version="vmalert-20231212-224707-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/httpserver/httpserver.go:102"} 1
+vm_log_messages_total{app_version="vmalert-20231212-224707-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/logger/flag.go:12"} 1
+vm_log_messages_total{app_version="vmalert-20231212-224707-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/logger/flag.go:13"} 1
+vm_log_messages_total{app_version="vmalert-20231212-224707-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/logger/flag.go:20"} 34
+vm_log_messages_total{app_version="vmalert-20231212-224707-tags-v1.96.0-0-g304fe0565", level="info", location="VictoriaMetrics/lib/memory/memory.go:42"} 1
+vm_log_messages_total{app_version="vmalert-20231212-224707-tags-v1.96.0-0-g304fe0565", level="warn", location="VictoriaMetrics/app/vmalert/remotewrite/client.go:248"} 10
+vm_log_messages_total{app_version="vmalert-20231212-224707-tags-v1.96.0-0-g304fe0565", level="warn", location="VictoriaMetrics/lib/httpserver/httpserver.go:282"} 1
+vm_nfs_dir_remove_failed_attempts_total 0
+vm_nfs_pending_dirs_to_remove 0
+vm_promscrape_discovery_consul_service_watchers 0
+vm_promscrape_discovery_consul_service_watchers_created_total 0
+vm_promscrape_discovery_consul_service_watchers_stopped_total 0
+vm_promscrape_discovery_requests_total 0
+vm_promscrape_discovery_retries_total 0
+vm_promscrape_discoveryutils_configmap_entries_count 0
+vm_protoparser_rows_read_total{type="promscrape"} 0
+vm_rows_invalid_total{type="prometheus"} 0
+vm_tcplistener_accepts_total{name="http", addr=":8880"} 22
+vm_tcplistener_conns{name="http", addr=":8880"} 2
+vm_tcplistener_errors_total{name="http", addr=":8880", type="accept"} 0
+vm_tcplistener_errors_total{name="http", addr=":8880", type="close"} 0
+vm_tcplistener_errors_total{name="http", addr=":8880", type="read"} 0
+vm_tcplistener_errors_total{name="http", addr=":8880", type="write"} 0
+vm_tcplistener_read_bytes_total{name="http", addr=":8880"} 16938
+vm_tcplistener_read_calls_total{name="http", addr=":8880"} 43
+vm_tcplistener_read_timeouts_total{name="http", addr=":8880"} 0
+vm_tcplistener_write_calls_total{name="http", addr=":8880"} 97
+vm_tcplistener_write_timeouts_total{name="http", addr=":8880"} 0
+vm_tcplistener_written_bytes_total{name="http", addr=":8880"} 368712
+vmalert_alerting_rules_errors_total{alertname="vm error total", group="rule 1", file="/rules/rules.yaml", id="15956109630687385135"} 0
+vmalert_alerting_rules_last_evaluation_samples{alertname="vm error total", group="rule 1", file="/rules/rules.yaml", id="15956109630687385135"} 6
+vmalert_alerting_rules_last_evaluation_series_fetched{alertname="vm error total", group="rule 1", file="/rules/rules.yaml", id="15956109630687385135"} 2704
+vmalert_alerts_fired_total 2235
+vmalert_alerts_firing{alertname="vm error total", group="rule 1", file="/rules/rules.yaml", id="15956109630687385135"} 5
+vmalert_alerts_pending{alertname="vm error total", group="rule 1", file="/rules/rules.yaml", id="15956109630687385135"} 1
+vmalert_alerts_send_errors_total{addr="http://alert-cluster-alert-manager-service:9093/api/v2/alerts"} 69
+vmalert_alerts_sent_total{addr="http://alert-cluster-alert-manager-service:9093/api/v2/alerts"} 33498
+vmalert_config_last_reload_errors_total 0
+vmalert_config_last_reload_success_timestamp_seconds 1704181308
+vmalert_config_last_reload_successful 1
+vmalert_config_last_reload_total 0
+vmalert_execution_errors_total 0
+vmalert_execution_total 5427
+vmalert_iteration_duration_seconds{group="rule 1", file="/rules/rules.yaml",quantile="0.5"} 0.13591583
+vmalert_iteration_duration_seconds{group="rule 1", file="/rules/rules.yaml",quantile="0.9"} 0.163060779
+vmalert_iteration_duration_seconds{group="rule 1", file="/rules/rules.yaml",quantile="0.97"} 0.163060779
+vmalert_iteration_duration_seconds{group="rule 1", file="/rules/rules.yaml",quantile="0.99"} 0.163060779
+vmalert_iteration_duration_seconds{group="rule 1", file="/rules/rules.yaml",quantile="1"} 0.163060779
+vmalert_iteration_duration_seconds_sum{group="rule 1", file="/rules/rules.yaml"} 632.4013850609986
+vmalert_iteration_duration_seconds_count{group="rule 1", file="/rules/rules.yaml"} 5427
+vmalert_iteration_interval_seconds{group="rule 1", file="/rules/rules.yaml"} 60
+vmalert_iteration_missed_total{group="rule 1", file="/rules/rules.yaml"} 0
+vmalert_iteration_total{group="rule 1", file="/rules/rules.yaml"} 5427
+vmalert_remotewrite_concurrency 2
+vmalert_remotewrite_dropped_bytes_total 0
+vmalert_remotewrite_dropped_rows_total 0
+vmalert_remotewrite_errors_total 0
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="2.154e-04...2.448e-04"} 1
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="2.448e-04...2.783e-04"} 3
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="2.783e-04...3.162e-04"} 4
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="3.162e-04...3.594e-04"} 13
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="3.594e-04...4.084e-04"} 6
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="4.084e-04...4.642e-04"} 7
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="4.642e-04...5.275e-04"} 18
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="5.275e-04...5.995e-04"} 71
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="5.995e-04...6.813e-04"} 200
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="6.813e-04...7.743e-04"} 350
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="7.743e-04...8.799e-04"} 410
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="8.799e-04...1.000e-03"} 465
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="1.000e-03...1.136e-03"} 656
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="1.136e-03...1.292e-03"} 515
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="1.292e-03...1.468e-03"} 473
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="1.468e-03...1.668e-03"} 610
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="1.668e-03...1.896e-03"} 537
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="1.896e-03...2.154e-03"} 689
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="2.154e-03...2.448e-03"} 401
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="2.448e-03...2.783e-03"} 239
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="2.783e-03...3.162e-03"} 134
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="3.162e-03...3.594e-03"} 579
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="3.594e-03...4.084e-03"} 518
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="4.084e-03...4.642e-03"} 1240
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="4.642e-03...5.275e-03"} 822
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="5.275e-03...5.995e-03"} 1077
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="5.995e-03...6.813e-03"} 355
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="6.813e-03...7.743e-03"} 181
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="7.743e-03...8.799e-03"} 167
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="8.799e-03...1.000e-02"} 40
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="1.000e-02...1.136e-02"} 22
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="1.136e-02...1.292e-02"} 26
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="1.292e-02...1.468e-02"} 7
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="1.468e-02...1.668e-02"} 1
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="1.668e-02...1.896e-02"} 1
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="2.783e-02...3.162e-02"} 2
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="3.594e-02...4.084e-02"} 2
+vmalert_remotewrite_flush_duration_seconds_bucket{vmrange="1.000e+00...1.136e+00"} 10
+vmalert_remotewrite_flush_duration_seconds_sum 44.03399176799975
+vmalert_remotewrite_flush_duration_seconds_count 10852
+vmalert_remotewrite_send_duration_seconds_total 43.5500619730001
+vmalert_remotewrite_sent_bytes_total 5365095
+vmalert_remotewrite_sent_rows_total 76390
+vmalert_remotewrite_total 76403
+go_sched_latencies_seconds_bucket{le="0"} 0
+go_sched_latencies_seconds_bucket{le="2.56e-07"} 226612
+go_sched_latencies_seconds_bucket{le="4.48e-07"} 232356
+go_sched_latencies_seconds_bucket{le="7.68e-07"} 238642
+go_sched_latencies_seconds_bucket{le="1.28e-06"} 263851
+go_sched_latencies_seconds_bucket{le="2.048e-06"} 343918
+go_sched_latencies_seconds_bucket{le="3.584e-06"} 382304
+go_sched_latencies_seconds_bucket{le="6.144e-06"} 388334
+go_sched_latencies_seconds_bucket{le="1.024e-05"} 391369
+go_sched_latencies_seconds_bucket{le="1.6384e-05"} 395764
+go_sched_latencies_seconds_bucket{le="3.2768e-05"} 397733
+go_sched_latencies_seconds_bucket{le="5.7344e-05"} 399645
+go_sched_latencies_seconds_bucket{le="9.8304e-05"} 400503
+go_sched_latencies_seconds_bucket{le="0.00016384"} 401618
+go_sched_latencies_seconds_bucket{le="0.000262144"} 403781
+go_sched_latencies_seconds_bucket{le="0.000458752"} 406085
+go_sched_latencies_seconds_bucket{le="0.000786432"} 407561
+go_sched_latencies_seconds_bucket{le="0.00131072"} 408661
+go_sched_latencies_seconds_bucket{le="0.002097152"} 409288
+go_sched_latencies_seconds_bucket{le="0.003670016"} 411301
+go_sched_latencies_seconds_bucket{le="0.007340032"} 414013
+go_sched_latencies_seconds_bucket{le="0.012582912"} 414122
+go_sched_latencies_seconds_bucket{le="0.02097152"} 414124
+go_sched_latencies_seconds_bucket{le="0.033554432"} 414124
+go_sched_latencies_seconds_bucket{le="0.058720256"} 414124
+go_sched_latencies_seconds_bucket{le="0.100663296"} 414124
+go_sched_latencies_seconds_bucket{le="0.16777216"} 414124
+go_sched_latencies_seconds_bucket{le="0.268435456"} 414124
+go_sched_latencies_seconds_bucket{le="0.469762048"} 414124
+go_sched_latencies_seconds_bucket{le="0.805306368"} 414124
+go_sched_latencies_seconds_bucket{le="+Inf"} 414124
+go_mutex_wait_seconds_total 0
+go_gc_mark_assist_cpu_seconds_total 11.871490655
+go_gc_cpu_seconds_total 17.643049782
+go_gc_pauses_seconds_bucket{le="0"} 0
+go_gc_pauses_seconds_bucket{le="2.56e-07"} 0
+go_gc_pauses_seconds_bucket{le="4.48e-07"} 0
+go_gc_pauses_seconds_bucket{le="7.68e-07"} 0
+go_gc_pauses_seconds_bucket{le="1.28e-06"} 0
+go_gc_pauses_seconds_bucket{le="2.048e-06"} 1
+go_gc_pauses_seconds_bucket{le="3.584e-06"} 3947
+go_gc_pauses_seconds_bucket{le="6.144e-06"} 11778
+go_gc_pauses_seconds_bucket{le="1.024e-05"} 12236
+go_gc_pauses_seconds_bucket{le="1.6384e-05"} 12262
+go_gc_pauses_seconds_bucket{le="3.2768e-05"} 12435
+go_gc_pauses_seconds_bucket{le="5.7344e-05"} 23152
+go_gc_pauses_seconds_bucket{le="9.8304e-05"} 24372
+go_gc_pauses_seconds_bucket{le="0.00016384"} 24442
+go_gc_pauses_seconds_bucket{le="0.000262144"} 24465
+go_gc_pauses_seconds_bucket{le="0.000458752"} 24508
+go_gc_pauses_seconds_bucket{le="0.000786432"} 24574
+go_gc_pauses_seconds_bucket{le="0.00131072"} 24578
+go_gc_pauses_seconds_bucket{le="0.002097152"} 24578
+go_gc_pauses_seconds_bucket{le="0.003670016"} 24578
+go_gc_pauses_seconds_bucket{le="0.007340032"} 24578
+go_gc_pauses_seconds_bucket{le="0.012582912"} 24578
+go_gc_pauses_seconds_bucket{le="0.02097152"} 24578
+go_gc_pauses_seconds_bucket{le="0.033554432"} 24578
+go_gc_pauses_seconds_bucket{le="0.058720256"} 24578
+go_gc_pauses_seconds_bucket{le="0.100663296"} 24578
+go_gc_pauses_seconds_bucket{le="0.16777216"} 24578
+go_gc_pauses_seconds_bucket{le="0.268435456"} 24578
+go_gc_pauses_seconds_bucket{le="0.469762048"} 24578
+go_gc_pauses_seconds_bucket{le="0.805306368"} 24578
+go_gc_pauses_seconds_bucket{le="+Inf"} 24578
+go_scavenge_cpu_seconds_total 0.306667101
+go_memlimit_bytes 9223372036854775807
+go_memstats_alloc_bytes 3831216
+go_memstats_alloc_bytes_total 10314509696
+go_memstats_buck_hash_sys_bytes 1736174
+go_memstats_frees_total 69149289
+go_memstats_gc_cpu_fraction 4.7407501167880086e-05
+go_memstats_gc_sys_bytes 4326792
+go_memstats_heap_alloc_bytes 3831216
+go_memstats_heap_idle_bytes 3260416
+go_memstats_heap_inuse_bytes 4603904
+go_memstats_heap_objects 8732
+go_memstats_heap_released_bytes 2736128
+go_memstats_heap_sys_bytes 7864320
+go_memstats_last_gc_time_seconds 1.7045069184388955e+09
+go_memstats_lookups_total 0
+go_memstats_mallocs_total 69158021
+go_memstats_mcache_inuse_bytes 1200
+go_memstats_mcache_sys_bytes 15600
+go_memstats_mspan_inuse_bytes 46536
+go_memstats_mspan_sys_bytes 48888
+go_memstats_next_gc_bytes 4363654
+go_memstats_other_sys_bytes 529834
+go_memstats_stack_inuse_bytes 524288
+go_memstats_stack_sys_bytes 524288
+go_memstats_sys_bytes 15045896
+go_cgo_calls_count 0
+go_cpu_count 48
+go_gc_duration_seconds{quantile="0"} 3.4851e-05
+go_gc_duration_seconds{quantile="0.25"} 4.3234e-05
+go_gc_duration_seconds{quantile="0.5"} 5.0343e-05
+go_gc_duration_seconds{quantile="0.75"} 5.628e-05
+go_gc_duration_seconds{quantile="1"} 0.000546775
+go_gc_duration_seconds_sum 0.697319701
+go_gc_duration_seconds_count 12289
+go_gc_forced_count 0
+go_gomaxprocs 1
+go_goroutines 24
+go_threads 7
+go_info{version="go1.21.5"} 1
+go_info_ext{compiler="gc", GOARCH="amd64", GOOS="linux", GOROOT=""} 1
+process_cpu_seconds_system_total 37.56
+process_cpu_seconds_total 211.5
+process_cpu_seconds_user_total 173.94
+process_major_pagefaults_total 0
+process_minor_pagefaults_total 412369
+process_num_threads 7
+process_resident_memory_bytes 18284544
+process_start_time_seconds 1704181308
+process_virtual_memory_bytes 1268801536
+process_virtual_memory_peak_bytes 1268801536
+process_resident_memory_peak_bytes 18284544
+process_resident_memory_anon_bytes 9117696
+process_resident_memory_file_bytes 9166848
+process_resident_memory_shared_bytes 0
+process_io_read_bytes_total 85195298
+process_io_written_bytes_total 164185666
+process_io_read_syscalls_total 395571
+process_io_write_syscalls_total 84588
+process_io_storage_read_bytes_total 0
+process_io_storage_written_bytes_total 0
+metrics_push_block_size_bytes_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="4.084e+03...4.642e+03"} 3
+metrics_push_block_size_bytes_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="4.642e+03...5.275e+03"} 90
+metrics_push_block_size_bytes_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="5.275e+03...5.995e+03"} 21614
+metrics_push_block_size_bytes_sum{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 124941257
+metrics_push_block_size_bytes_count{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 21707
+metrics_push_bytes_pushed_total{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 124941257
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="6.813e-04...7.743e-04"} 5
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="7.743e-04...8.799e-04"} 141
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="8.799e-04...1.000e-03"} 659
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.000e-03...1.136e-03"} 1132
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.136e-03...1.292e-03"} 1216
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.292e-03...1.468e-03"} 1260
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.468e-03...1.668e-03"} 2197
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.668e-03...1.896e-03"} 4132
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.896e-03...2.154e-03"} 2047
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="2.154e-03...2.448e-03"} 1897
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="2.448e-03...2.783e-03"} 1873
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="2.783e-03...3.162e-03"} 1874
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="3.162e-03...3.594e-03"} 1257
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="3.594e-03...4.084e-03"} 995
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="4.084e-03...4.642e-03"} 595
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="4.642e-03...5.275e-03"} 250
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="5.275e-03...5.995e-03"} 110
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="5.995e-03...6.813e-03"} 40
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="6.813e-03...7.743e-03"} 15
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="7.743e-03...8.799e-03"} 3
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="8.799e-03...1.000e-02"} 2
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.000e-02...1.136e-02"} 2
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="1.136e-02...1.292e-02"} 1
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="2.783e-02...3.162e-02"} 1
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="3.594e-02...4.084e-02"} 1
+metrics_push_duration_seconds_bucket{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus",vmrange="5.275e-02...5.995e-02"} 2
+metrics_push_duration_seconds_sum{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 47.94843039799982
+metrics_push_duration_seconds_count{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 21707
+metrics_push_errors_total{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 0
+metrics_push_interval_seconds{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 15
+metrics_push_total{url="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/api/v1/import/prometheus"} 21707
+process_max_fds 1048576
+process_open_fds 14
+vm_app_version{version="vmalert-20231212-224707-tags-v1.96.0-0-g304fe0565", short_version="v1.96.0"} 1
+vm_allowed_memory_bytes 1717986918
+vm_available_memory_bytes 2147483648
+vm_available_cpu_cores 1
+vm_gogc 30
+vm_app_start_timestamp 1704181308
+vm_app_uptime_seconds 325616
+flag{name="configCheckInterval", value="1m0s", is_set="true"} 1
+flag{name="datasource.appendTypePrefix", value="false", is_set="false"} 1
+flag{name="datasource.basicAuth.password", value="secret", is_set="false"} 1
+flag{name="datasource.basicAuth.passwordFile", value="secret", is_set="false"} 1
+flag{name="datasource.basicAuth.username", value="", is_set="false"} 1
+flag{name="datasource.bearerToken", value="secret", is_set="false"} 1
+flag{name="datasource.bearerTokenFile", value="secret", is_set="false"} 1
+flag{name="datasource.disableKeepAlive", value="false", is_set="false"} 1
+flag{name="datasource.disableStepParam", value="false", is_set="false"} 1
+flag{name="datasource.headers", value="", is_set="false"} 1
+flag{name="datasource.lookback", value="0s", is_set="false"} 1
+flag{name="datasource.maxIdleConnections", value="100", is_set="false"} 1
+flag{name="datasource.oauth2.clientID", value="", is_set="false"} 1
+flag{name="datasource.oauth2.clientSecret", value="secret", is_set="false"} 1
+flag{name="datasource.oauth2.clientSecretFile", value="secret", is_set="false"} 1
+flag{name="datasource.oauth2.scopes", value="", is_set="false"} 1
+flag{name="datasource.oauth2.tokenUrl", value="secret", is_set="false"} 1
+flag{name="datasource.queryStep", value="1m0s", is_set="true"} 1
+flag{name="datasource.queryTimeAlignment", value="true", is_set="true"} 1
+flag{name="datasource.roundDigits", value="2", is_set="true"} 1
+flag{name="datasource.showURL", value="true", is_set="true"} 1
+flag{name="datasource.tlsCAFile", value="", is_set="false"} 1
+flag{name="datasource.tlsCertFile", value="", is_set="false"} 1
+flag{name="datasource.tlsInsecureSkipVerify", value="false", is_set="false"} 1
+flag{name="datasource.tlsKeyFile", value="secret", is_set="false"} 1
+flag{name="datasource.tlsServerName", value="", is_set="false"} 1
+flag{name="datasource.url", value="http://self-monitor-cluster-vm-select-service:8481/self-monitor-cluster-select/select/0/prometheus/", is_set="true"} 1
+flag{name="disableAlertgroupLabel", value="false", is_set="false"} 1
+flag{name="dryRun", value="false", is_set="false"} 1
+flag{name="enableTCP6", value="false", is_set="false"} 1
+flag{name="envflag.enable", value="false", is_set="false"} 1
+flag{name="envflag.prefix", value="", is_set="false"} 1
+flag{name="evaluationInterval", value="1m0s", is_set="true"} 1
+flag{name="external.alert.source", value="", is_set="false"} 1
+flag{name="external.label", value="\"from=\\\"self-monitor-cluster-vm-alert\\\"\"", is_set="true"} 1
+flag{name="external.url", value="", is_set="true"} 1
+flag{name="filestream.disableFadvise", value="false", is_set="false"} 1
+flag{name="flagsAuthKey", value="secret", is_set="false"} 1
+flag{name="fs.disableMmap", value="false", is_set="false"} 1
+flag{name="http.connTimeout", value="2m0s", is_set="false"} 1
+flag{name="http.disableResponseCompression", value="false", is_set="false"} 1
+flag{name="http.header.csp", value="", is_set="false"} 1
+flag{name="http.header.frameOptions", value="", is_set="false"} 1
+flag{name="http.header.hsts", value="", is_set="false"} 1
+flag{name="http.idleConnTimeout", value="1m0s", is_set="false"} 1
+flag{name="http.maxGracefulShutdownDuration", value="7s", is_set="false"} 1
+flag{name="http.pathPrefix", value="/self-monitor-cluster-vm-alert/", is_set="true"} 1
+flag{name="http.shutdownDelay", value="0s", is_set="false"} 1
+flag{name="httpAuth.password", value="secret", is_set="false"} 1
+flag{name="httpAuth.username", value="", is_set="false"} 1
+flag{name="httpListenAddr", value=":8880", is_set="true"} 1
+flag{name="httpListenAddr.useProxyProtocol", value="false", is_set="false"} 1
+flag{name="internStringCacheExpireDuration", value="6m0s", is_set="false"} 1
+flag{name="internStringDisableCache", value="false", is_set="false"} 1
+flag{name="internStringMaxLen", value="500", is_set="false"} 1
+flag{name="loggerDisableTimestamps", value="true", is_set="true"} 1
+flag{name="loggerErrorsPerSecondLimit", value="0", is_set="false"} 1
+flag{name="loggerFormat", value="json", is_set="true"} 1
+flag{name="loggerJSONFields", value="", is_set="false"} 1
+flag{name="loggerLevel", value="INFO", is_set="true"} 1
+flag{name="loggerMaxArgLen", value="1000", is_set="false"} 1
+flag{name="loggerOutput", value="stdout", is_set="true"} 1
+flag{name="loggerTimezone", value="UTC", is_set="false"} 1
+flag{name="loggerWarnsPerSecondLimit", value="0", is_set="false"} 1
+flag{name="memory.allowedBytes", value="0", is_set="false"} 1
+flag{name="memory.allowedPercent", value="80", is_set="true"} 1
+flag{name="metricsAuthKey", value="secret", is_set="false"} 1
+flag{name="notifier.basicAuth.password", value="secret", is_set="false"} 1
+flag{name="notifier.basicAuth.passwordFile", value="secret", is_set="false"} 1
+flag{name="notifier.basicAuth.username", value="", is_set="false"} 1
+flag{name="notifier.bearerToken", value="secret", is_set="false"} 1
+flag{name="notifier.bearerTokenFile", value="secret", is_set="false"} 1
+flag{name="notifier.blackhole", value="false", is_set="false"} 1
+flag{name="notifier.config", value="", is_set="false"} 1
+flag{name="notifier.oauth2.clientID", value="", is_set="false"} 1
+flag{name="notifier.oauth2.clientSecret", value="secret", is_set="false"} 1
+flag{name="notifier.oauth2.clientSecretFile", value="secret", is_set="false"} 1
+flag{name="notifier.oauth2.scopes", value="", is_set="false"} 1
+flag{name="notifier.oauth2.tokenUrl", value="secret", is_set="false"} 1
+flag{name="notifier.showURL", value="true", is_set="true"} 1
+flag{name="notifier.suppressDuplicateTargetErrors", value="false", is_set="false"} 1
+flag{name="notifier.tlsCAFile", value="", is_set="false"} 1
+flag{name="notifier.tlsCertFile", value="", is_set="false"} 1
+flag{name="notifier.tlsInsecureSkipVerify", value="", is_set="false"} 1
+flag{name="notifier.tlsKeyFile", value="secret", is_set="false"} 1
+flag{name="notifier.tlsServerName", value="", is_set="false"} 1
+flag{name="notifier.url", value="http://alert-cluster-alert-manager-service:9093", is_set="true"} 1
+flag{name="pprofAuthKey", value="secret", is_set="false"} 1
+flag{name="promscrape.consul.waitTime", value="0s", is_set="false"} 1
+flag{name="promscrape.consulSDCheckInterval", value="30s", is_set="false"} 1
+flag{name="promscrape.discovery.concurrency", value="100", is_set="false"} 1
+flag{name="promscrape.discovery.concurrentWaitTime", value="1m0s", is_set="false"} 1
+flag{name="promscrape.dnsSDCheckInterval", value="30s", is_set="false"} 1
+flag{name="pushmetrics.extraLabel", value="\"region=\\\"HK\\\"\",\"env=\\\"test\\\"\",\"cluster=\\\"self-monitor-cluster\\\"\",\"role=\\\"vm-alert\\\"\",\"container_ip=\\\"10.42.0.31\\\"\",\"container_name=\\\"self-monitor-cluster-vm-alert-0-7c47c58c8b-27zrr\\\"\"", is_set="true"} 1
+flag{name="pushmetrics.interval", value="15s", is_set="true"} 1
+flag{name="pushmetrics.url", value="secret", is_set="true"} 1
+flag{name="remoteRead.basicAuth.password", value="secret", is_set="false"} 1
+flag{name="remoteRead.basicAuth.passwordFile", value="secret", is_set="false"} 1
+flag{name="remoteRead.basicAuth.username", value="", is_set="false"} 1
+flag{name="remoteRead.bearerToken", value="secret", is_set="false"} 1
+flag{name="remoteRead.bearerTokenFile", value="secret", is_set="false"} 1
+flag{name="remoteRead.disablePathAppend", value="false", is_set="false"} 1
+flag{name="remoteRead.headers", value="", is_set="false"} 1
+flag{name="remoteRead.ignoreRestoreErrors", value="true", is_set="false"} 1
+flag{name="remoteRead.lookback", value="1h0m0s", is_set="true"} 1
+flag{name="remoteRead.oauth2.clientID", value="", is_set="false"} 1
+flag{name="remoteRead.oauth2.clientSecret", value="secret", is_set="false"} 1
+flag{name="remoteRead.oauth2.clientSecretFile", value="secret", is_set="false"} 1
+flag{name="remoteRead.oauth2.scopes", value="", is_set="false"} 1
+flag{name="remoteRead.oauth2.tokenUrl", value="secret", is_set="false"} 1
+flag{name="remoteRead.showURL", value="true", is_set="true"} 1
+flag{name="remoteRead.tlsCAFile", value="", is_set="false"} 1
+flag{name="remoteRead.tlsCertFile", value="", is_set="false"} 1
+flag{name="remoteRead.tlsInsecureSkipVerify", value="false", is_set="false"} 1
+flag{name="remoteRead.tlsKeyFile", value="secret", is_set="false"} 1
+flag{name="remoteRead.tlsServerName", value="", is_set="false"} 1
+flag{name="remoteRead.url", value="http://self-monitor-cluster-vm-select-service:8481/self-monitor-cluster-select/select/0/prometheus/", is_set="true"} 1
+flag{name="remoteWrite.basicAuth.password", value="secret", is_set="false"} 1
+flag{name="remoteWrite.basicAuth.passwordFile", value="secret", is_set="false"} 1
+flag{name="remoteWrite.basicAuth.username", value="", is_set="false"} 1
+flag{name="remoteWrite.bearerToken", value="secret", is_set="false"} 1
+flag{name="remoteWrite.bearerTokenFile", value="secret", is_set="false"} 1
+flag{name="remoteWrite.concurrency", value="2", is_set="true"} 1
+flag{name="remoteWrite.disablePathAppend", value="false", is_set="false"} 1
+flag{name="remoteWrite.flushInterval", value="15s", is_set="true"} 1
+flag{name="remoteWrite.headers", value="", is_set="false"} 1
+flag{name="remoteWrite.maxBatchSize", value="1000", is_set="true"} 1
+flag{name="remoteWrite.maxQueueSize", value="10000", is_set="true"} 1
+flag{name="remoteWrite.oauth2.clientID", value="", is_set="false"} 1
+flag{name="remoteWrite.oauth2.clientSecret", value="secret", is_set="false"} 1
+flag{name="remoteWrite.oauth2.clientSecretFile", value="secret", is_set="false"} 1
+flag{name="remoteWrite.oauth2.scopes", value="", is_set="false"} 1
+flag{name="remoteWrite.oauth2.tokenUrl", value="secret", is_set="false"} 1
+flag{name="remoteWrite.retryMaxTime", value="30s", is_set="true"} 1
+flag{name="remoteWrite.retryMinInterval", value="1s", is_set="true"} 1
+flag{name="remoteWrite.sendTimeout", value="30s", is_set="true"} 1
+flag{name="remoteWrite.showURL", value="true", is_set="true"} 1
+flag{name="remoteWrite.tlsCAFile", value="", is_set="false"} 1
+flag{name="remoteWrite.tlsCertFile", value="", is_set="false"} 1
+flag{name="remoteWrite.tlsInsecureSkipVerify", value="false", is_set="false"} 1
+flag{name="remoteWrite.tlsKeyFile", value="secret", is_set="false"} 1
+flag{name="remoteWrite.tlsServerName", value="", is_set="false"} 1
+flag{name="remoteWrite.url", value="http://self-monitor-cluster-vm-insert-service:8480/self-monitor-cluster-insert/insert/0/prometheus/", is_set="true"} 1
+flag{name="replay.disableProgressBar", value="false", is_set="false"} 1
+flag{name="replay.maxDatapointsPerQuery", value="1000", is_set="false"} 1
+flag{name="replay.ruleRetryAttempts", value="5", is_set="false"} 1
+flag{name="replay.rulesDelay", value="1s", is_set="false"} 1
+flag{name="replay.timeFrom", value="", is_set="false"} 1
+flag{name="replay.timeTo", value="", is_set="false"} 1
+flag{name="rule", value="/rules/rules.yaml", is_set="true"} 1
+flag{name="rule.evalDelay", value="30s", is_set="false"} 1
+flag{name="rule.maxResolveDuration", value="0s", is_set="false"} 1
+flag{name="rule.resendDelay", value="0s", is_set="false"} 1
+flag{name="rule.templates", value="", is_set="false"} 1
+flag{name="rule.updateEntriesLimit", value="20", is_set="false"} 1
+flag{name="rule.validateExpressions", value="true", is_set="false"} 1
+flag{name="rule.validateTemplates", value="true", is_set="false"} 1
+flag{name="tls", value="false", is_set="false"} 1
+flag{name="tlsCertFile", value="", is_set="false"} 1
+flag{name="tlsCipherSuites", value="", is_set="false"} 1
+flag{name="tlsKeyFile", value="secret", is_set="false"} 1
+flag{name="tlsMinVersion", value="", is_set="false"} 1
+flag{name="version", value="false", is_set="false"} 1

@@ -20,6 +20,8 @@
 # CONTAINER_NAME
 # n_days_before = 1  # from n before days to start load snapshot
 # debug = 1  # use debug mode
+# CONTAINER_NAME
+# CONTAINER_IP
 
 # restore download from s3
 function restore() {
@@ -46,12 +48,15 @@ function restore() {
     local v_exit_code=$?
     echo "vm-backup exit code: ${v_exit_code}"
     if [ "${v_exit_code}" -ne 0 ]; then
+        push_metric "historical-shell" "vmrestore error, code=${v_exit_code}" "alarm"
         if [ "${debug}" -eq 1 ]; then
            sleep 60
         fi
-        exit 2
+        #exit 2
+        return ${v_exit_code}
     fi
     chmod 777 "${storage_base_path}${v_date_str}/sharding-${count_index}/"
+    return 0
 }
 
 # vmstorage start vm-storage
@@ -99,6 +104,7 @@ function vmstorage() {
     local v_exit_code=$?
     echo "vm-storage exit code: ${v_exit_code}"
     if [ "${v_exit_code}" -ne 0 ]; then
+        push_metric "historical-shell" "vmstorage error,code=${v_exit_code}" "alarm" &
         # when at first time, download again
         if [ "$5"=="at first time" ]; then
             echo "at first time, if can not start, download again"
@@ -113,6 +119,10 @@ function vmstorage() {
             rm -fr "${v_storage_path}"
             # download from s3
             restore "${v_date_str}"
+            local v_ret=$?
+            if [ "$v_ret" -ne 0 ]; then
+                exit 2
+            fi
             vmstorage "${date_str}" 8482 8400 8401
         else
             if [ "${debug}" -eq 1 ]; then
@@ -135,6 +145,7 @@ v_port_rotate=0
 
 # rotate load yesterday's data and kill the day before yesterday
 function rotate(){
+    push_metric "historical-shell" "ready to rotate" "info" &
     local v_date_str=$1
     local v_old_pid=$(pidof "vmstorage-prod")
     # get backup file
@@ -143,6 +154,13 @@ function rotate(){
         return 1
     fi
     restore "${v_date_str}"
+    local v_ret=$?
+    if [ "$v_ret" -ne 0 ]; then
+        echo "backup not exists or other reason"
+        echo "wait for next day"
+        # todo: use push metric to alarm
+        return 0
+    fi
     if [ "${v_port_rotate}" -eq 1 ]; then
         v_port_rotate=0
         vmstorage "${v_date_str}" 8482 8400 8401 &
@@ -183,11 +201,12 @@ function long_time_sleep(){
     #echo $1
     #sleep 30
     while true; do
-        if [ "${v_seconds}" -gt 4 ]; then
-            v_seconds=$((v_seconds - 5))
-            sleep 5  #todo: container can not stop at this line
+        if [ "${v_seconds}" -gt 9 ]; then
+            v_seconds=$((v_seconds - 10))
+            sleep 10  #todo: container can not stop at this line
             #local v_code_1=$?
             #echo "sleep return: ${v_code_1}"
+            push_metric "historical-shell" "shell keep alive" "info" &
         else
             #echo "line 187"
             sleep ${v_seconds}
@@ -224,10 +243,15 @@ function on_start() {
     local v_storage_path="${storage_base_path}${v_date_str}/sharding-${count_index}/"
     if [ -d "${v_storage_path}" ]; then
         chmod 777 "${v_storage_path}"
+        push_metric "historical-shell" "storage_path already exists" "info" &
         return 0
     fi
     # download from s3
     restore "${v_date_str}"
+    local v_ret=$?
+    if [ "$v_ret" -ne 0 ]; then
+        exit 2
+    fi
 }
 
 function get_n_days_before(){
@@ -244,11 +268,20 @@ function get_timespan_of_tomorrow_1_clock(){
     echo "${v_timespan}"
 }
 
+function push_metric(){
+    local v_role=$1
+    local v_reason=$2
+    local v_type=$3
+    curl -d "vm_${v_type}{cluster=\"historical-cluster\",region=\"${configs_region}\",env=\"${configs_env}\",role=\"${v_role}\",reason=\"${v_reason}\",node_index=\"${count_index}\",n_days_before=\"${n_days_before}\",container_name=\"${CONTAINER_NAME}\",container_ip=\"${CONTAINER_IP}\"} 1" \
+      "${push_metrics_addr}"
+}
+
 function main() {
-    if [ "${debug}" -eq 1 ];then
+    if [ "${debug}" -eq 1 ]; then
         set -x
     fi
     local date_str=$(get_n_days_before "${n_days_before}")
+    push_metric "historical-shell" "ready to start" "info" &
     on_start "${date_str}"
     vmstorage "${date_str}" 8482 8400 8401 "at first time" &
     #
