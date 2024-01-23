@@ -5,11 +5,11 @@ services:
     image: "victoriametrics/vmrestore:v1.95.1"
     pull_policy: if_not_present
     command:
-      - "-concurrency=1"
+      - "-concurrency=2"
       - "-maxBytesPerSecond=1GB"
       - "-memory.allowedPercent=80"
-      - "-src=s3://${AWS_BUCKET}/metrics/vmstorage/backup/2023-12-05/sharding-00/"
-      - "-storageDataPath=/data/sharding-00-restore/"
+      - "-src=s3://${AWS_BUCKET}/metrics/vmstorage-backup/realtime-cluster/daily/2024-01-02/sharding-2/"
+      - "-storageDataPath=/data/2024-01-02/sharding-2/"
       - -pushmetrics.extraLabel='region="HK",env="formal",cluster="historical-cluster",role="vm-restore"'
       - -pushmetrics.interval=5s
       - -pushmetrics.url=http://host.docker.internal:38480/insert/0/prometheus/api/v1/import/prometheus
@@ -19,7 +19,7 @@ services:
       - "-loggerLevel=INFO"
       - "-loggerOutput=stdout"
     environment:
-      GOMAXPROCS: 1
+      GOMAXPROCS: 2
       # must set .env file first
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
@@ -32,5 +32,5 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "0.1"
-          memory: 128M
+          cpus: "2"
+          memory: 512M

@@ -19,9 +19,10 @@ allow_loading_unsigned_plugins = victoriametrics-datasource
 	EOF
     "init.sh"     = <<EOF
 if [ ! -d "/vm-data/grafana/plugins/victoriametrics-datasource/" ]; then
-    wget https://github.com/VictoriaMetrics/grafana-datasource/releases/download/v0.5.0/victoriametrics-datasource-v0.5.0.tar.gz
+    version="v0.5.1"
+    wget https://github.com/VictoriaMetrics/grafana-datasource/releases/download/$(version)/victoriametrics-datasource-$(version).tar.gz
     mkdir -p /vm-data/grafana/plugins/
-    tar -zxf victoriametrics-datasource-v0.5.0.tar.gz -C /vm-data/grafana/plugins/
+    tar -zxf victoriametrics-datasource-$(version).tar.gz -C /vm-data/grafana/plugins/
 fi
 mkdir -p /vm-data/grafana/provisioning/datasources/ /vm-data/grafana/config/ /vm-data/grafana/data/ /vm-data/grafana/plugins/
 cp /grafana/config/datasource.yaml /vm-data/grafana/provisioning/datasources/
@@ -43,8 +44,8 @@ datasources:
       type: prometheus
       access: direct
       #orgId: 1
-      url: http://${local.vm_select_addr}/select/0/prometheus/
-      #url: http://realtime-cluster-vm-select-service:8481/select/0/prometheus/
+      #url: http://${local.vm_select_addr}/select/0/prometheus/
+      url: http://realtime-cluster-vm-select-service:8481/select/0/prometheus/
       isDefault: false
       version: 1
       editable: true
@@ -53,8 +54,8 @@ datasources:
       type: prometheus
       access: direct
       #orgId: 1
-      url: http://${var.self_monitor_cluster_info.vm_select_addr}/self-monitor-cluster-select/select/0/prometheus/
-      #url: http://self-monitor-cluster-vm-select-service:8481/self-monitor-cluster-select/select/0/prometheus/
+      #url: http://${var.self_monitor_cluster_info.vm_select_addr}/self-monitor-cluster-select/select/0/prometheus/
+      url: http://self-monitor-cluster-vm-select-service:8481/self-monitor-cluster-select/select/0/prometheus/
       isDefault: false
       version: 1
       editable: true
@@ -70,8 +71,8 @@ datasources:
       # but proxy (Server).
       access: proxy
       # <string> Sets default URL of the single node version of VictoriaMetrics
-      #url: http://realtime-cluster-vm-select-service:8481/select/0/prometheus/
-      url: http://${local.vm_select_addr}/select/0/prometheus/
+      url: http://realtime-cluster-vm-select-service:8481/select/0/prometheus/
+      #url: http://${local.vm_select_addr}/select/0/prometheus/
       # <string> Sets the pre-selected datasource for new panels.
       # You can set only one default data source per organization.
       isDefault: false
@@ -86,8 +87,8 @@ datasources:
       # but proxy (Server).
       access: proxy
       # <string> Sets default URL of the single node version of VictoriaMetrics
-      #url: http://self-monitor-cluster-vm-select-service:8481/self-monitor-cluster-select/select/0/prometheus/
-      url: http://${var.self_monitor_cluster_info.vm_select_addr}/self-monitor-cluster-select/select/0/prometheus/
+      url: http://self-monitor-cluster-vm-select-service:8481/self-monitor-cluster-select/select/0/prometheus/
+      #url: http://${var.self_monitor_cluster_info.vm_select_addr}/self-monitor-cluster-select/select/0/prometheus/
       # <string> Sets the pre-selected datasource for new panels.
       # You can set only one default data source per organization.
       isDefault: false
