@@ -1,27 +1,26 @@
 
 
 locals {
-  vm-storage-name = "historical-cluster-vm-storage"
+  vm-storage-name-with-merge = "historical-cluster-vm-storage-with-merge"
   #vm-storage-basepath = "/vm-data/"
   #storage_data_path   = "${local.vm-storage-basepath}historical-cluster/sharding-"
-  daily_vmstorage_count = (length(var.configs.s3.AWS_ACCESS_KEY_ID) > 0 &&
+  daily_vmstorage_count_of_merge = (length(var.configs.s3.AWS_ACCESS_KEY_ID) > 0 &&
     length(var.configs.s3.AWS_SECRET_ACCESS_KEY) > 0 &&
     length(var.configs.s3.AWS_REGION) > 0 &&
-  length(var.configs.s3.AWS_BUCKET) > 0) ? var.configs.realtime_cluster.storage_node_count : 0
+  length(var.configs.s3.AWS_BUCKET) > 0) ? 1 : 0
 }
 
-resource "kubernetes_stateful_set" "historical-cluster-vm-storage" {
-  #depends_on = [kubernetes_persistent_volume_claim.historical-cluster-pvc]
-  count = local.daily_vmstorage_count
+resource "kubernetes_stateful_set" "historical-cluster-vm-storage-with-merge" {
+  count = local.daily_vmstorage_count_of_merge
   metadata {
     namespace = var.configs.namespace
 
     labels = {
-      k8s-app    = local.vm-storage-name
+      k8s-app    = local.vm-storage-name-with-merge
       node_index = count.index
     }
 
-    name = "${local.vm-storage-name}-${count.index}"
+    name = "${local.vm-storage-name-with-merge}-${count.index}"
   }
 
   spec {
@@ -31,17 +30,17 @@ resource "kubernetes_stateful_set" "historical-cluster-vm-storage" {
 
     selector {
       match_labels = {
-        k8s-app    = local.vm-storage-name
+        k8s-app    = local.vm-storage-name-with-merge
         node_index = count.index
       }
     }
 
-    service_name = "${local.vm-storage-name}-${count.index}"
+    service_name = "${local.vm-storage-name-with-merge}-${count.index}"
 
     template {
       metadata {
         labels = {
-          k8s-app    = local.vm-storage-name
+          k8s-app    = local.vm-storage-name-with-merge
           node_index = count.index
         }
 
@@ -50,13 +49,13 @@ resource "kubernetes_stateful_set" "historical-cluster-vm-storage" {
 
       spec {
         container {
-          name              = "${local.vm-storage-name}-${count.index}"
-          image             = "ahfuzhang/vm-historical:v1.95.1"
+          name              = "${local.vm-storage-name-with-merge}-${count.index}"
+          image             = "ahfuzhang/vm-historical:v1.95.1-vmfile"
           image_pull_policy = "Always" #"IfNotPresent"
           command           = ["/bin/sh"]
           args = [
             #"-x",  # use debug=1 to show script log
-            "/daily.sh",
+            "/daily_with_vmfile.sh",
           ]
           resources {
             limits = {
@@ -143,8 +142,16 @@ resource "kubernetes_stateful_set" "historical-cluster-vm-storage" {
             value = var.configs.vm.version
           }
           env {
-            name  = "count_index"
-            value = count.index
+            name  = "sharding_count"
+            value = local.daily_vmstorage_count
+          }
+          env {
+            name  = "sharding_prefix"
+            value = "sharding-"
+          }
+          env {
+            name  = "dedup_minScrapeInterval"
+            value = "15s"
           }
           env {
             name  = "n_days_before"
@@ -159,7 +166,7 @@ resource "kubernetes_stateful_set" "historical-cluster-vm-storage" {
           }
           env {
             name  = "storage_base_path"
-            value = "/vm-data/historical-cluster/"
+            value = "/vm-data/historical-cluster/after_merge/"
           }
           env {
             name  = "s3_storage_base_path"
@@ -219,11 +226,11 @@ resource "kubernetes_stateful_set" "historical-cluster-vm-storage" {
   }
 }
 
-data "external" "historical-cluster-vm-storage-status" {
-  depends_on = [kubernetes_stateful_set.historical-cluster-vm-storage]
-  program    = ["bash", "-c", "kubectl get pods -l k8s-app=${local.vm-storage-name} -n ${var.configs.namespace} -o json | jq -c '{\"r\": .|tojson }'"]
+data "external" "historical-cluster-vm-storage-with-merge-status" {
+  depends_on = [kubernetes_stateful_set.historical-cluster-vm-storage-with-merge]
+  program    = ["bash", "-c", "kubectl get pods -l k8s-app=${local.vm-storage-name-with-merge} -n ${var.configs.namespace} -o json | jq -c '{\"r\": .|tojson }'"]
 }
 
-output "historical-cluster-vm-storage-containers" {
-  value = [for item in jsondecode(data.external.historical-cluster-vm-storage-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
+output "historical-cluster-vm-storage-with-merge-containers" {
+  value = [for item in jsondecode(data.external.historical-cluster-vm-storage-with-merge-status.result.r).items : { container_name = item.metadata.name, container_ip = item.status.podIP }]
 }

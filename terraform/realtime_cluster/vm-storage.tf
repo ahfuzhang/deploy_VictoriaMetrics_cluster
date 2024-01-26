@@ -92,7 +92,7 @@ resource "kubernetes_stateful_set" "realtime-cluster-vm-storage" {
               memory = "32Gi"
             }
             requests = {
-              cpu    = "1"
+              cpu    = "0.1"
               memory = "4Gi"
             }
           }

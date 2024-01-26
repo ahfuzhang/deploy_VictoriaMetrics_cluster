@@ -104,7 +104,7 @@ resource "kubernetes_deployment" "alert-cluster-alert-manager-main" {
               memory = "512Mi"
             }
             requests = {
-              cpu    = "1"
+              cpu    = "0.1"
               memory = "512Mi"
             }
           }

@@ -90,7 +90,7 @@ resource "kubernetes_deployment" "self-monitor-cluster-vm-alert" {
               memory = "2Gi"
             }
             requests = {
-              cpu    = "0.5"
+              cpu    = "0.1"
               memory = "256Mi"
             }
           }

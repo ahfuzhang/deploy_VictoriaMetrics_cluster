@@ -8,9 +8,10 @@
 # configs_log_level
 # configs_log_output
 # configs_vm_version
-# count_index
-# storage_base_path = /vm-data/historical-cluster/
+# storage_base_path = /vm-data/historical-cluster/after_merge/
 # s3_storage_base_path = /metrics/vmstorage-backup/realtime-cluster/daily/
+# sharding_prefix = sharding-
+# sharding_count = 3
 # push_metrics_addr
 # AWS_ACCESS_KEY_ID
 # AWS_SECRET_ACCESS_KEY
@@ -22,42 +23,10 @@
 # debug = 1  # use debug mode
 # CONTAINER_NAME
 # CONTAINER_IP
-
-# restore download from s3
-function restore() {
-    local v_date_str=$1
-    /vmrestore-prod \
-        "-concurrency=1" \
-        "-maxBytesPerSecond=1GB" \
-        "-memory.allowedPercent=80" \
-        "-src=s3://${AWS_BUCKET}${s3_storage_base_path}${v_date_str}/sharding-${count_index}/" \
-        "-storageDataPath=${storage_base_path}${v_date_str}/sharding-${count_index}/" \
-        "-loggerDisableTimestamps" \
-        "-loggerFormat=${configs_log_format}" \
-        "-loggerLevel=${configs_log_level}" \
-        "-loggerOutput=${configs_log_output}" \
-        "-pushmetrics.extraLabel=region=\"${configs_region}\"" \
-        "-pushmetrics.extraLabel=env=\"${configs_env}\"" \
-        "-pushmetrics.extraLabel=cluster=\"historical-cluster\"" \
-        "-pushmetrics.extraLabel=role=\"vm-restore-daily\"" \
-        "-pushmetrics.extraLabel=container_ip=\"${CONTAINER_IP}\"" \
-        "-pushmetrics.extraLabel=container_name=\"${CONTAINER_NAME}\"" \
-        "-pushmetrics.interval=2s" \
-        "-pushmetrics.url=${push_metrics_addr}" \
-        "-skipBackupCompleteCheck"
-    local v_exit_code=$?
-    echo "vm-backup exit code: ${v_exit_code}"
-    if [ "${v_exit_code}" -ne 0 ]; then
-        push_metric "historical-shell" "vmrestore error, code=${v_exit_code}" "alarm"
-        if [ "${debug}" -eq 1 ]; then
-           sleep 60
-        fi
-        #exit 2
-        return ${v_exit_code}
-    fi
-    chmod 777 "${storage_base_path}${v_date_str}/sharding-${count_index}/"
-    return 0
-}
+#
+# dedup_minScrapeInterval=0s  # 必须不能出现.号，否则shell报错
+#
+# not use: count_index
 
 # vmstorage start vm-storage
 function vmstorage() {
@@ -86,7 +55,7 @@ function vmstorage() {
         "-storage.maxDailySeries=100000000" \
         "-storage.maxHourlySeries=50000000" \
         "-storage.minFreeDiskSpaceBytes=1GB" \
-        "-storageDataPath=${storage_base_path}${v_date_str}/sharding-${count_index}/" \
+        "-storageDataPath=${storage_base_path}${v_date_str}/" \
         "-vminsertAddr=:${v_insert_port}" \
         "-vmselectAddr=:${v_select_port}" \
         "-loggerDisableTimestamps" \
@@ -106,30 +75,31 @@ function vmstorage() {
     if [ "${v_exit_code}" -ne 0 ]; then
         push_metric "historical-shell" "vmstorage error,code=${v_exit_code}" "alarm" &
         # when at first time, download again
-        if [ "$5"=="at first time" ]; then
-            echo "at first time, if can not start, download again"
-            local v_storage_path="${storage_base_path}${v_date_str}/sharding-${count_index}/"
-            if [ ! -d "${v_storage_path}" ]; then
-                echo "storage path ${v_storage_path} not exists"
-                if [ "${debug}" -eq 1 ]; then
-                    sleep 60
-                fi
-                exit 3
-            fi
-            rm -fr "${v_storage_path}"
-            # download from s3
-            restore "${v_date_str}"
-            local v_ret=$?
-            if [ "$v_ret" -ne 0 ]; then
-                exit 2
-            fi
-            vmstorage "${date_str}" 8482 8400 8401
-        else
-            if [ "${debug}" -eq 1 ]; then
-                sleep 60
-            fi
-            exit 1
-        fi
+        # if [ "$5"=="at first time" ]; then
+        #     echo "at first time, if can not start, download again"
+        #     local v_storage_path="${storage_base_path}${v_date_str}/sharding-${count_index}/"
+        #     if [ ! -d "${v_storage_path}" ]; then
+        #         echo "storage path ${v_storage_path} not exists"
+        #         if [ "${debug}" -eq 1 ]; then
+        #             sleep 60
+        #         fi
+        #         exit 3
+        #     fi
+        #     rm -fr "${v_storage_path}"
+        #     # download from s3
+        #     restore "${v_date_str}"
+        #     local v_ret=$?
+        #     if [ "$v_ret" -ne 0 ]; then
+        #         exit 2
+        #     fi
+        #     vmstorage "${date_str}" 8482 8400 8401
+        # else
+        #     if [ "${debug}" -eq 1 ]; then
+        #         sleep 60
+        #     fi
+        #     exit 1
+        # fi
+        exit 1
     fi
     #echo "line 124"
     if [ -f "/tmp/historical-cluster-main-processs-is-sleep" ]; then
@@ -149,11 +119,12 @@ function rotate(){
     local v_date_str=$1
     local v_old_pid=$(pidof "vmstorage-prod")
     # get backup file
-    local v_storage_path="${storage_base_path}${v_date_str}/sharding-${count_index}/"
+    local v_storage_path="${storage_base_path}${v_date_str}/"
     if [ -d "${v_storage_path}" ]; then
+        echo "impossible: data file already exists"
         return 1
     fi
-    restore "${v_date_str}"
+    restore_and_merge "${v_date_str}"
     local v_ret=$?
     if [ "$v_ret" -ne 0 ]; then
         echo "backup not exists or other reason"
@@ -179,7 +150,7 @@ function rotate(){
         fi
     done
     #
-    local v_old_storage_path="${storage_base_path}$(get_n_days_before $((n_days_before+1)))/sharding-${count_index}/"
+    local v_old_storage_path="${storage_base_path}$(get_n_days_before $((n_days_before+1)))/"
     rm -fr "${v_old_storage_path}"
 }
 
@@ -236,18 +207,108 @@ function run_server_forever(){
     done
 }
 
+function get_data_dirs(){
+    local v_date_str=$1
+    local v_dirs=""
+    local i=0
+    while [ $i -lt $sharding_count ]; do
+        if [ "$i" -gt 0 ]; then
+            v_dirs="${v_dirs},"
+        fi
+        v_dirs="${v_dirs}${storage_base_path}${v_date_str}/${sharding_prefix}${i}/"
+        i=$((i + 1))
+    done
+    echo $v_dirs
+}
+
+function merge(){
+    local v_date_str=$1
+    local v_dirs=$(get_data_dirs "${v_date_str}")
+    echo "start merge:"
+    echo "dirs: ${v_dirs}"
+    #/vmfile_linux_amd64 -h
+    #echo "here 229"
+    #/vmfile_linux_amd64 -action=merge_v2 -mergev2_from="${v_dirs}" -mergev2_to="${storage_base_path}${v_date_str}/" -dedup.minScrapeInterval=${dedup.minScrapeInterval} -cpu=2 -memory.allowedPercent=80
+    /vmfile_linux_amd64 \
+        -action=merge_v2 \
+        -mergev2_from="${v_dirs}" \
+        -mergev2_to="${storage_base_path}${v_date_str}/" \
+        -cpu=2 \
+        -memory.allowedPercent=80 \
+        -dedup.minScrapeInterval=${dedup_minScrapeInterval}
+
+    local v_exit_code=$?
+    #echo "238"
+    if [ "${v_exit_code}" -ne 0 ]; then
+        push_metric "historical-shell" "vmfile error, code=${v_exit_code}" "alarm"
+        if [ "${debug}" -eq 1 ]; then
+            sleep 60
+        fi
+        #exit 2
+        return ${v_exit_code}
+    fi
+    return 0
+}
+
+function restore_and_merge(){
+    local v_date_str=$1
+    local i=0
+    while [ $i -lt $sharding_count ]; do
+        local v_storage_path="${storage_base_path}${v_date_str}/${sharding_prefix}${i}/"
+        if [ -d $v_storage_path ]; then
+            i=$((i + 1))
+            continue
+        fi
+        # download from s3
+        /vmrestore-prod \
+            "-concurrency=1" \
+            "-maxBytesPerSecond=1GB" \
+            "-memory.allowedPercent=80" \
+            "-src=s3://${AWS_BUCKET}${s3_storage_base_path}${v_date_str}/${sharding_prefix}${i}/" \
+            "-storageDataPath=${storage_base_path}${v_date_str}/${sharding_prefix}${i}/" \
+            "-loggerDisableTimestamps" \
+            "-loggerFormat=${configs_log_format}" \
+            "-loggerLevel=${configs_log_level}" \
+            "-loggerOutput=${configs_log_output}" \
+            "-pushmetrics.extraLabel=region=\"${configs_region}\"" \
+            "-pushmetrics.extraLabel=env=\"${configs_env}\"" \
+            "-pushmetrics.extraLabel=cluster=\"historical-cluster\"" \
+            "-pushmetrics.extraLabel=role=\"vm-restore-daily\"" \
+            "-pushmetrics.extraLabel=container_ip=\"${CONTAINER_IP}\"" \
+            "-pushmetrics.extraLabel=container_name=\"${CONTAINER_NAME}\"" \
+            "-pushmetrics.interval=2s" \
+            "-pushmetrics.url=${push_metrics_addr}" \
+            "-skipBackupCompleteCheck"
+        local v_exit_code=$?
+        if [ "${v_exit_code}" -ne 0 ]; then
+            push_metric "historical-shell" "vmrestore error, code=${v_exit_code}" "alarm"
+            if [ "${debug}" -eq 1 ]; then
+                sleep 60
+            fi
+            #exit 2
+            return ${v_exit_code}
+        fi
+        i=$((i + 1))
+    done
+    chmod 777 "${storage_base_path}${v_date_str}/"
+    #
+    merge $v_date_str
+    local v_exit_code=$?
+    return ${v_exit_code}
+}
+
 # on_start when first time start
 function on_start() {
     # at first time
     local v_date_str=$1
-    local v_storage_path="${storage_base_path}${v_date_str}/sharding-${count_index}/"
-    if [ -d "${v_storage_path}" ]; then
+    local v_storage_path_data="${storage_base_path}${v_date_str}/data/"
+    local v_storage_path_indexdb="${storage_base_path}${v_date_str}/indexdb/"
+    if [ -d "${v_storage_path_data}" ] && [ -d "${v_storage_path_indexdb}" ]; then
         chmod 777 "${v_storage_path}"
         push_metric "historical-shell" "storage_path already exists" "info" &
         return 0
     fi
-    # download from s3
-    restore "${v_date_str}"
+    restore_and_merge "${v_date_str}"
     local v_ret=$?
     if [ "$v_ret" -ne 0 ]; then
         exit 2

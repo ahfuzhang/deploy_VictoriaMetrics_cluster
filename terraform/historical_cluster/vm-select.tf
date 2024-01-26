@@ -4,7 +4,9 @@ locals {
   vm-select-name          = "historical-cluster-vm-select"
   port1                   = [for item in jsondecode(data.external.historical-cluster-vm-storage-status.result.r).items : "${item.status.podIP}:8401"]
   port2                   = [for item in jsondecode(data.external.historical-cluster-vm-storage-status.result.r).items : "${item.status.podIP}:18401"]
-  storage_list_for_select = join(",", concat(local.port1, local.port2))
+  port1_with_merge        = [for item in jsondecode(data.external.historical-cluster-vm-storage-with-merge-status.result.r).items : "${item.status.podIP}:8401"]
+  port2_with_merge        = [for item in jsondecode(data.external.historical-cluster-vm-storage-with-merge-status.result.r).items : "${item.status.podIP}:18401"]
+  storage_list_for_select = join(",", concat(local.port1, local.port2, local.port1_with_merge, local.port2_with_merge))
 
   daily_vmselect_count = (length(var.configs.s3.AWS_ACCESS_KEY_ID) > 0 &&
     length(var.configs.s3.AWS_SECRET_ACCESS_KEY) > 0 &&
@@ -82,7 +84,7 @@ resource "kubernetes_deployment" "historical-cluster-vm-select" {
               memory = "4Gi"
             }
             requests = {
-              cpu    = "0.5"
+              cpu    = "0.1"
               memory = "512Mi"
             }
           }

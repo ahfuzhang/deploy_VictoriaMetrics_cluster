@@ -240,7 +240,7 @@ resource "kubernetes_deployment" "self-monitor-cluster-vm-agent" {
               memory = "1Gi"
             }
             requests = {
-              cpu    = "0.5"
+              cpu    = "0.1"
               memory = "256Mi"
             }
           }
